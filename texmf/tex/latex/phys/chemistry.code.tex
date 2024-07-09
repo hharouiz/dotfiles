@@ -1,0 +1,220 @@
+\newcommand{\Cu}{C}
+\newcommand{\Vu}{V}
+\newcommand{\Cd}{C_{0}}
+\newcommand{\Vd}{V_{0}}
+\newcommand{\Ve}{V_{\text{éq}}}
+
+% Chemical instruments
+% Erlenmeyer flask
+\newcommand{\erlenmeyer}[1]{%
+    \newdimen\neckwidth
+    \newdimen\neckheight
+    \newdimen\basewidth
+    \newdimen\bodyheight
+    \newdimen\roundneck
+    \newdimen\roundbase
+    \neckwidth=3mm
+    \neckheight=4mm
+    \basewidth=20mm
+    \bodyheight=17mm
+    \roundneck=5pt
+    \roundbase=12pt
+    \def\angle{30}
+    \def\solutionlevel{0.5}
+    \node[trapezium,trapezium stretches=true,
+    minimum width=\basewidth,
+    minimum height=\bodyheight,
+    trapezium angle=\angle]
+    (body) {};
+    \def\erlenmeyerpath{%
+        let \p1=(body.top left corner),
+        \p2=(body.top right corner) in
+        ([yshift=1.3*(\x2-\x1)]body.top left corner)
+        [rounded corners=\roundneck] --
+        (body.top left corner)
+        [rounded corners=\roundbase] --
+        (body.bottom left corner) --
+        (body.bottom right corner)
+        [rounded corners=\roundneck] --
+        (body.top right corner) [sharp corners] --
+        ++(0,1.3*\x2-1.3*\x1)
+    }
+    \def\solutionpath{%
+        ($(body.bottom left corner)!\solutionlevel!
+        (body.top left corner)$)
+        [rounded corners=\roundbase] --
+        (body.bottom left corner) --
+        (body.bottom right corner)
+        [rounded corners=\roundneck] --
+        (body.top right corner) [sharp corners] --
+        ($(body.bottom right corner)!\solutionlevel!
+        (body.top right corner)$) -- cycle
+    }
+    \fill[#1] \solutionpath;
+    \draw[line width=1pt] \erlenmeyerpath;
+}
+
+%% Montages
+% Montage: Dosage potentiométrique
+\def\dosagepotentiometrique#1#2#3#4{
+        \tikzset{every node/.style={inner sep=0pt,thick},thick,
+            labelstyle/.style={Stealth-,black,thin,align=left,shorten <=2pt}}
+        \definecolor{titreecolor}{HTML}{adb5bd}
+        \definecolor{blue}{HTML}{004e98}
+        \definecolor{calomelcolor}{HTML}{c98986}
+        \definecolor{agcolor}{HTML}{6c757d}
+        \definecolor{agitateurcolor}{HTML}{eeeeee}
+        \definecolor{selcolor}{HTML}{f2efe9}
+        \newdimen\agitateurwidth
+        \newdimen\agitateurheight
+        \newdimen\becherwidth
+        \newdimen\becherheight
+        \agitateurwidth=4cm
+        \agitateurheight=1cm
+        \becherwidth=3cm
+        \becherheight=1.5cm
+        \def\titreelevel{0.7}
+        % Agitateur
+        \node[draw,anchor=south,minimum width=\agitateurwidth,
+        minimum height=\agitateurheight,rounded corners,
+        fill=agitateurcolor]
+        (agitateur) {};
+        \foreach \c/\r [count=\i from 1] in {black/9.4,white/8,black/5}
+        \node[circle,fill=\c,minimum size=\r pt] (c\i) at
+        ([xshift=-5mm]agitateur.east) {};
+        \foreach \a in {0,40,...,360}
+        \draw[white,line width=1pt] (c1.\a) -- (c3.\a);
+        %\node[circle,fill=green,inner sep=0.8] at ([xshift=-5mm]c1) {};
+        % Barreau
+        \node[anchor=south,minimum width=4mm,minimum height=1.2mm,
+        rounded corners=2pt,fill]
+        (barreau) at ([yshift=0.5pt]agitateur.north) {};
+        % Becher
+        \node[anchor=south,minimum width=\becherwidth,
+        minimum height=\becherheight] (becher) at (agitateur.north) {};
+        \def\becherpath{%
+            (becher.north west) [rounded corners] |-
+            (becher.south east) [sharp corners] --
+            (becher.north east)}
+        \def\titreepath{%
+            ($(becher.south west)!\titreelevel!(becher.north west)$)
+            [rounded corners] |-
+            (becher.south east) [sharp corners] --
+            ($(becher.south east)!\titreelevel!(becher.north east)$) -- cycle}
+        % Electrodes
+        \draw[{Round Cap[]}-{Rectangle[round,blue,width=5pt]},calomelcolor,
+        line width=2.4pt,shorten <=3pt]
+        ($(becher.south west)!0.2!(becher.south east)$) -- +(0,2)
+        coordinate (calomelhead);
+        \draw[{Round Cap[]}-{Rectangle[round,blue,width=5pt]},agcolor,
+        line width=2.4pt,shorten <=3pt]
+        ($(becher.south west)!0.8!(becher.south east)$) -- +(0,2)
+        coordinate (aghead);
+        \fill[titreecolor,opacity=0.5] \titreepath;
+        \draw \becherpath;
+        % Burette
+        \node[anchor=south,minimum width=0.1cm,minimum height=0.5cm]
+        (burb) at ([yshift=0.5cm]becher.north) {};
+        \node[anchor=south,minimum width=0.4cm,minimum height=5cm]
+        (bura) at ([yshift=2mm]burb.north) {};
+        \fill[selcolor] ([yshift=-0.52cm]bura.north west) --
+        (bura.south west) -- (burb.north west) -- (burb.west) --
+        (burb.east) -- (burb.north east) -- (bura.south east) |- cycle;
+        \draw[black] (burb.south west) -- (burb.north west) --
+        (bura.south west) -- (bura.north west) -- +(135:3mm);
+        \draw[black] (burb.south east) -- (burb.north east) --
+        (bura.south east) -- (bura.north east) -- +(45:3mm);
+        \draw[Bar-,line width=1.6pt,line cap=round]
+        ([xshift=-2mm]burb.west) -- ([xshift=2mm]burb.east);
+        \foreach \y in {3,...,45}
+        \draw[black,very thin]
+        ([yshift=\y mm]bura.south east) -- +(-2pt,0);
+        \foreach \y in {5,10,...,45}
+        \draw[black,thin] ([yshift=\y mm]bura.south east) -- +(-4pt,0);
+        % Labels
+        \draw[labelstyle] (bura.east) -- +(2.5,0) coordinate (tlim)
+        node[right=1mm] {#2};
+        \draw[labelstyle] (becher.east) coordinate (temp) -- (temp -| tlim)
+        node[right=1mm] {#1};
+        \draw[labelstyle]
+        (aghead) -- ++(45:1) coordinate (temp) -- (temp -| tlim)
+        node[right=1mm] {#4};
+        \draw[labelstyle]
+        (calomelhead) -- ++(135:1) -- ++(-1,0)
+        node[left=1mm] {#3};
+}
+
+\newcommand{\flacon}[1]{
+    % rounded corners values
+    \def\a{3}
+    \def\b{3}
+    \def\c{6}
+    \def\w{1}
+    \def\h{2}
+    \def\ww{3}
+    \def\hh{3}
+    \def\bottlepath{
+        (rt.north west)
+        [rounded corners=\c pt] -- (rt.south west)
+        [rounded corners=\b pt] -- (flacon.north west)
+        [rounded corners=\a pt] -- (flacon.south west)
+        -- (flacon.south east) 
+        [rounded corners=\b pt] -- (flacon.north east) 
+        [rounded corners=\c pt] -- (rt.south east) 
+        [rounded corners=0pt]   -- (rt.north east) -- cycle;
+    }
+    \node[inner sep=0pt,minimum width=\w cm,
+        minimum height=\h cm] (flacon) {};
+    \node[inner sep=0pt,minimum width=\ww mm,
+        minimum height=\hh mm,anchor=south] (rt) at (flacon.north) {};
+    \fill[carmine] \bottlepath
+    \draw \bottlepath
+    % bouchon
+    \node[fill=black,inner sep=0pt,minimum width=1.3*\ww mm,
+        minimum height=0.6*\hh mm,rounded corners=1pt] (bouchon) at 
+        (rt.north) {};
+    \node[right=2mm,align=left,font=\scriptsize] at (flacon.east) {#1};
+}
+
+\newcommand{\fiole}[5]{
+    % rounded corners values
+    \def\a{5}
+    \def\b{3}
+    \def\c{6}
+    \def\w{1}
+    \def\h{0.3}
+    \def\ww{2}
+    \def\hh{8}
+    \def\bottlepath{
+        (rt.north west)
+        [rounded corners=\c pt] -- (rt.south west)
+        [rounded corners=\b pt] -- (#2.north west)
+        [rounded corners=\a pt] -- (#2.south west)
+        -- (#2.south east) 
+        [rounded corners=\b pt] -- (#2.north east) 
+        [rounded corners=\c pt] -- (rt.south east) 
+        [rounded corners=0pt]   -- (rt.north east) -- cycle;
+    }
+    \def\solutionpath{
+        (traitleft)
+        [rounded corners=\c pt] -- (rt.south west)
+        [rounded corners=\b pt] -- (#2.north west)
+        [rounded corners=\a pt] -- (#2.south west) -- (#2.south east) 
+        [rounded corners=\b pt] -- (#2.north east) 
+        [rounded corners=\c pt] -- (rt.south east) 
+        [rounded corners=0pt]   -- (traitright)    -- cycle;
+    }
+    \node[inner sep=0pt,minimum width=\w cm,
+        minimum height=\h cm] (#2) at #1 {};
+    \node[inner sep=0pt,minimum width=\ww mm,
+        minimum height=\hh mm,anchor=south] (rt) at ([yshift=5mm]#2.north) {};
+    % trait de jauge
+    \coordinate (traitleft) at ($(rt.south west)!0.5!(rt.north west)$);
+    \coordinate (traitright) at ($(rt.south east)!0.5!(rt.north east)$);
+    \draw[gray] (traitleft) -- (traitright);
+    \fill[#4] \solutionpath
+    \draw \bottlepath
+    \draw[ultra thick,line cap=round] (rt.north east) -- (rt.north west);
+    \node[below=2mm,align=left,font=\scriptsize] at (#2.south) {#5};
+    \node[above,font=\ttfamily\tiny\bfseries,text=gray] at (#2.south) {#3mL};
+}

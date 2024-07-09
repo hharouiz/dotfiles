@@ -1,0 +1,107 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LydexTitlePage}[2021/10/03 Lydex style for title page]
+
+\RequirePackage{geometry}
+\RequirePackage{titlesec}
+\RequirePackage{tikz}
+%\RequirePackage[most]{tcolorbox}
+\RequirePackage{setspace} % for \setstretch
+
+%% Colors
+\definecolor{color1}{HTML}{8ECAE6}
+
+%% Styles
+\newcommand\TitlePageTitleStyle[1]{\begingroup\fontsize{40pt}{48pt}#1\endgroup}
+
+\definecolor{TitlePageTitleFg}{HTML}{5F5F5F}
+\colorlet{TitlePageTitleBg}{color1}
+
+
+\newcommand{\TitlePageOne}{
+    \begin{titlepage}
+        \newgeometry{left=2cm,top=0cm}
+        \begin{tikzpicture}[remember picture,overlay]
+            \node at (current page.center)
+                {\includegraphics[width=\paperwidth,
+                height=\paperheight]{backgrounds/background3.pdf}};
+        \end{tikzpicture}
+        \begin{flushleft}
+            \noindent
+            \\[-1em]
+            \color{TitlePageTitleFg}
+            \makebox[0pt][l]{\textcolor[HTML]{360049}{\rule{1.3\textwidth}{0pt}}}
+            \par
+            \noindent
+            
+            {
+                \setstretch{2}
+                \vfill
+                \begin{tcolorbox}[enhanced,boxrule=0pt,colback=TitlePageTitleBg,
+                    fuzzy shadow={0mm}{0mm}{-1.5mm}{0.3mm}{},
+                    rounded corners,top=1cm,bottom=1cm,left=5mm,
+                    halign=center
+            	]%
+                    \color{TitlePageTitleFg}
+            %        {\Huge \textbf{\textsf{TP1 de chimie}}}
+            %        \vskip 1em
+            %        \begin{itemize}
+            %            \renewcommand{\labelitemi}{\specialitem[TitlePageTitleFg]}
+            %            \item {\huge \textbf{\textsf{Initiation au TP de chimie ;}}}
+            %            \item {\huge \textbf{\textsf{Règles de sécurité au labo de chimie ;}}}
+            %            \item {\huge \textbf{\textsf{Préparation des solutions aqueuses ;}}}
+            %            \item {\huge \textbf{\textsf{Erreurs et incertitudes}}}
+            %        \end{itemize}
+            %        {\Huge\textbf{\textsf{Révision Bac (Mécanique)}}}
+            %        {\Huge\textbf{\textsf{Révision Bac (Chimie)}}}
+            %        {\Huge\textbf{\textsf{Cinématique en mécanique newtonienne}}}
+            	\LARGE\textbf{{\@title}}
+            %	{\huge\textbf{\textsf{Dosage d'un acide fort \ce{HCl} par base forte}}}
+            %	{\huge\textbf{\textsf{18/10/2021}}}
+                \end{tcolorbox}
+            %   \hspace{13cm}{\Large\bfseries \color{black} Partie 1}
+
+                
+                \vskip 3cm
+                \noindent \textbf{\LARGE {Mohamed Amine SOUKTANI}}
+                \vskip 4em
+                \noindent \textbf{\LARGE {Lycée d'Excellence de Benguerir}}
+               % \vskip -0.5em
+               % {\LARGE Classes : MPSI 1/2/3/4}
+               % \vskip -0.5em
+               % {\LARGE Date : Lundi 06/12/2021}
+               % \vskip -0.5em
+               % {\LARGE Durée : 3 heures}
+
+               % \vskip 3em
+               % {\Large\emph{A rédiger chaque problème sur une copie séparée.}}
+
+                \vskip 8em
+                \noindent \textbf{\LARGE {Année scolaire : 2023 -- 2024}}
+                \vfill
+            }
+            
+        \end{flushleft}
+    \end{titlepage}
+    \restoregeometry
+}
+
+\newcommand{\TitlePageTwo}{%
+    \thispagestyle{empty}%
+    \null%
+    \begin{tikzpicture}[overlay,remember picture]
+        % Background picture
+        \node[below right,inner sep=0pt,opacity=1] at (current page.north west)
+            {%
+                \includegraphics[width=\paperwidth,height=.5\paperheight]
+                    {images/labo.jpg}
+            };
+
+        % Title of the document
+        \node[align=left] (titlepageTitle) {
+            \TitlePageTitleStyle{\@title}
+        };
+    \end{tikzpicture}
+    \clearpage
+}
+
+\endinput

@@ -1,0 +1,22 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LydexBackground}[2021/11/07 Lydex Package for Background]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Packages
+\RequirePackage[pages=all]{background}
+
+%% Page background
+\backgroundsetup{
+    scale=1,
+    color=black,
+    opacity=0.5,
+    angle=0,
+    contents={%
+        \includegraphics[width=\paperwidth,height=\paperheight]
+            {backgrounds/background1.pdf}
+        %\includegraphics[width=\paperwidth,height=\paperheight]
+        %    {backgrounds/Inkscape/background1.pdf}
+    }%
+}
+
+\endinput

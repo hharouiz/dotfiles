@@ -1,0 +1,134 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LayoutInfo}[2021/10/09 Layout info package]
+
+\RequirePackage[pages=all]{background}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,intersections}
+
+\def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
+
+
+\newlength\totalhoffset
+\newlength\lremaining
+\newlength\totalvoffset
+\newlength\bremaining
+
+\backgroundsetup{
+    scale=1,
+    color=black,
+    opacity=1,
+    angle=0,
+    contents={%
+        \begin{tikzpicture}[overlay,remember picture,
+		>=Stealth,draw=gray,text=gray,font=\small\ttfamily]
+            \node[anchor=north west] at
+                ([xshift=\baselineskip]current page.north west)
+                {paperwidth=\convertto{mm}{\the\paperwidth} mm};
+            \node[anchor=south west,rotate=-90] at
+                ([yshift=-\baselineskip]current page.north west)
+                {paperheight=\convertto{mm}{\the\paperheight} mm};
+            %%%%% Horizontally
+            % 1in+\hoffset
+            \setlength\totalhoffset{1in}
+            \addtolength\totalhoffset{\hoffset}
+            \draw[<->]
+                (current page.west) --
+                node[anchor=west,rotate=-90]
+                {1in+hoffset=\convertto{mm}{\the\totalhoffset} mm}
+                ++(1in+\hoffset,0);
+            % \oddsidemargin
+            \draw[<->]
+                ([xshift=1in+\hoffset]current page.west) --
+                node[anchor=west,rotate=-90]
+                {oddsidemargin=\convertto{mm}{\the\oddsidemargin} mm}
+                ++(\oddsidemargin,0);
+            % \textwidth
+            \draw[<->,name path=text width]
+                ([xshift=1in+\hoffset+\oddsidemargin]current page.west) --
+                ++(\textwidth,0);
+            % The remaining length
+            \pgfmathparse{\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth}
+            \setlength\lremaining{\pgfmathresult pt}
+            \draw[<->]
+                ([xshift=1in+\hoffset+\oddsidemargin+\textwidth]current page.west) --
+                node[anchor=west,rotate=-90]
+                {remaining=\convertto{mm}{\the\lremaining} mm}
+                ++(\lremaining,0);
+            %%%%% Vertically
+            % 1in+\voffset
+            \setlength\totalvoffset{1in}
+            \addtolength\totalvoffset{\voffset}
+            \draw[<->]
+                ([xshift=-5cm]current page.north) --
+                node[anchor=west]
+                {1in+voffset=\convertto{mm}{\the\totalvoffset} mm}
+                ++(0,-1in-\voffset);
+            % \topmargin
+            \draw[<->]
+                ([xshift=-4.5cm,yshift=-1in-\voffset]current page.north) --
+                node[anchor=west]
+                {topmargin=\convertto{mm}{\the\topmargin} mm}
+                ++(0,-\topmargin);
+            % \headheight
+            \draw[<->]
+                ([yshift=-1in-\voffset-\topmargin]current page.north) --
+                node[anchor=west]
+                {headheight=\convertto{mm}{\the\headheight} mm}
+                ++(0,-\headheight);
+            % \headsep
+            \draw[<->]
+                ([yshift=-1in-\voffset-\topmargin-\headheight]current page.north) --
+                node[anchor=west] {headsep=\convertto{mm}{\the\headsep} mm}
+                ++(0,-\headsep);
+            % \textheight
+            \draw[<->,name path=text height]
+                ([yshift=-1in-\voffset-\topmargin-\headheight-\headsep]
+                current page.north) --
+                ++(0,-\textheight);
+            % \footskip
+            \draw[<->]
+                ([yshift=-1in-\voffset-\topmargin-\headheight-\headsep-\textheight]
+                current page.north) --
+                node[anchor=west] {footskip=\convertto{mm}{\the\footskip} mm}
+                ++(0,-\footskip);
+            % The remaining length
+            \pgfmathparse{\paperheight-1in-\voffset-\topmargin-\headheight-
+                \headsep-\textheight-\footskip}
+            \setlength\bremaining{\pgfmathresult pt}
+            \draw[<->]
+                ([yshift=-1in-\voffset-\topmargin-\headheight-\headsep-\textheight-
+                \footskip]current page.north) --
+                node[anchor=west]
+                {remaining=\convertto{mm}{\the\bremaining} mm}
+                ++(0,-\bremaining);
+            %
+            \node[anchor=south west,rotate=-90,
+                name intersections={of=text width and text height}]
+                at (intersection-1)
+                {textwidth=\convertto{mm}{\the\textwidth} mm};
+            \node[anchor=south west,
+                name intersections={of=text width and text height}]
+                at (intersection-1)
+                {textheight=\convertto{mm}{\the\textheight} mm};
+            %%%%% Draw Layouts
+            % Header
+            \draw
+                ([xshift=1in+\hoffset+\oddsidemargin,
+                  yshift=-1in-\voffset-\topmargin]
+                 current page.north west) rectangle ++(\textwidth,-\headheight);
+            % Body
+            \draw
+                ([xshift=1in+\hoffset+\oddsidemargin,
+                  yshift=-1in-\voffset-\topmargin-\headheight-\headsep]
+                 current page.north west) rectangle ++(\textwidth,-\textheight);
+            % Footer
+            \draw
+                ([xshift=1in+\hoffset+\oddsidemargin,
+                  yshift=-1in-\voffset-\topmargin-\headheight-\headsep-\textheight-
+                  \footskip]
+                 current page.north west) -- ++(\textwidth,0);
+        \end{tikzpicture}
+    }
+}
+
+\endinput

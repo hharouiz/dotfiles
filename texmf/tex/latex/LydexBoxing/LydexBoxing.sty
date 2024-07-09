@@ -1,0 +1,104 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LydexBoxing}[2021/11/01 Lydex Package for Boxing]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Packages
+\RequirePackage{tikz}
+\usetikzlibrary{matrix}
+
+%\RequirePackage{fontawesome}
+\RequirePackage{awesomebox}
+\RequirePackage[minted,most]{tcolorbox}
+
+%% Colors
+\definecolor{WarningColor}{RGB}{188,103,0}
+
+
+% Using TikZ
+\newcommand{\NoteBox}[3][black]{
+  \begin{tikzpicture}[trim left]
+    \matrix
+    [matrix of nodes,anchor=text,inner xsep=2mm,
+     nodes={text width=\textwidth-4mm,anchor=center,align=flush left},
+     row 1/.style={nodes={fill=black!10,font=\bfseries,text=#1}},
+     row 2/.style={nodes={fill=black!5}},
+    ] (m)
+    {
+      #2 \\
+      #3 \\
+    };
+    % Bounding Box = Node Dimensions
+  \end{tikzpicture}
+}
+
+\newtcolorbox{Remarque}[1][]{%
+  colback=black!5,colbacktitle=black!10,coltitle=blue,title=Remarque,
+  fonttitle=\bfseries,boxrule=0.3pt,sharp corners,
+  #1
+}
+\newtcolorbox{Conclusion}[1][]{%
+  colback=black!5,colbacktitle=black!10,coltitle=green!60!black,
+  title=Conclusion,
+  fonttitle=\bfseries,boxrule=0.3pt,sharp corners,
+  #1
+}
+
+% Using tcolorbox
+\tcbset{highlight math style={%
+  enhanced,colback=magicmint!80!white,colframe=white,top=5mm,bottom=5mm}
+}
+\newcommand\InlineMathBox[2][]{\tcbhighmath[#1]{#2}}
+
+\definecolor{c2}{HTML}{dee2e6}
+\definecolor{c3}{HTML}{f8f9fa}
+\newtcolorbox{ExampleBox}[3][]{enhanced,breakable,
+  colframe=#2,colbacktitle=c2,colback=white,title=#3,fonttitle=\bfseries,
+  coltitle=#2,
+  boxrule=-0.2pt,leftrule=1mm,left=1mm,right=1mm,top=2mm,bottom=2mm,sharp corners,
+  #1}
+
+\definecolor{c1}{HTML}{283618}
+\newenvironment{PreambleBox}
+  {\begin{ExampleBox}{c1}{Préambule}}
+  {\end{ExampleBox}}
+\newenvironment{RemarkBox}
+  {\begin{ExampleBox}{green!60!black}{Remarque}}
+  {\end{ExampleBox}}
+
+\newenvironment{ApplicationBox}
+  {\begin{ExampleBox}{blue-violet}{Application}}
+  {\end{ExampleBox}}
+
+\newtcolorbox{WarningBox}{enhanced,sharp corners,%breakable,
+  boxrule=0pt,top=0mm,bottom=0mm,left=1mm,right=1mm,leftrule=1cm,
+  height from=1cm to \textheight,
+  colframe=black!12,colback=black!3,
+  overlay={%
+    \begin{tcbclipframe}
+      %\fill[red,opacity=0.5]
+      %  ([xshift=5mm,yshift=-5mm)] frame.north west)
+      %  circle (5mm);
+      %\node[regular polygon,regular polygon sides=3,
+      %  draw,red,line width=1mm,minimum size=0.9cm,rounded corners]
+      %  at ([xshift=5mm,yshift=-5mm)] frame.north west) {?};
+      \node[inner sep=0mm,text=WarningColor]
+        at ([xshift=5mm,yshift=-5mm)] frame.north west)
+        {\fontsize{22}{26.4}\faWarning};
+    \end{tcbclipframe}
+  }
+}
+
+\newtcblisting{PythonCode}[1][]{%
+  enhanced,listing engine=minted,minted style=default,minted language=python,
+  minted options={fontsize=\small,breaklines,autogobble,linenos,numbersep=3mm},
+  colback=blue!5!white,colframe=blue!75!black,listing only,left=6mm,
+  sharp corners,boxrule=0.7pt,
+  overlay={%
+    \begin{tcbclipinterior}
+      \fill[red!20!blue!20!white]
+        (frame.south west) rectangle ([xshift=6mm]frame.north west);
+    \end{tcbclipinterior}
+  },#1
+}
+
+\endinput

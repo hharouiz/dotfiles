@@ -1,0 +1,99 @@
+% Exercice styles
+\mdfdefinestyle{ExerciceStyle1}{%
+    % Options with lengths
+    skipabove = \baselineskip,
+    skipbelow = 0pt,
+    leftmargin = 0pt,
+    rightmargin = 0pt,
+    innerleftmargin = 6mm,
+    innerrightmargin = 10pt,
+    innertopmargin = 5pt,
+    innerbottommargin = 5pt,
+    % linewidth = 0.4pt,
+    innerlinewidth = 0pt,
+    middlelinewidth = 0.4pt,
+    outerlinewidth = 0pt,
+    roundcorner = 0pt,
+    % Colored Options
+    linecolor = black,
+    innerlinecolor = black,
+    middlelinecolor = black,
+    outerlinecolor = black,
+    backgroundcolor = white,
+    fontcolor = black,
+    % Hidden Lines
+    topline = true,
+    rightline = true,
+    leftline = true,
+    bottomline = true,
+    hidealllines = true,
+    % Frametitle
+    frametitleaboveskip = 0pt,%
+    frametitlebelowskip = 0pt,%
+    % Extra
+    singleextra = {%
+        \stepcounter{exercice}%
+        \newdimen\pr%
+        \pr=5pt
+        \newdimen\lw%
+        \lw=0.8pt
+        \newdimen\pb%
+        \pb=0.6pt
+        \tikzstyle{boxborderstyle}=[color=capri,line width=\lw,%
+        rounded corners=\pr+0.5\lw+0.5\pb]%
+        \node[rectangle,anchor=south west,inner xsep=0pt,font=\bfseries,
+        text=capri] (title) at (O |- P) {Exercice~\theexercice};%
+        \draw[boxborderstyle] (title.south east) -| (O) -- (O -| title.east);
+        \foreach \n/\y in {O|-P/-\pr-0.5\lw-0.5\pb,O/\pr+0.5\lw+0.5\pb}{%
+            \node[circle,draw=white,fill=capri,inner sep=0pt,
+            minimum size=2\pr,line width=\pb] (pulley)
+            at ([shift={(\pr+0.5\lw+0.5\pb,\y)}]\n) {};
+            \fill[white] (pulley.center) circle (1pt);
+        }
+    },%
+    nobreak,
+}
+
+\mdfdefinestyle{ExerciceStyle2}{%
+    skipabove = \baselineskip,
+    skipbelow = \baselineskip,
+    innerleftmargin = 0pt,
+    innerrightmargin = 0pt,
+    innertopmargin = 5pt,
+    innerbottommargin = 5pt,
+    middlelinewidth = 0.4pt,
+    %hidealllines = true,
+    singleextra={
+        %        \fill[primarycolor]
+        %        (O |- P)  -- +(3mm,-0.5\mdfframetitleboxtotalheight) --
+        %        +(0,-\mdfframetitleboxtotalheight) -- cycle;
+        \node[anchor=south] at (O |- P) {Exercice~\theexercice};
+    },
+    nobreak
+}
+
+
+\definecolor{background}{HTML}{f5f3f4}
+\mdfdefinestyle{ExerciceStyle3}{%
+    skipabove = \baselineskip,
+    skipbelow = 0pt,
+    innerleftmargin = 10pt,
+    innerrightmargin = 10pt,
+    innertopmargin = 10pt,
+    innerbottommargin = 5pt,
+    hidealllines = true,
+    leftline = true,
+    linewidth = 2pt,
+    frametitleaboveskip=5pt,
+    frametitlebelowskip = 5pt,%
+    frametitlefont={\normalfont\large\bfseries},
+    backgroundcolor=background,
+    linecolor=primarycolor,
+    singleextra={
+        \stepcounter{exercice}%
+        \draw[gray]
+            ($(O |- P)+(10pt,-\mdfframetitleboxtotalheight)$) --
+            ($(P)+(0,-\mdfframetitleboxtotalheight)$);
+    },
+    %nobreak
+}

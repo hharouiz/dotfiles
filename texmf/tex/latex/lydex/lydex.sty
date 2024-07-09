@@ -1,0 +1,209 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lydex}[2021/10/01 Lydex Package]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Packages
+\RequirePackage[
+	a4paper,
+    left=2.7cm,
+	right=2.7cm,
+	top=3cm,
+	bottom=3cm,
+	marginparwidth=2cm,
+	marginparsep=5mm,
+    %showframe
+]{geometry}
+
+%\RequirePackage[sfdefault,light]{FiraSans}
+%\usepackage[scaled=.9,t,defaultfam]{montserrat}
+\RequirePackage[T1]{fontenc}
+
+
+
+\RequirePackage{tikz}
+\usetikzlibrary{
+    shadings,shadows,decorations.pathmorphing,patterns,
+    spy,arrows.meta,fadings,patterns,decorations.pathmorphing,
+    external,calc,intersections,backgrounds,3d,matrix,
+    shapes.geometric,datavisualization,datavisualization.formats.functions
+}
+\RequirePackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.17}
+
+%\RequirePackage[most]{tcolorbox}
+\RequirePackage{pifont}
+
+%% Maths
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{yhmath}
+\RequirePackage{cases}
+\RequirePackage{cancel}
+
+%% Graphics
+\RequirePackage{graphicx}
+\RequirePackage{subcaption}
+\RequirePackage{float}
+
+%% Chemistry
+\RequirePackage[version=4]{mhchem}
+\RequirePackage{chemfig}
+
+%% Colors
+%\RequirePackage[svgnames,table,hyperref]{xcolor}
+\RequirePackage{soul}
+\RequirePackage{latexcolors}
+
+% Tables
+\usepackage{array}
+\usepackage{tabularx}
+%\arrayrulecolor{color6}
+
+\RequirePackage[h]{esvect}
+
+\RequirePackage{pstricks}
+
+%\RequirePackage{comment}
+
+%% Notes
+\RequirePackage{todonotes}
+\RequirePackage{marginnote}
+
+%%Units
+\RequirePackage[locale = FR]{siunitx} % typesetting values with (SI) units
+\sisetup{inter-unit-product = \ensuremath{{}\cdot{}}}
+
+%% List Structures
+\RequirePackage{enumitem}
+
+%% Circuit Diagrams
+\RequirePackage[european,straightvoltages,cute inductor,siunitx]{circuitikz}
+
+%% Listing
+%\RequirePackage{minted}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Configuration
+
+%% Colors
+\definecolor{primary-color}{HTML}{F51E2C}
+\definecolor{secondary-color}{HTML}{AB9287}
+\definecolor{color1}{HTML}{8ECAE6}
+\definecolor{color2}{HTML}{219EBC}
+\definecolor{color3}{HTML}{023047}
+\definecolor{color4}{HTML}{FFB703}
+\definecolor{color5}{HTML}{FB8500}
+\definecolor{color6}{HTML}{e63946}
+\definecolor{color7}{HTML}{f1faee}
+
+\definecolor{MainColor}{HTML}{006d77}
+\definecolor{NormalTextFg}{HTML}{FFFFFF}
+
+
+\colorlet{HeadTitleColor}{color2}
+\colorlet{HeadRuleColor}{color2}
+\colorlet{FootRuleColor}{color2}
+\colorlet{FootPageNumberFg}{NormalTextFg}
+\colorlet{FootPageNumberBg}{color2}
+
+%% Font
+\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+%\renewcommand{\familydefault}{\sfdefault}
+\newcommand\HeadFootIcon[1]{{\color{color2}\fontsize{10pt}{0pt}#1}}
+
+%% Styles
+
+%% Notes
+\renewcommand*{\marginfont}{\color{red}\sffamily}
+
+\if@todonotes@disabled
+  \newcommand{\hlfix}[2]{#1}
+\else
+  \newcommand{\hlfix}[2]{\texthl{#1}\todo[color=yellow]{#2}}
+\fi
+
+%% Units
+\DeclareSIUnit\bar{bar}
+
+%% Chemistry
+
+%% Maths
+\renewcommand{\CancelColor}{\blue}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% List Structures
+\RequirePackage{LydexListStructure}
+
+%% Boxing
+\RequirePackage{LydexBoxing}
+
+\RequirePackage{csquotes} % should be loaded after fvextra
+
+%% Header and footer
+\RequirePackage{LydexHeadFoot}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Background
+\RequirePackage{LydexBackground}
+
+%\input{layouts-info.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Sectioning
+\RequirePackage{LydexSectioning}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Title page
+\RequirePackage{LydexTitlePage}
+
+
+%% Remove paragraph indentation
+\setlength{\parindent}{0mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% New Commands
+
+%% Physics
+\newcommand\R{\mathcal{R}}
+% Cartesian coordinate
+\newcommand\ex{\vec{e}_{x}}
+\newcommand\ey{\vec{e}_{y}}
+\newcommand\ez{\vec{e}_{z}}
+% Cylindrical coordinate
+\newcommand\erho{\vec{e}_{\rho}}
+\newcommand\evphi{\vec{e}_{\varphi}}
+% Spherical coordinate
+\newcommand\er{\vec{e}_{r}}
+\newcommand\etheta{\vec{e}_{\theta}}
+% Fresnel
+\newcommand\eT{\vec{e}_{T}}
+\newcommand\eN{\vec{e}_{N}}
+\newcommand\eB{\vec{e}_{B}}
+%
+\newcommand\vMR{\vec{v}_{M / \R}}
+\newcommand\aMR{\vec{a}_{M / \R}}
+
+
+%% Line of dots
+\def\dfill#1{\cleaders\hbox to #1{.}\hfill}
+\newcommand\dotline[2][.5em]{\leavevmode\hbox to #2{\dfill{#1}\hfil}}
+
+
+% ubar
+\RequirePackage{accents}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+
+
+
+
+
+\endinput

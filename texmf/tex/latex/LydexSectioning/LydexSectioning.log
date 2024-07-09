@@ -1,0 +1,62 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.8.18)  1 NOV 2021 18:07
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**LydexSectioning.sty
+(./LydexSectioning.sty
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-04-06>
+
+LaTeX Warning: You have requested package `',
+               but the package provides `LydexSectioning'.
+
+Package: LydexSectioning 2021/10/15 Lydex Package for Sectioning
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2019/10/16 v2.13 Sectioning titles
+\ttl@box=\box45
+\beforetitleunit=\skip47
+\aftertitleunit=\skip48
+\ttl@plus=\dimen134
+\ttl@minus=\dimen135
+\ttl@toksa=\toks15
+\titlewidth=\dimen136
+\titlewidthlast=\dimen137
+\titlewidthfirst=\dimen138
+
+
+Package titlesec Warning: Non standard sectioning command \section
+(titlesec)                detected. Using default spacing and no format.
+
+
+Package titlesec Warning: Non standard sectioning command \subsection
+(titlesec)                detected. Using default spacing and no format.
+
+
+Package titlesec Warning: Non standard sectioning command \subsubsection
+(titlesec)                detected. Using default spacing and no format.
+
+
+Package titlesec Warning: Non standard sectioning command \paragraph
+(titlesec)                detected. Using default spacing and no format.
+
+
+Package titlesec Warning: Non standard sectioning command \subparagraph
+(titlesec)                detected. Using default spacing and no format.
+
+))
+! Emergency stop.
+<*> LydexSectioning.sty
+                       
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 313 strings out of 482555
+ 4009 string characters out of 5952145
+ 236264 words of memory out of 6000000
+ 16048 multiletter control sequences out of 15000+600000
+ 532338 words of font info for 24 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 18i,0n,21p,104b,14s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

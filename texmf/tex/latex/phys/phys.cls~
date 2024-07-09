@@ -1,0 +1,418 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{phys}[2022/10/12 v1.0 phys class]
+
+\DeclareOption{10pt}{%
+	\PassOptionsToClass{\CurrentOption}{article}
+}
+\DeclareOption{12pt}{%
+    \PassOptionsToClass{\CurrentOption}{article}
+}
+
+\DeclareOption*{%
+	\ClassError{phys}{Unknown option '\CurrentOption'}
+}
+
+% If TD
+\newif\if@td\@tdfalse
+\DeclareOption{td}{
+    \@tdtrue
+}
+
+% If Cours
+\newif\if@cours\@coursfalse
+\DeclareOption{cours}{
+    \@courstrue
+}
+
+% If TP
+\newif\if@mytp\@mytpfalse
+\DeclareOption{mytp}{
+    \@mytptrue
+}
+
+\newif\if@tp\@tpfalse
+\DeclareOption{tp}{
+    \@tptrue
+}
+
+% If DS
+\newif\if@ds\@dsfalse
+\DeclareOption{ds}{
+    \@dstrue
+}
+
+% If Problem
+\newif\if@mypb\@mypbfalse
+\DeclareOption{mypb}{
+    \@mypbtrue
+}
+
+%\ExecuteOptions{12pt}
+
+\ProcessOptions\relax
+
+\LoadClass[a4paper]{article}
+
+\usepackage[left=1.5cm,right=1.5cm,top=1.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{float}
+%\usepackage{esvect}
+\usepackage{LBox}
+\usepackage{fourier}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,shapes.geometric,patterns,decorations.pathmorphing,
+    decorations.markings,matrix,positioning,calc,intersections}
+\usepackage[most]{tcolorbox}
+\NewDocumentCommand{\mathbox}{ O{primarycolor} O{white} m}%
+    {\tcboxmath[colframe=#1,colback=#2,boxrule=1pt]{#3}}
+\usepackage{pifont}
+\usepackage{latexcolors}
+\RequirePackage[european,straightvoltages,cute inductor,siunitx]{circuitikz}
+\usepackage{siunitx}
+\sisetup{%
+    inter-unit-product = \ensuremath { { } \cdot { } },
+    output-decimal-marker = {,},
+    % per-mode = symbol, % symbol, fraction
+}
+\DeclareSIUnit[]{\M}{\mole\per\liter}
+\usepackage{fontawesome5}
+\usepackage{csquotes}
+\usepackage{chemfig}
+
+\graphicspath{ {./images/} }
+\setlength\parindent{0pt}
+
+% Define colors
+\definecolor{primarycolor}{HTML}{03045e}
+\definecolor{secondarycolor}{HTML}{caf0f8}
+
+\if@td
+    \renewcommand\thesection{Execice~\arabic{section}~:}
+    \renewcommand\thesubsection{\Alph{subsection}}
+    \renewcommand\labelenumi{\bfseries\arabic{enumi})}
+    \renewcommand\labelenumii{\bfseries\alph{enumii})}
+\fi
+
+\if@cours
+    \renewcommand\thesection{\Roman{section}}
+    \renewcommand\thesubsection{\arabic{subsection}}
+    \renewcommand\labelenumi{\bfseries\arabic{enumi})}
+    \renewcommand\labelenumii{\bfseries\alph{enumii})}
+\fi
+
+%\renewcommand\labelenumi{\bfseries\arabic{enumi})}
+%\renewcommand\labelenumii{\bfseries\alph{enumii})}
+
+\tikzset{enumistyle/.style={%
+    rectangle,fill=capri,text=white,font=\bfseries,inner sep=2pt}}
+\renewcommand\labelenumi{%
+    \tikz[baseline=(X.base)]%
+        \node[enumistyle] (X) {\theenumi};%
+}
+%\renewcommand\labelitemi{\color{capri}\scriptsize\faCircleO}
+%\renewcommand\labelitemii{\color{capri}\scriptsize\faChevronRight}
+
+\if@mytp
+    \definecolor{primarycolor}{HTML}{2b2d42}
+    \definecolor{secondarycolor}{HTML}{edf2f4}
+
+    \renewcommand\thesection{\Roman{section}}
+    \renewcommand\thesubsection{\arabic{subsection}}
+    \renewcommand\thesubsubsection{\alph{subsubsection}}
+    \renewcommand\labelenumi{\bfseries\arabic{enumi})}
+    \renewcommand\labelenumii{\bfseries\alph{enumii})}
+    \renewcommand\labelitemi{\scriptsize\faDotCircle[regular]}
+    \renewcommand\labelitemii{\scriptsize\faAngleDoubleRight}
+
+    \newcounter{qacounter}
+    \newmdenv[%
+        skipabove = \baselineskip,
+        skipbelow = 0pt,
+        innerleftmargin = 4mm,
+        innerrightmargin = 10pt,
+        innertopmargin = 5pt,
+        innerbottommargin = 5pt,
+        middlelinewidth = 2.6pt,
+        hidealllines = true,
+        %leftline = true,
+        frametitleaboveskip=5pt,
+        frametitlebelowskip = 5pt,%
+        frametitlefont={\normalfont\large\bfseries},
+        frametitlebackgroundcolor=secondarycolor,
+        singleextra={
+            \stepcounter{qacounter}
+            \draw[line width=2mm,primarycolor]
+                (O |- P) -- +(0,-\mdfframetitleboxtotalheight);
+        },
+        nobreak,
+    ]{questionenv}
+
+    % Question
+    \NewDocumentEnvironment{QA}{m}%
+    {%
+        \begin{questionenv}[frametitle=#1]%
+        }%
+        {%
+        \end{questionenv}%
+    }
+\fi
+
+\if@tp
+    \definecolor{primarycolor}{HTML}{03045e}
+    \definecolor{secondarycolor}{HTML}{caf0f8}
+
+    \renewcommand\partname{Axe}
+    \renewcommand\thesection{\Roman{section}}
+    \renewcommand\thesubsection{\arabic{subsection}}
+    \renewcommand\thesubsubsection{\Alph{subsubsection}}
+    \renewcommand\labelenumi{\bfseries\arabic{enumi})}
+    \renewcommand\labelenumii{\bfseries\alph{enumii})}
+    \renewcommand\labelitemi{\color{primarycolor}\scriptsize\faDotCircle[regular]}
+    %\renewcommand\labelitemii{\color{black}\scriptsize\faChevronRight}
+
+    \newcounter{qcounter}
+    \newmdenv[%
+        skipabove = \baselineskip,
+        skipbelow = 0pt,
+        innerleftmargin = 5mm,
+        innerrightmargin = 10pt,
+        innertopmargin = 5pt,
+        innerbottommargin = 5pt,
+        middlelinewidth = 2.6pt,
+        hidealllines = true,
+        %leftline = true,
+        frametitleaboveskip=5pt,
+        frametitlebelowskip = 5pt,%
+        frametitlefont={\normalfont\large\bfseries},
+        frametitlebackgroundcolor=secondarycolor,
+        singleextra={
+            \fill[primarycolor]
+                (O |- P)  -- +(3mm,-0.5\mdfframetitleboxtotalheight) --
+                +(0,-\mdfframetitleboxtotalheight) -- cycle;
+            %\node {{Q~\arabic{qcounter}}};
+        },
+        nobreak,
+    ]{questionenv}
+
+    % Question
+    \NewDocumentEnvironment{Q}{m}%
+    {%
+        \begin{questionenv}[frametitle=#1]%
+            \renewcommand\labelenumi{\bfseries\color{thislc}\arabic{enumi})}%
+        }%
+        {%
+        \end{questionenv}%
+    }
+\fi
+
+\if@ds
+    \definecolor{primarycolor}{HTML}{03045e}
+    \definecolor{secondarycolor}{HTML}{caf0f8}
+
+    \renewcommand\partname{Exercice}
+    \renewcommand\thesection{\Roman{section}}
+    \renewcommand\thesubsection{\Alph{subsection}}
+    \renewcommand\thesubsubsection{\arabic{subsubsection}}
+    \renewcommand\labelenumi{\bfseries\arabic{enumi})}
+    \renewcommand\labelenumii{\bfseries\alph{enumii})}
+    \renewcommand\labelitemi{\color{primarycolor}\scriptsize\faDotCircle[regular]}
+    %\renewcommand\labelitemii{\color{black}\scriptsize\faChevronRight}
+
+    \newcounter{qacounter}
+    \newmdenv[%
+        skipabove = \baselineskip,
+        skipbelow = 0pt,
+        innerleftmargin = 8mm,
+        innerrightmargin = 10pt,
+        innertopmargin = 5pt,
+        innerbottommargin = 5pt,
+        middlelinewidth = 2.6pt,
+        hidealllines = true,
+        %leftline = true,
+        frametitleaboveskip=5pt,
+        frametitlebelowskip = 5pt,%
+        frametitlefont={\normalfont\large\bfseries},
+        frametitlebackgroundcolor=secondarycolor,
+        singleextra={
+            \stepcounter{qacounter}
+            \node[circle,fill=primarycolor,text=secondarycolor,inner sep=0pt,
+                  minimum size=6mm,font=\bfseries]
+                at ($(O |- P)+(4mm,-3.5mm)$) {\arabic{qacounter}};
+        },
+        nobreak,
+    ]{questionenv}
+
+    % Question
+    \NewDocumentEnvironment{QA}{m}%
+    {%
+        \begin{questionenv}[frametitle=#1]%
+        }%
+        {%
+        \end{questionenv}%
+    }
+\fi
+
+\if@mypb
+    \definecolor{primarycolor}{HTML}{2b2d42}
+    \definecolor{secondarycolor}{HTML}{edf2f4}
+
+    \renewcommand\thesection{\Roman{section}}
+    \renewcommand\thesubsection{\arabic{subsection}}
+    \renewcommand\thesubsubsection{\alph{subsubsection}}
+    \renewcommand\labelenumi{\bfseries\arabic{enumi})}
+    \renewcommand\labelenumii{\bfseries\alph{enumii})}
+    \renewcommand\labelitemi{\scriptsize\faDotCircle[regular]}
+    \renewcommand\labelitemii{\scriptsize\faAngleDoubleRight}
+
+    \newcounter{qacounter}
+    \newmdenv[%
+        skipabove = \baselineskip,
+        skipbelow = 0pt,
+        innerleftmargin = 4mm,
+        innerrightmargin = 10pt,
+        innertopmargin = 5pt,
+        innerbottommargin = 5pt,
+        middlelinewidth = 2.6pt,
+        hidealllines = true,
+        %leftline = true,
+        frametitleaboveskip=5pt,
+        frametitlebelowskip = 5pt,%
+        frametitlefont={\normalfont\large\bfseries},
+        frametitlebackgroundcolor=secondarycolor,
+        singleextra={
+            \stepcounter{qacounter}
+            \draw[line width=2mm,primarycolor]
+                (O |- P) -- +(0,-\mdfframetitleboxtotalheight);
+        },
+        nobreak,
+    ]{questionenv}
+
+    % Question
+    \NewDocumentEnvironment{QA}{m}%
+    {%
+        \begin{questionenv}[frametitle=#1]%
+        }%
+        {%
+        \end{questionenv}%
+    }
+\fi
+
+
+% tikz setup
+\tikzset{%
+    dim/.tip={Stealth[sep].Bar[width=2mm]},
+    >=Stealth,
+}
+
+% axes
+\def\caraxes(#1=#2,#3=#4){%
+    \draw[-Latex] (0,0) -- +(#2,0) node[right] {$#1$};%
+    \draw[-Latex] (0,0) -- +(0,#4) node[above] {$#3$};%
+}
+
+% mdframed staff --------------------------------------------------------------
+% Exercice
+\newcounter{exercice}
+\mdfdefinestyle{ExerciceStyle1}{%
+    % Options with lengths
+    skipabove = \baselineskip,
+    skipbelow = 0pt,
+    leftmargin = 0pt,
+    rightmargin = 0pt,
+    innerleftmargin = 6mm,
+    innerrightmargin = 10pt,
+    innertopmargin = 5pt,
+    innerbottommargin = 5pt,
+    % linewidth = 0.4pt,
+    innerlinewidth = 0pt,
+    middlelinewidth = 0.4pt,
+    outerlinewidth = 0pt,
+    roundcorner = 0pt,
+    % Colored Options
+    linecolor = black,
+    innerlinecolor = black,
+    middlelinecolor = black,
+    outerlinecolor = black,
+    backgroundcolor = white,
+    fontcolor = black,
+    % Hidden Lines
+    topline = true,
+    rightline = true,
+    leftline = true,
+    bottomline = true,
+    hidealllines = true,
+    % Frametitle
+    frametitleaboveskip = 0pt,%
+    frametitlebelowskip = 0pt,%
+    % Extra
+    singleextra = {%
+        \stepcounter{exercice}%
+        \newdimen\pr%
+        \pr=5pt
+        \newdimen\lw%
+        \lw=0.8pt
+        \newdimen\pb%
+        \pb=0.6pt
+        \tikzstyle{boxborderstyle}=[color=capri,line width=\lw,%
+            rounded corners=\pr+0.5\lw+0.5\pb]%
+        \node[rectangle,anchor=south west,inner xsep=0pt,font=\bfseries,
+            text=capri] (title) at (O |- P) {Exercice~\theexercice};%
+        \draw[boxborderstyle] (title.south east) -| (O) -- (O -| title.east);
+        \foreach \n/\y in {O|-P/-\pr-0.5\lw-0.5\pb,O/\pr+0.5\lw+0.5\pb}{%
+            \node[circle,draw=white,fill=capri,inner sep=0pt,
+                minimum size=2\pr,line width=\pb] (pulley)
+                at ([shift={(\pr+0.5\lw+0.5\pb,\y)}]\n) {};
+            \fill[white] (pulley.center) circle (1pt);
+        }
+    },%
+    nobreak,
+}
+\newmdenv[style=ExerciceStyle1]{Exercice}
+
+% Simple box: left border and title
+\newmdenv[%
+    skipabove = \baselineskip,
+    skipbelow = 0pt,
+    innerleftmargin = 10pt,
+    innerrightmargin = 10pt,
+    innertopmargin = 5pt,
+    innerbottommargin = 5pt,
+    middlelinewidth = 2.6pt,
+    hidealllines = true,
+    leftline = true,
+    frametitleaboveskip=5pt,
+    frametitlebelowskip = 0pt,%
+    frametitlefont={\normalfont\large\bfseries},
+    nobreak,
+]{llboxenv}
+
+\NewDocumentEnvironment{llbox}{m m m}%
+{%
+    \begin{llboxenv}[linecolor=#1, backgroundcolor=#2, frametitle=#3]%
+        \colorlet{thislc}{#1}%
+        \colorlet{thisbg}{#2}%
+        \renewcommand\labelenumi{\bfseries\color{thislc}\arabic{enumi})}%
+    }%
+    {%
+    \end{llboxenv}%
+}
+% ------------------------------------------------------------------------------
+
+
+% ------------------------------------------------------------------------------
+% Chemistry
+% ------------------------------------------------------------------------------
+\include{chemistry.code.tex}
+
+
+\endinput

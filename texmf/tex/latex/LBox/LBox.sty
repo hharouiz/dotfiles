@@ -1,0 +1,245 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LBox}[2022/10/17 This package typeset boxes based on mdframed]
+
+%\RequirePackage[dvipsnames,svgnames]{xcolor}
+\RequirePackage{listings}
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage[framemethod=tikz]{mdframed}
+\RequirePackage{fontawesome5}
+
+% For testing --------------------
+\setlength\fboxsep{0pt}
+\setlength\fboxrule{0.2pt}
+% --------------------------------
+
+%% Colors
+\definecolor{noteColor}{RGB}{25,64,122}
+\definecolor{tipColor}{rgb}{0.0, 0.5, 0.0}
+\definecolor{cautionColor}{RGB}{188,50,0}
+\definecolor{warningColor}{RGB}{188,103,0}
+\definecolor{importantColor}{RGB}{188,0,0}
+\definecolor{questionColor}{rgb}{0.0, 0.75, 1.0}
+\definecolor{solutionColor}{rgb}{0.55, 0.0, 0.55}
+\definecolor{experienceColor}{rgb}{0.0, 0.0, 0.55}
+\definecolor{codeColor}{RGB}{0.0, 0.0, 0.0}
+
+\definecolor{BoxBackgroundColor}{HTML}{eeeeee}
+\definecolor{BlueSnakeColor}{HTML}{5a9fd4}
+\definecolor{YellowSnakeColor}{HTML}{ffd43b}
+
+\definecolor{codeNumberColor}{HTML}{999999}
+
+\mdfdefinestyle{testStyle}{%
+    leftmargin=0pt,
+    rightmargin=0pt,
+    innerleftmargin=0pt,
+    innerrightmargin=0pt,
+    innertopmargin=0pt,
+    innerbottommargin=0pt,
+    linewidth=4mm,
+    linecolor=lightgray,
+    hidealllines=false,
+    leftline=true,
+    singleextra={%
+        \node[circle,fill,inner sep=0.5pt,label=right:\tiny\texttt{O}] at (O) {};
+        \node[circle,fill,inner sep=0.5pt,label=right:\tiny\texttt{P}] at (P) {};
+        %\draw[color=red] ([xshift=4.5mm]O) -- ([xshift=4.5mm]O |- P);%
+        %\draw[color=blue] let \p1=(O), \p2=(P) in (\x1+4.5mm,\y1) -- (\x1+4.5mm,\y2);%
+    },
+}
+
+\mdfdefinestyle{LyDeXBoxStyle}
+{
+    skipabove=\baselineskip,
+    skipbelow=\baselineskip,
+    leftmargin=0pt,
+    rightmargin=0pt,
+    innertopmargin=4mm,
+    innerbottommargin=\baselineskip,
+    innerrightmargin=4mm,
+    innerleftmargin=4mm,
+    linewidth=1mm,
+    hidealllines=true,
+    leftline=true,
+    frametitlerule=false,
+    frametitleaboveskip=4mm,
+    frametitlebelowskip=0pt,
+    frametitlefont={\normalfont\large\bfseries},
+    nobreak
+}
+
+\newmdenv[style=LyDeXBoxStyle]{LyDeXBox}
+
+\NewDocumentEnvironment{LyDeXBoxSkeleton}{m m m}%
+{%
+    \begin{LyDeXBox}[linecolor=#1, backgroundcolor=#2, frametitle=#3]%
+        \colorlet{thislc}{#1}
+        \colorlet{thisbg}{#2}
+    }%
+    {%
+    \end{LyDeXBox}%
+}
+
+\NewDocumentEnvironment{LyDeXNoteBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{noteColor}{BoxBackgroundColor}{\titleFactory{noteColor}{\faInfo}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+\NewDocumentEnvironment{LyDeXTipBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{tipColor}{BoxBackgroundColor}{\titleFactory{tipColor}{\faLightbulb[regular]}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+\NewDocumentEnvironment{LyDeXCautionBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{cautionColor}{BoxBackgroundColor}{\titleFactory{cautionColor}{\faFire}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+\NewDocumentEnvironment{LyDeXWarningBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{warningColor}{BoxBackgroundColor}{\titleFactory{warningColor}{\faExclamation}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+\NewDocumentEnvironment{LyDeXImportantBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{importantColor}{BoxBackgroundColor}{\titleFactory{importantColor}{\faExclamation}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+\NewDocumentEnvironment{LyDeXQuestionBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{questionColor}{BoxBackgroundColor}{\titleFactory{questionColor}{\faQuestion}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+\NewDocumentEnvironment{LyDeXSolutionBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{solutionColor}{BoxBackgroundColor}{\titleFactory{solutionColor}{\faKey}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+\NewDocumentEnvironment{LyDeXExperienceBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{experienceColor}{BoxBackgroundColor}{\titleFactory{experienceColor}{\faFlask}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+
+\NewDocumentEnvironment{LyDeXCodeBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{codeColor}{BoxBackgroundColor}{\titleFactory{codeColor}{\faCode}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+
+\NewDocumentEnvironment{LyDeXPythonBox}{m}%
+{%
+    \begin{LyDeXBoxSkeleton}{BlueSnakeColor}{BoxBackgroundColor}%
+        {\titleFactory{BlueSnakeColor}{\faPython}{#1}}%
+    }%
+    {%
+    \end{LyDeXBoxSkeleton}%
+}
+% How to use
+% \begin{LyDeXPythonBox}{title}
+%    \includepython{<script.py>}
+% \end{LyDeXPythonBox}
+
+\NewDocumentCommand{\titleFactory}{m m m}%
+{%
+    \parbox[t]{.75cm}{%
+        \iconFactory{#1}{#2}%
+    }\hspace*{2mm}%
+    \parbox[t]{\dimexpr\linewidth-.75cm-2mm\relax}{%
+        #3%
+    }%
+}
+%
+\NewDocumentCommand{\iconFactory}{m m}%
+{%
+    \begin{tikzpicture}[baseline=(X.base)]
+        \fill[#1] (0,0) circle (.35cm);
+        \node[inner sep=0pt,outer sep=0pt,align=center,text=white,text width=.7cm,font=\fontsize{.4cm}{.48cm}] (X) {#2};
+    \end{tikzpicture}%
+}
+
+% -------------------
+% Code
+\lstdefinestyle{codeStyle}
+{%
+    numbers=left,
+    stepnumber=1,
+    numberstyle=\color{codeNumberColor}\small\ttfamily,
+    numbersep=4mm,
+    tabsize=3,
+    breakatwhitespace=false,
+    breaklines=true,
+    showstringspaces=false,
+    % The appearance
+    basicstyle=\color{Black}\ttfamily,
+    commentstyle=\color{LimeGreen},
+    keywordstyle=\color{BurntOrange}\bfseries,
+    stringstyle=\color{WildStrawberry},
+    % keywords={var, func, extends},
+    frame=leftline,
+    framesep=2mm, % 0.5*numbersep
+    xleftmargin=5.5mm, % icon radius(3.5mm)+framesep
+    framerule=0.4pt,
+    rulecolor=\color{codeNumberColor},
+    aboveskip=0pt,
+    belowskip=0pt,
+}%
+
+\lstnewenvironment{python}[1][]{%
+    \lstset{style=codeStyle,language=python,#1}%
+}{}
+
+\newcommand*{\includepython}[1][]{%
+    \lstinputlisting[{style=codeStyle,language=python,#1}]%
+}
+
+
+
+%\newcommand{\includecode}[1]{%
+%    \lstinputlisting[caption=#1, escapechar=]{#1}<!---->}
+
+
+%\newmdenv[style=LyDeXCodeStyle]{LyDeXCodeBox}
+
+%\NewDocumentEnvironment{LyDeXCodeBox}{m}%
+%    {%
+%        \begin{LyDeXBoxSkeleton}{codeColor}{BoxBackgroundColor}{\titleFactory{codeColor}{\faCode}{#1}}%
+%    }%
+%    {%
+%        \end{LyDeXBoxSkeleton}%
+%    }
+
+%\NewDocumentEnvironment{LyDeXPythonBox}{m}%
+%{%
+%    \begin{LyDeXCodeBox}{YellowSnakeColor}{BoxBackgroundColor}{\titleFactory{YellowSnakeColor}{\faPython}{#1}}%
+%    }%
+%    {%
+%    \end{LyDeXCodeBox}%
+%}

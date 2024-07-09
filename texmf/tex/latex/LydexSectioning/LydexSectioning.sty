@@ -1,0 +1,100 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LydexSectioning}[2021/10/15 Lydex Package for Sectioning]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Packages
+\RequirePackage[explicit]{titlesec}
+
+% Format (font size)
+%\titleformat*{\section}{\normalfont\Huge}
+%\titleformat*{\subsection}{\normalfont\LARGE}
+%\titleformat*{\subsubsection}{\normalfont\Large}
+
+% Spacing
+%\titlespacing*{\section}{0mm}{4mm}{3mm}
+%\titlespacing*{\subsection}{0mm}{3mm}{2mm}
+%\titlespacing*{\subsubsection}{0mm}{2mm}{1.5mm}
+
+% Title number in margin
+%\def\@seccntformat#1{\llap{\csname the#1\endcsname\hspace{4mm}}\hspace*{-2pt}}
+
+%\newtcbox{\part@box}{fontupper=\normalfont\LARGE\bfseries,capture=minipage,
+%    boxrule=0pt,sharp corners,leftrule=0pt,colframe=color4,%colback=white,
+%    %coltext=white,interior style={left color=blue!50!black,right color=white}
+%    boxsep=0mm,top=4mm,bottom=4mm,halign=center,
+%    %left=\oddsidemargin+1in,right=\oddsidemargin+1in,
+%    %spread inwards,spread outwards,
+%    fontupper=\bfseries\LARGE,
+%    underlay={%
+%        \path[fill=secondary-color]
+%            (interior.south west) rectangle ([xshift=2.3cm]interior.north west);
+%    }
+%}
+%\renewcommand\part{\@startsection{part}{1}{\z@}{\z@}{5mm}{\part@box}}
+%\renewcommand\part{\@startsection{part}%
+%    {-1}{\z@}{\z@}{5mm}{\clearpage\color{blue!50!black}\Huge\bfseries}}
+
+%% Subsection style
+
+%% Subsubsection style
+%\renewcommand\thesubsubsection{\alph{subsubsection}}
+
+
+%% For DS
+\titleformat{\part}[display]
+    {\bfseries\Large}
+    {\filleft\MakeUppercase{Problème} \Huge\thepart}
+    {2ex}
+    {\titlerule\vspace{2ex}\filright}
+    [\vspace{2ex}\titlerule]
+
+% \titleformat{\subsubsection}
+%     {\bfseries\itshape}
+%     {}
+%     {0mm}
+%     {#1}
+
+%\titleformat{\part}[block]
+%    {\begin{tikzpicture}}
+%    {%
+%        \node[above left,color3,font=\bfseries\Large] at (\textwidth,0.3)
+%            {PROBLÈME \Huge\thepart};
+%        \fill[black!3] (0,0) rectangle ++(\textwidth,-1.5);
+%        \draw[color3,very thick] (0,0) -- ++(\textwidth,0);
+%    }
+%    {0pt}
+%    {%
+%        \node[right,font=\bfseries\Large] at (0,-0.75) {#1};
+%        \draw[color3,very thick] (0,-1.5) -- ++(\textwidth,0);}
+%    [\end{tikzpicture}]
+
+\titleformat{\part}[block]
+    {%\clearpage
+      %\noindent
+      \begin{tikzpicture}}
+    {%
+        \node[right,fill=black!3,font=\bfseries\LARGE,align=left,
+              inner xsep=0mm,inner ysep=5mm,text width=\textwidth] (X) {#1};
+        \node[above left,color3,font=\bfseries\Large] at
+            ([yshift=3mm]X.north east) {\Huge\thepart};
+        \draw[color3,very thick] (X.north west) -- (X.north east);
+        \draw[color3,very thick] (X.south west) -- (X.south east);
+    }
+    {0pt}
+    {}
+    [\end{tikzpicture}]
+
+
+% For TD
+%\titleformat{\section}
+% {\bfseries\Large}
+% {Exercice \thesection~:}
+% {2ex}
+% {#1}
+
+% For Course
+%\renewcommand\thesection{\Roman{section}}
+\renewcommand\thesubsection{\Alph{subsection}}
+%\renewcommand\thesubsubsection{\alph{subsubsection}}
+
+\endinput

@@ -1,0 +1,58 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{LydexListStructure}%
+  [2021/10/15 Lydex Package for List Structures]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Packages
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\globalitemi}{
+    \tikz[baseline=-3pt] {
+        \def\a{6}
+        \path[fill=color3] (-.5*\a pt,-.5*\a pt) -| ++(\a pt,\a pt) -- cycle;
+        \path[fill=color4] (-.5*\a pt,-.5*\a pt) |- ++(\a pt,\a pt) -- cycle;
+    }
+}
+\newcommand{\globalitemii}{
+    \tikz[baseline=-3pt] {
+        \path[fill=color3] (0,0) circle (2.5pt);
+    }
+}
+\newcommand{\specialitem}[1][color6]{
+    \tikz[baseline=-3pt]
+        \path[draw=#1,line width=1.5pt,line join=round,line cap=round]
+            (180+45:5pt) -- (0,0) -- (180-45:5pt);
+}
+\newcommand{\tableitem}{
+    \tikz[baseline=-3pt] {
+        \def\a{4.5}
+        \path[fill=color6] (-.5*\a pt,-.5*\a pt) rectangle ++(\a pt,\a pt);
+    }
+}
+\newcommand{\squareitem}[1][color3]{
+    \tikz[baseline=-3pt]
+        \node[fill=#1,inner sep=2.5pt] (X) {};
+}
+\newcommand{\circleitem}[1][color3]{
+    \tikz[baseline=-3pt] {
+        \node[shape=circle,draw=#1,inner sep=2pt] {};
+    }
+}
+%\renewcommand{\labelitemi}{\globalitemi}
+%\renewcommand{\labelitemii}{\globalitemii}
+
+%% Unordered Lists
+%\renewcommand{\labelitemi}{\squareitem}
+%\renewcommand{\labelitemii}{\circleitem}
+
+\renewcommand{\labelitemi}{\scriptsize\color{color2}\faDotCircle[regular]}
+\renewcommand{\labelitemii}{\scriptsize\color{color2}\faCircle[regular]}
+
+%% Ordered Lists
+\renewcommand\labelenumi{\textbf{\arabic{enumi})}}
+%\renewcommand\labelenumii{\textbf{\arabic{enumi}.\arabic{enumii})}}
+\renewcommand\labelenumii{\textbf{\alph{enumii})}}
+\renewcommand\labelenumiii{\textbf{\roman{enumiii})}}
+
+\endinput
