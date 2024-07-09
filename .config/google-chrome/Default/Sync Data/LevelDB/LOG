@@ -1,9 +1,0 @@
-2024/07/09-16:39:24.472 3ca Reusing MANIFEST /home/x/.config/google-chrome/Default/Sync Data/LevelDB/MANIFEST-000001
-2024/07/09-16:39:24.477 3ca Recovering log #46
-2024/07/09-16:39:24.479 3ca Reusing old log /home/x/.config/google-chrome/Default/Sync Data/LevelDB/000046.log 
-2024/07/09-17:21:59.096 3ce Level-0 table #50: started
-2024/07/09-17:21:59.113 3ce Level-0 table #50: 100019 bytes OK
-2024/07/09-17:21:59.119 3ce Delete type=0 #46
-2024/07/09-18:41:37.200 3ce Level-0 table #52: started
-2024/07/09-18:41:37.213 3ce Level-0 table #52: 93119 bytes OK
-2024/07/09-18:41:37.218 3ce Delete type=0 #49
