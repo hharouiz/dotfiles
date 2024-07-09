@@ -1,0 +1,190 @@
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+" Set the following lines in your ~/.vimrc or the systemwide /etc/vimrc:
+" filetype plugin indent on
+"set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"
+"
+" Also, this installs to /usr/share/vim/vimfiles, which may not be in
+" your runtime path (RTP). Be sure to add it too, e.g:
+" set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+" this line is responsible for loading latex-suite when a .tex file is
+" opened.
+"filetype plugin on
+" for automatic indentation specific to LaTeX.
+"filetype indent on
+
+" Color scheme
+" set background=dark
+" colorscheme shine
+
+" Right vertical guide
+set colorcolumn=80
+
+" ------------------------------------------------------------------------------
+" configure editor with tabs and nice stuff...
+" ------------------------------------------------------------------------------
+set expandtab           " enter spaces when tab is pressed
+set textwidth=80        " break lines when line length increases
+set tabstop=4           " use 4 spaces to represent tab
+set softtabstop=4
+set shiftwidth=4        " number of spaces to use for auto indent
+" set autoindent         " copy indent from current line when starting a new line
+
+" make backspaces more powerfull
+"set backspace=indent,eol,start
+
+" set ruler               " show line and column number
+" syntax on               " syntax highlighting
+" set showcmd             " show (partial) command in status line
+
+
+"##### Modern Vim Book
+let mapleader = ','
+set nocompatible
+filetype plugin indent on
+
+
+"set runtimepath+=/usr/share/vim/vimfiles
+"set runtimepath+=/usr/share/vim/vim82
+
+" ------------------------------------------------------------------------------
+" VimTeX configuration
+" ------------------------------------------------------------------------------
+syntax enable
+let maplocalleader = ","
+let g:vimtex_enabled = 1
+let g:vimtex_compiler_enabled = 1
+let g:vimtex_compiler_silent = 0
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+
+"let g:vimtex_syntax_enabled = 1
+"let g:vimtex_quickfix_mode = 0
+"set conceallevel=1
+"let g:tex_conceal = 'abdmg'
+
+" Compilation:
+function! Callback(msg)
+  let l:m = matchlist(a:msg, '\vRun number (\d+) of rule ''(.*)''')
+  if !empty(l:m)
+    echomsg l:m[2] . ' (' . l:m[1] . ')'
+  endif
+endfunction
+let g:vimtex_compiler_latexmk = { 'hooks': [function('Callback')] }
+let g:vimtex_compiler_latexmk = {
+    \ 'build_dir' : {-> expand("%:t:r")},
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'hooks' : [function('Callback')],
+    \ 'options' : [
+    \ '-verbose',
+    \ '-file-line-error',
+    \ '-synctex=1',
+    \ '-interaction=nonstopmode',
+    \ '-shell-escape'
+    \ ],
+    \}
+let g:vimtex_compiler_latexmk_engines = {
+    \ '_'                : '-pdf',
+    \ 'pdflatex'         : '-pdf',
+    \ 'dvipdfex'         : '-pdfdvi',
+    \ 'lualatex'         : '-lualatex',
+    \ 'xelatex'          : '-xelatex',
+    \ 'context (pdftex)' : '-pdf -pdflatex=texexec',
+    \ 'context (luatex)' : '-pdf -pdflatex=context',
+    \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
+    \}
+
+" Completion:
+let g:vimtex_complete_enabled = 1
+let g:vimtex_complete_close_braces = 1
+
+" Some mapping
+"
+
+let g:vimtex_quickfix_ignore_filters = [
+      \ 'AtBeginDocument',
+      \ 'already exist and will not be redefined',
+      \]
+
+" ------------------------------------------------------------------------------
+" minpac configuration
+" ------------------------------------------------------------------------------
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+" call minpac#add('tpope/vim-unimpaired')
+" call minpac#add('tpope/vim-scriptease', {'type': 'opt'})
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
+
+" ------------------------------------------------------------------------------
+" fzf configuration
+" ------------------------------------------------------------------------------
+nnoremap <C-p> :<C-u>FZF<CR>
+
+" ------------------------------------------------------------------------------
+" UltiSnips
+" ------------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsSnippetDirectories = [$MYVIM.'/snippets/UltiSnips']
+
+" ------------------------------------------------------------------------------
+" Inkscape figure manager
+" ------------------------------------------------------------------------------
+inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
+nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+
+" ------------------------------------------------------------------------------
+" Zathura
+" ------------------------------------------------------------------------------
+nnoremap <F9>
+    \ :exec "!szathura %:r.pdf" line('.')  col('.') "% > /dev/null"<cr><cr>
+nnoremap <C-F9>
+    \ :exec "!szathura %:r.pdf" > /dev/null 2>&1 &"<cr><cr>
+
+
+" ------------------------------------------------------------------------------
+" Language switching command
+" ------------------------------------------------------------------------------
+" Switch to English - mapping
+nnoremap <Leader>e :<C-U>call EngType()<CR>
+" Switch to Arabic - mapping
+nnoremap <Leader>a :<C-U>call AraType()<CR>
+
+" Switch to English - function
+function! EngType()
+    set keymap= " Restore default (US) keyboard layout
+    set norightleft
+endfunction
+
+" Switch to Arabic - function
+function! AraType()
+    set keymap=arabic "Modified keymap. File in ~/.vim/keymap/
+    set rightleft
+endfunction
+
+" ------------------------------------------------------------------------------
+" Color Scheme
+" ------------------------------------------------------------------------------
+colorscheme desert
+
+""" Manage Multiple Files
+" Top 37
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
+""" spell
+"let loaded_spellfile_plugin = 0
+set spelllang=fr,en_us
+set spellfile=~/.vim/spell/fr.utf-8.add
+set spellfile+=~/.vim/spell/latex.utf-8.add
+set spellfile+=~/.vim/spell/colors.utf-8.add

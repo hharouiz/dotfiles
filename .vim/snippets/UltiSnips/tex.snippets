@@ -1,0 +1,409 @@
+#global !p
+#def math():
+#    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+#
+#def comment(): 
+#    return vim.eval('vimtex#syntax#in_comment()') == '1'
+#
+#def env(name):
+#    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+#	    return x != '0' and x != '0'
+#
+#endglobal
+
+snippet sympy "sympy block " w
+sympy $1 sympy$0
+endsnippet
+
+priority 10000
+snippet 'sympy(.*)sympy' "evaluate sympy" wr
+`!p
+from sympy import *
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
+init_printing()
+snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
+    .replace('^', '**') \
+	.replace('{', '(') \
+	.replace('}', ')') + ')')
+`
+endsnippet
+
+snippet rb "\resultbox{}" b
+\resultbox{$1}$0
+endsnippet
+
+snippet qb "qbox" b
+\begin{qbox}
+$0
+\end{qbox}
+endsnippet
+
+snippet doc "Document Environment"
+\documentclass[${1:12}pt]{${2:article}}
+
+$3
+
+\begin{document}
+
+$0
+
+\end{document}
+endsnippet
+
+snippet beg "TeX Environment" b
+\\begin\{$1\}
+	$0
+\\end\{$1\}
+endsnippet
+
+snippet time
+Today is the `date +%d.%m.%y`
+endsnippet
+
+snippet wow
+${1:Text}`!p snip.rv = (80-2*len(t[1]))*' '+t[1].upper()`
+endsnippet
+
+snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
+\begin{${1:`!p
+snip.rv = match.group(3) if match.group(2) is not None else "something"`}}
+	${2:${VISUAL}}
+\end{$1}$0
+endsnippet
+
+snippet "(\w+).par" "Parenthesis (postfix)" r
+(`!p snip.rv = match.group(1)`$1)$0
+endsnippet
+
+snippet "([^\s].*)\.return" "Return (postfix)" r
+return `!p snip.rv = match.group(1)`$0
+endsnippet
+
+snippet box "Box"
+`!p snip.rv = '┌' + (len(t[1])+2) * '─' + '┐'`
+│ $1 │
+`!p snip.rv = '└' + (len(t[1])+2) * '─' + '┘'`
+$0
+endsnippet
+
+snippet mk "Inline math" w
+$${1:${VISUAL}}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', ']']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`$2
+endsnippet
+
+snippet mkv "Inline math" iA
+$${VISUAL}$$0
+endsnippet
+
+snippet dm "Displayed math" w
+\[
+	$1
+\]$0
+endsnippet
+
+snippet "([a-zA-Z])(\d+)" "auto subscript" wr
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+snippet ^^ "superscript" iA
+^{$1}$0
+endsnippet
+
+snippet __ "superscript" iA
+_{$1}$0
+endsnippet
+
+snippet sr "^2" i
+^2
+endsnippet
+
+snippet cb "^3" i
+^3
+endsnippet
+
+snippet comp "complement" i
+^{c}
+endsnippet
+
+snippet // "Fraction" i
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet d/ "Fraction" i
+\\frac{\mathrm{d} $1}{\mathrm{d} $2}$0
+endsnippet
+
+snippet d2/ "Fraction" i
+\\frac{\mathrm{d}^{2} $1}{\mathrm{d} $2^{2}}$0
+endsnippet
+
+snippet p/ "Fraction" i
+\\frac{\partial $1}{\partial $2}$0
+endsnippet
+
+#snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+#\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+#endsnippet
+
+snippet fig "Figure" b
+\\begin{figure}[H]
+	\\centering
+	\\includegraphics[scale=0.5]{${1:example-image-a}}
+	\\caption{$2}
+	\\label{fig:$3}
+\\end{figure}
+$0
+endsnippet
+
+snippet R "Gas constant"
+\qty{8.314}{\joule\per\mole\per\kelvin}
+endsnippet
+
+snippet tab "Table" b
+\begin{table}[H]
+	\centering
+	%\setlength{\arrayrulewidth}{0.5mm}
+	\setlength{\tabcolsep}{18pt}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{$1}
+		\hline $2
+		\hline
+	\end{tabular}
+	\caption{$3}
+	\label{tab:$4}
+\end{table}
+$0
+endsnippet
+
+snippet item "Itemize environment" b
+\begin{itemize}
+	\item $1
+\end{itemize}$0
+endsnippet
+
+snippet itemv "Itemize environment" bA
+\begin{itemize}
+	\item $1${VISUAL}
+\end{itemize}$0
+endsnippet
+
+snippet enumv "Enumerate environment" bA
+\begin{enumerate}
+	\item $1${VISUAL}
+\end{enumerate}$0
+endsnippet
+
+snippet enum "Enumerate environment" b
+\begin{enumerate}
+	\item $1
+\end{enumerate}
+$0
+endsnippet
+
+snippet ^' "" iA
+^{\\prime}
+endsnippet
+
+snippet subfig "Subfigure" b
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{${1:example-image-a}}
+		\caption{$2}
+		\label{fig:$3}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{${4:example-image-b}}
+		\caption{$5}
+		\label{fig:$6}
+	\end{subfigure}
+	\caption{$7}
+	\label{fig:$8}
+\end{figure}
+endsnippet
+
+#snippet / "Fraction" iA
+#\\frac{${VISUAL}}{$1}$0
+#endsnippet
+
+snippet ctz "Circuitikz Environment" b
+\begin{circuitikz}
+	\newdimen\d
+	\d=${1:3}cm
+	$2
+\end{circuitikz}$0
+endsnippet
+
+snippet figb "Figure" b
+\begin{figure}[H]
+	\centering
+	$1
+\end{figure}$0
+endsnippet
+
+snippet sec "Section" bA
+\section{${VISUAL}}$0
+endsnippet
+
+snippet ssec "Subsection" bA
+\subsection{${VISUAL}}$0
+endsnippet
+
+snippet sssec "Subsubsection" bA
+\subsubsection{${VISUAL}}$0
+endsnippet
+
+# snippet p "()" i
+# ($1)`!p 
+# if t[2] and t[2][0] not in [";","+","-","$","=","\\"]:
+# 	snip.rv = " "
+# `$2
+# endsnippet
+
+snippet pa "()" i
+\left(${1:${VISUAL}}\right)$0 
+endsnippet
+
+snippet qtyv "Quantity" i
+\qty{${VISUAL:num/,/./g}}{$1}
+endsnippet
+
+snippet qty "Quantity" i
+\qty{$1}{$2}$0
+endsnippet
+
+snippet und "\underline{}" i
+\underline{${VISUAL:z}}
+endsnippet
+
+snippet 'to(\w)?(v)?(i)?([hjkl])' "Circuitikz things" r
+`!p
+if match.group(1)=="s":
+	to = "to[short"
+elif match.group(1)=="o":
+	to = "to[open"
+else:
+	to = "to[" + match.group(1).upper() + ",l=$" + match.group(1).upper() + "$"
+if match.group(2)=="v":
+	to += ",v=$V$"
+if match.group(3)=="i":
+	to += ",i=$I$"
+to += "] "
+if match.group(4)=="k":
+	to += "++(0,\d)"
+elif match.group(4)=="j":
+	to += "++(0,-\d)"
+elif match.group(4)=="h":
+	to += "++(-\d,0)"
+elif match.group(4)=="l":
+	to += "++(\d,0)"
+snip.rv = to
+`
+endsnippet
+
+snippet tikz "Tikz Environment" b
+\begin{tikzpicture}
+	$1
+\end{tikzpicture}$0
+endsnippet
+
+snippet cal "\mathcal{}" i
+\mathcal{$1}$0
+endsnippet
+
+snippet rm "roman text" i
+\mathrm{${1:${VISUAL}}}$0
+endsnippet
+
+snippet mvt "" i
+mouvement
+endsnippet
+
+snippet pap "" i
+par rapport
+endsnippet
+
+snippet ref "" i
+$(O, x, y, z)$
+endsnippet
+
+snippet cref "" i
+$(O, \rho, \varphi, z)$
+endsnippet
+
+snippet sref "" i
+$(O, r, \theta, \varphi)$
+endsnippet
+
+snippet base "" i
+$(\ex, \ey, \ez)$
+endsnippet
+
+snippet cbase "" i
+$(\erho, \evphi, \ez)$
+endsnippet
+
+snippet sbase "" i
+$(\er, \etheta, \evphi)$
+endsnippet
+
+snippet > "vector" i
+\\vec{$1}$0
+endsnippet
+
+snippet ce "mhchem command" i
+\\ce{$1}$0
+endsnippet
+
+snippet mini "minipage environment" b
+\\begin{minipage}[t]{0.45\\linewidth}
+	$1
+\\end{minipage}
+\\hfill
+\\begin{minipage}[t]{0.45\\linewidth}
+	$2
+\\end{minipage}$0
+endsnippet
+
+snippet eq "Equation Environment" b
+\begin{equation*}
+	$1
+\end{equation*}$0
+endsnippet
+
+snippet sq "single quote" i
+'
+endsnippet
+
+snippet dq "single quote" i
+"
+endsnippet
+
+snippet note "Noter" i
+{\color{gray} $1}
+endsnippet
+
+snippet scv "Small caps names" i
+\textsc{${VISUAL:text/(^\w)(.*)/\u$1\L$2\E/}}$0
+endsnippet
+
+snippet em "text emphasis" i
+\emph{${VISUAL:text}}$0
+endsnippet
+
+snippet ve "vector" i
+\vec{${1:${VISUAL}}}$0
+endsnippet
+
+snippet av "average" i
+\left\langle ${1:${VISUAL}} \right\rangle$0
+endsnippet
