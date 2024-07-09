@@ -1,0 +1,2 @@
+var ParseTags={quoteTag:function(a){a=a.replace(/"/g,"'").replace(/\s+/g," ").replace(/^\s+|\s+$/g,"");a.match(/\s+|,/)&&(a='"'+a+'"');return a},parseTags:function(a,c){function d(){0<e.length&&(f.push(e.join("")),e.length=0)}for(var e=[],f=[],g=!1,h=0,k=a.length,b;b=a.charAt(h),h<k;h++)'"'==b?g?(g=!1,d()):g=!0:g?e.push(b):/\s/.test(b)||","==b?d():e.push(b);d();c&&(f=map2(unique(f),function(l){return trim(l)||null}));return f},unparseTags:function(a,c){c=c||" ";return map(a,function(d){return this.quoteTag(d)},
+this).join(c)}};

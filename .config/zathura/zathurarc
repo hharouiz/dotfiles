@@ -1,0 +1,12 @@
+## set
+set selection clipboard clipboard
+set first-page-column 1:1
+set adjust-open "width"
+#set sandbox strict
+set synctex true
+#set synctex-editor-command "svim -G +%{line} %{input}"
+
+## map
+map z zoom in
+map <S-z> zoom out
+map <C-f> search forward

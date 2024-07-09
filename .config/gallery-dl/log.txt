@@ -1,0 +1,9 @@
+[gallery-dl][debug] Starting DownloadJob for 'https://www.redgifs.com/users/fugma1'
+[redgifs][debug] Using RedgifsUserExtractor for 'https://www.redgifs.com/users/fugma1'
+[urllib3.connectionpool][debug] Starting new HTTPS connection (1): api.redgifs.com:443
+[urllib3.connectionpool][debug] https://api.redgifs.com:443 "GET /v2/auth/temporary HTTP/1.1" 200 None
+[urllib3.connectionpool][debug] https://api.redgifs.com:443 "GET /v2/users/fugma1/search?order=new&page=1 HTTP/1.1" 200 20875
+[redgifs][debug] Using download archive 'C:\Users\hicha/gallery-dl/archive.sqlite3'
+[urllib3.connectionpool][debug] Starting new HTTPS connection (1): thumbs44.redgifs.com:443
+[urllib3.connectionpool][debug] https://thumbs44.redgifs.com:443 "GET /WetFearfulBlackrhino.mp4?expires=1718487000&signature=v2:17b8c68994de9b91880784d815bffa7860e15a649706ffa2b2de08155438b366&for=41.251.64&hash=7011125643 HTTP/1.1" 200 35869014
+[urllib3.connectionpool][debug] https://thumbs44.redgifs.com:443 "GET /ThankfulAttractiveGrunion.mp4?expires=1718487000&signature=v2:f616a722f5f600c81b2284c5c668eeac92f4516ee7e8cc09b81bf19d5d2f2161&for=41.251.64&hash=7011125643 HTTP/1.1" 200 26340453

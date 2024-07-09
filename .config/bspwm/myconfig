@@ -1,0 +1,92 @@
+#! /bin/sh
+
+# pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x sxhkd > /dev/null || sxhkd -c $XDG_CONFIG_HOME/sxhkd/myconfig &
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10 
+
+# Global Settings
+bspc config narmal_border_color     "#000000"
+bspc config focused_border_color    "#ffffff"
+
+bspc config split_ratio             0.5
+
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+
+bspc config focus_follows_pointer   false
+
+# Monitor and Desktop Settings
+bspc config top_padding             40pt
+
+# Desktop Settings
+bspc config window_gap              0
+
+# Node Settings
+bspc config border_width            0
+
+
+
+# Rules
+bspc rule -r "*"
+bspc rule -a google-chrome state=tiled
+#bspc rule -a Thunar state=tiled
+#bspc rule -a Conky sticky=on manage=off
+#bspc rule -a Feh state=floating
+#bspc rule -a Zathura state=tiled
+#bspc rule -a Alacritty:progterm state=floating sticky=on
+bspc rule -a mathpix-snipping-tool state=floating
+#bspc rule -a Skype pseudo_tiled=on
+#bspc rule -a Spotify pseudo_tiled=on
+#bspc rule -a Thunar pseudo_tiled=on
+#bspc rule -a File-roller pseudo_tiled=on
+#bspc rule -a Transmission-gtk pseudo_tiled=on
+#bspc rule -a Conky sticky=on manage=off lower=on
+#bspc rule -a astime sticky=on
+#bspc rule -a feh floating=on manage=off
+
+# Cursor theme
+xsetroot -cursor_name left_ptr &
+
+# Compositor
+# $XDG_CONFIG_HOME/picom/launch.sh
+
+# ======
+# Panels
+# ======
+# lemonbar
+# $XDG_CONFIG_HOME/lemonbar/myconfig | lemonbar -f "Roboto Medium" -f "Font Awesome 5 Free" -f "Font
+# Awesome 5 Brands" -f "Font Awesome 5 Free Solid" -p &
+# or
+#pgrep -x panel > /dev/null || panel &
+
+# yabar
+# yabar &
+
+# polybar
+$XDG_CONFIG_HOME/polybar/cuts/launch.sh
+
+# ==========
+# Scratchpad
+# ==========
+#pid
+# bspc rule -a scratchpad sticky=on state=floating hidden=on
+# check scratchpad already running
+# [ "$(ps -x | grep -c 'scratchpad')" -eq "1" ] && st -c scratchpad -e $XDG_CONFIG_HOME/bspwm/scratchpad/scratch &
+# class name
+# bspc rule -a dropdown sticky=on state=floating hidden=on
+# termite --class dropdown -e "bash -i" &
+
+# Set background
+feh -bg-scale $XDG_CONFIG_HOME/bspwm/backgrounds/charlotte-de-witte.jpg
+
+# =======================
+# System Monitor Software
+# =======================
+# conky
+#conky --config=$XDG_CONFIG_HOME/conky/windelicato.conf &
+
+# ===============
+# Window Switcher
+# ===============
+

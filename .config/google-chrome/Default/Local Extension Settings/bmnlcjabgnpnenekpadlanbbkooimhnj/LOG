@@ -1,0 +1,53 @@
+2024/07/09-16:39:25.036 3c9 Reusing MANIFEST /home/x/.config/google-chrome/Default/Local Extension Settings/bmnlcjabgnpnenekpadlanbbkooimhnj/MANIFEST-000001
+2024/07/09-16:39:25.037 3c9 Recovering log #15
+2024/07/09-16:39:25.040 3c9 Reusing old log /home/x/.config/google-chrome/Default/Local Extension Settings/bmnlcjabgnpnenekpadlanbbkooimhnj/000015.log 
+2024/07/09-16:39:33.865 3ca Level-0 table #19: started
+2024/07/09-16:39:33.902 3ca Level-0 table #19: 2405214 bytes OK
+2024/07/09-16:39:33.907 3ca Delete type=0 #15
+2024/07/09-16:43:33.069 3ca Level-0 table #21: started
+2024/07/09-16:43:33.134 3ca Level-0 table #21: 2210991 bytes OK
+2024/07/09-16:43:33.140 3ca Delete type=0 #18
+2024/07/09-16:43:33.143 3ca Compacting 4@0 + 1@1 files
+2024/07/09-16:43:33.193 3ca Generated table #22@0: 7 keys, 2212997 bytes
+2024/07/09-16:43:33.197 3ca Generated table #23@0: 1 keys, 290 bytes
+2024/07/09-16:43:33.197 3ca Compacted 4@0 + 1@1 files => 2213287 bytes
+2024/07/09-16:43:33.202 3ca compacted to: files[ 0 2 2 0 0 0 0 ]
+2024/07/09-16:43:33.203 3ca Delete type=2 #19
+2024/07/09-16:43:33.203 3ca Delete type=2 #12
+2024/07/09-16:43:33.203 3ca Delete type=2 #21
+2024/07/09-16:43:33.203 3ca Delete type=2 #14
+2024/07/09-16:43:33.204 3ca Delete type=2 #16
+2024/07/09-16:44:38.226 3ca Level-0 table #25: started
+2024/07/09-16:44:38.277 3ca Level-0 table #25: 2211630 bytes OK
+2024/07/09-16:44:38.282 3ca Delete type=0 #20
+2024/07/09-17:14:22.972 3c9 Compacting 1@0 + 2@1 files
+2024/07/09-17:14:23.009 3c9 Generated table #26@0: 7 keys, 2212989 bytes
+2024/07/09-17:14:23.015 3c9 Generated table #27@0: 1 keys, 290 bytes
+2024/07/09-17:14:23.015 3c9 Compacted 1@0 + 2@1 files => 2213279 bytes
+2024/07/09-17:14:23.020 3c9 compacted to: files[ 0 2 2 0 0 0 0 ]
+2024/07/09-17:14:23.020 3c9 Delete type=2 #22
+2024/07/09-17:14:23.020 3c9 Delete type=2 #25
+2024/07/09-17:14:23.021 3c9 Delete type=2 #23
+2024/07/09-17:21:32.912 3ca Level-0 table #29: started
+2024/07/09-17:21:32.938 3ca Level-0 table #29: 2324470 bytes OK
+2024/07/09-17:21:32.945 3ca Delete type=0 #24
+2024/07/09-18:06:38.737 3c9 Compacting 1@0 + 1@1 files
+2024/07/09-18:06:38.781 3c9 Generated table #30@0: 7 keys, 2213105 bytes
+2024/07/09-18:06:38.781 3c9 Compacted 1@0 + 1@1 files => 2213105 bytes
+2024/07/09-18:06:38.785 3c9 compacted to: files[ 0 2 2 0 0 0 0 ]
+2024/07/09-18:06:38.785 3c9 Delete type=2 #26
+2024/07/09-18:06:38.785 3c9 Delete type=2 #29
+2024/07/09-18:07:46.101 3ce Level-0 table #32: started
+2024/07/09-18:07:46.129 3ce Level-0 table #32: 2316066 bytes OK
+2024/07/09-18:07:46.133 3ce Delete type=0 #28
+2024/07/09-18:32:54.168 3c9 Compacting 1@0 + 2@1 files
+2024/07/09-18:32:54.227 3c9 Generated table #33@0: 7 keys, 2213281 bytes
+2024/07/09-18:32:54.231 3c9 Generated table #34@0: 1 keys, 290 bytes
+2024/07/09-18:32:54.231 3c9 Compacted 1@0 + 2@1 files => 2213571 bytes
+2024/07/09-18:32:54.235 3c9 compacted to: files[ 0 2 2 0 0 0 0 ]
+2024/07/09-18:32:54.235 3c9 Delete type=2 #30
+2024/07/09-18:32:54.235 3c9 Delete type=2 #32
+2024/07/09-18:32:54.235 3c9 Delete type=2 #27
+2024/07/09-18:41:22.601 3ca Level-0 table #36: started
+2024/07/09-18:41:22.633 3ca Level-0 table #36: 2513556 bytes OK
+2024/07/09-18:41:22.637 3ca Delete type=0 #31

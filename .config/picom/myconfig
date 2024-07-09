@@ -1,0 +1,37 @@
+# =======
+# Shadows
+# =======
+shadow = true;
+shadow-radius = 12;
+shadow-opacity = .75;
+shadow-offset-x = -15;
+shadow-offset-y = -15;
+shadow-green = 0.5;
+shadow-blue = 0.5;
+
+# Disable shodows for some windows
+# menu          = { shadow = false; };
+dropdown_menu = { shadow = false; };
+popup_menu    = { shadow = false; };
+utility       = { shadow = false; };
+
+# ======
+# Fading
+# ======
+fading = true;
+fade-in-step = 0.028;
+fade-out-step = 0.03;
+fade-delta = 10
+
+# Transparency / Opacity
+inactive-opacity = 0.9;
+frame-opacity = 1.0;
+menu-opacity = 1.0;
+inactive-opacity-override = false;
+active-opacity = 1.0;
+inactive-dim = 0.0;
+
+# General Settings
+# backend = 'glx'
+backend = "xrender";
+vsync = true;
