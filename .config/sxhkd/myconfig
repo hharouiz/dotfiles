@@ -151,7 +151,8 @@ XF86Audio{Raise,Lower}Volume
     amixer set Master 5%{+,-} 
 
 XF86AudioMute
-    amixer set Master toggle
+    pactl set-sink-mute 0 toggle
+    #amixer set Master toggle
 
 # 
 # Terminals
@@ -181,7 +182,7 @@ XF86MonBrightness{Up,Down}
 # Touchpad enable/disable
 #
 ctrl + Escape
-    $XDG_CONFIG_HOME/sxhkd/toggle-touchpad.sh
+    $XDG_CONFIG_HOME/sxhkd/scripts/toggle-touchpad.sh
 
 # 
 # Keyboard layout
@@ -200,6 +201,11 @@ super + r
 # Fast OCR to clipboard
 #
 super + @Print
-    $XDG_CONFIG_HOME/sxhkd/ocr-to-clip.sh
+    $XDG_CONFIG_HOME/sxhkd/scripts/ocr-to-clip.sh
 
+super + v
+    alacritty -e vim ~/.vim/vimrc
 
+# Mathpix
+ctrl + alt + o
+    mathpix-snipping-tool

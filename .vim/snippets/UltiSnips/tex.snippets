@@ -1,15 +1,19 @@
-#global !p
-#def math():
-#    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
-#
-#def comment(): 
-#    return vim.eval('vimtex#syntax#in_comment()') == '1'
-#
-#def env(name):
-#    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
-#	    return x != '0' and x != '0'
-#
-#endglobal
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment(): 
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    return x != '0' and x != '0'
+
+endglobal
+
+snippet % "" b
+%! TeX program = xelatex
+endsnippet
 
 snippet sympy "sympy block " w
 sympy $1 sympy$0
@@ -41,7 +45,7 @@ $0
 endsnippet
 
 snippet doc "Document Environment"
-\documentclass[${1:12}pt]{${2:article}}
+\documentclass[${1:12pt}]{${2:teaching}}
 
 $3
 
@@ -62,10 +66,6 @@ snippet time
 Today is the `date +%d.%m.%y`
 endsnippet
 
-snippet wow
-${1:Text}`!p snip.rv = (80-2*len(t[1]))*' '+t[1].upper()`
-endsnippet
-
 snippet "be(gin)?( (\S+))?" "begin{} / end{}" br
 \begin{${1:`!p
 snip.rv = match.group(3) if match.group(2) is not None else "something"`}}
@@ -75,6 +75,14 @@ endsnippet
 
 snippet "(\w+).par" "Parenthesis (postfix)" r
 (`!p snip.rv = match.group(1)`$1)$0
+endsnippet
+
+snippet .p "Parenthesis" 
+(${VISUAL}$1)$0
+endsnippet
+
+snippet br "braces" w
+{${VISUAL}$1}$0
 endsnippet
 
 snippet "([^\s].*)\.return" "Return (postfix)" r
@@ -89,12 +97,7 @@ $0
 endsnippet
 
 snippet mk "Inline math" w
-$${1:${VISUAL}}$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ', ']']:
-	snip.rv = ' '
-else:
-	snip.rv = ''
-`$2
+$${VISUAL}$1$
 endsnippet
 
 snippet mkv "Inline math" iA
@@ -103,7 +106,7 @@ endsnippet
 
 snippet dm "Displayed math" w
 \[
-	$1
+	${1:${VISUAL}}
 \]$0
 endsnippet
 
@@ -151,16 +154,6 @@ endsnippet
 #\\frac{`!p snip.rv = match.group(1)`}{$1}$0
 #endsnippet
 
-snippet fig "Figure" b
-\\begin{figure}[H]
-	\\centering
-	\\includegraphics[scale=0.5]{${1:example-image-a}}
-	\\caption{$2}
-	\\label{fig:$3}
-\\end{figure}
-$0
-endsnippet
-
 snippet R "Gas constant"
 \qty{8.314}{\joule\per\mole\per\kelvin}
 endsnippet
@@ -168,23 +161,29 @@ endsnippet
 snippet tab "Table" b
 \begin{table}[H]
 	\centering
-	%\setlength{\arrayrulewidth}{0.5mm}
-	\setlength{\tabcolsep}{18pt}
+	%\setlength{\arrayrulewidth}{0.8pt}
+	%\setlength{\tabcolsep}{18pt}
 	\renewcommand{\arraystretch}{1.5}
-	\begin{tabular}{$1}
-		\hline $2
-		\hline
-	\end{tabular}
-	\caption{$3}
-	\label{tab:$4}
+	${VISUAL}$1
+	\caption{$2}
+	\label{tab:$3}
 \end{table}
 $0
 endsnippet
 
-snippet item "Itemize environment" b
+
+# Enumerate
+snippet enum "Enumerate environment" bA
+\begin{enumerate}$0
+	${VISUAL:\\item/^\s*(Q?\s*\d{1,2}\.|Q?\s*\d{1,2}\-|[a-z]\.|\([0-9a-z]+\)|[0-9a-z]+\))\s*/\\item /gm}
+\end{enumerate}
+endsnippet
+
+# Itemize
+snippet item "Itemize environment" bA
 \begin{itemize}
-	\item $1
-\end{itemize}$0
+	${VISUAL:\\item/^\s*(\-)\s*/\\item /gm}$0
+\end{itemize}
 endsnippet
 
 snippet itemv "Itemize environment" bA
@@ -193,62 +192,24 @@ snippet itemv "Itemize environment" bA
 \end{itemize}$0
 endsnippet
 
-snippet enumv "Enumerate environment" bA
-\begin{enumerate}
-	\item $1${VISUAL}
-\end{enumerate}$0
+snippet "question\s+\d+" "" r
+question~\ref{item:
 endsnippet
 
-snippet enum "Enumerate environment" b
-\begin{enumerate}
-	\item $1
+snippet res "" b
 \end{enumerate}
-$0
+${VISUAL}$1
+\begin{enumerate}[resume]
 endsnippet
 
 snippet ^' "" iA
 ^{\\prime}
 endsnippet
 
-snippet subfig "Subfigure" b
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}{0.3\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{${1:example-image-a}}
-		\caption{$2}
-		\label{fig:$3}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{0.3\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{${4:example-image-b}}
-		\caption{$5}
-		\label{fig:$6}
-	\end{subfigure}
-	\caption{$7}
-	\label{fig:$8}
-\end{figure}
-endsnippet
 
 #snippet / "Fraction" iA
 #\\frac{${VISUAL}}{$1}$0
 #endsnippet
-
-snippet ctz "Circuitikz Environment" b
-\begin{circuitikz}
-	\newdimen\d
-	\d=${1:3}cm
-	$2
-\end{circuitikz}$0
-endsnippet
-
-snippet figb "Figure" b
-\begin{figure}[H]
-	\centering
-	$1
-\end{figure}$0
-endsnippet
 
 snippet sec "Section" bA
 \section{${VISUAL}}$0
@@ -273,55 +234,37 @@ snippet pa "()" i
 \left(${1:${VISUAL}}\right)$0 
 endsnippet
 
-snippet qtyv "Quantity" i
-\qty{${VISUAL:num/,/./g}}{$1}
-endsnippet
-
-snippet qty "Quantity" i
-\qty{$1}{$2}$0
-endsnippet
-
 snippet und "\underline{}" i
 \underline{${VISUAL:z}}
 endsnippet
 
-snippet 'to(\w)?(v)?(i)?([hjkl])' "Circuitikz things" r
-`!p
-if match.group(1)=="s":
-	to = "to[short"
-elif match.group(1)=="o":
-	to = "to[open"
-else:
-	to = "to[" + match.group(1).upper() + ",l=$" + match.group(1).upper() + "$"
-if match.group(2)=="v":
-	to += ",v=$V$"
-if match.group(3)=="i":
-	to += ",i=$I$"
-to += "] "
-if match.group(4)=="k":
-	to += "++(0,\d)"
-elif match.group(4)=="j":
-	to += "++(0,-\d)"
-elif match.group(4)=="h":
-	to += "++(-\d,0)"
-elif match.group(4)=="l":
-	to += "++(\d,0)"
-snip.rv = to
-`
-endsnippet
-
-snippet tikz "Tikz Environment" b
-\begin{tikzpicture}
-	$1
-\end{tikzpicture}$0
-endsnippet
 
 snippet cal "\mathcal{}" i
-\mathcal{$1}$0
+\mathcal{${1:${VISUAL}}}$0
 endsnippet
 
 snippet rm "roman text" i
 \mathrm{${1:${VISUAL}}}$0
+endsnippet
+
+snippet mf "" i
+\mathbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet txt "\text" i
+\text{${1:${VISUAL}}}$0
+endsnippet
+
+snippet bf "bold text" i
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet tt "" i
+\texttt{${VISUAL}$1}$0
+endsnippet
+
+snippet tc "" w
+\textcolor{${1:red}}{${VISUAL}$2}
 endsnippet
 
 snippet mvt "" i
@@ -361,15 +304,19 @@ snippet > "vector" i
 endsnippet
 
 snippet ce "mhchem command" i
-\\ce{$1}$0
+\ce{${1:${VISUAL}}}$0
+endsnippet
+
+snippet cf "chemfig command" i
+\chemfig{${1:${VISUAL}}}$0
 endsnippet
 
 snippet mini "minipage environment" b
-\\begin{minipage}[t]{0.45\\linewidth}
-	$1
+\\begin{minipage}{0.65\\linewidth}
+	${1:${VISUAL}}
 \\end{minipage}
 \\hfill
-\\begin{minipage}[t]{0.45\\linewidth}
+\\begin{minipage}{0.34\\linewidth}
 	$2
 \\end{minipage}$0
 endsnippet
@@ -380,20 +327,16 @@ snippet eq "Equation Environment" b
 \end{equation*}$0
 endsnippet
 
-snippet sq "single quote" i
-'
-endsnippet
-
-snippet dq "single quote" i
-"
-endsnippet
-
 snippet note "Noter" i
 {\color{gray} $1}
 endsnippet
 
 snippet scv "Small caps names" i
 \textsc{${VISUAL:text/(^\w)(.*)/\u$1\L$2\E/}}$0
+endsnippet
+
+snippet sc "\textsc" i
+\textsc{${VISUAL:text}}$0
 endsnippet
 
 snippet em "text emphasis" i
@@ -406,4 +349,447 @@ endsnippet
 
 snippet av "average" i
 \left\langle ${1:${VISUAL}} \right\rangle$0
+endsnippet
+
+# siunitx
+snippet qty "Quantity" i
+\qty{$1}{$2}$0
+endsnippet
+
+snippet un "Unit" i
+\unit{${1:${VISUAL}}}$0
+endsnippet
+
+snippet num "Number" i
+\num{${1:${VISUAL}}}$0
+endsnippet
+
+snippet uv "speed siunitx" i
+$\unit{\meter\per\second}$$0
+endsnippet
+
+snippet quot "quote mark" i
+\`\`${1:${VISUAL}}"$0
+endsnippet
+
+snippet qt "" i
+`!p
+x = re.match(r"([EeDd\d\.\,\+\-]+)\s+(.+)", snip.v.text)
+if x:
+	value = x.group(1)
+	unit = x.group(2)
+	unit = unit.replace(r"/", r"\per")
+	unit = re.sub(r"\bm\b", r"\\meter", unit)
+	unit = re.sub(r"\bs\b", r"\\second", unit)
+	unit = re.sub(r"\bdC\b", r"\\degreeCelsius", unit)
+	unit = re.sub(r"\bW\b", r"\\watt", unit)
+	unit = re.sub(r"\bV\b", r"\\volt", unit)
+	unit = re.sub(r"\bA\b", r"\\ampere", unit)
+	unit = re.sub(r"\bK\b", r"\\kelvin", unit)
+	unit = re.sub(r"\bg\b", r"\\gram", unit)
+	unit = re.sub(r"\bN\b", r"\\newton", unit)
+	unit = re.sub(r"\bL\b", r"\\liter", unit)
+	unit = re.sub(r"\bmol\b", r"\\mole", unit)
+	unit = re.sub(r"\bml\b", r"\\mL", unit)
+	unit = re.sub(r"\bJ\b", r"\\joule", unit)
+	unit = re.sub(r"\bMeV\b", r"\\mega\\eV", unit)
+	unit = re.sub(r"\bS\b", r"\\siemens", unit)
+	unit = re.sub(r"\bF\b", r"\\farad", unit)
+	unit = re.sub(r"\bH\b", r"\\henry", unit)
+	unit = re.sub(r"\bC\b", r"\\coulomb", unit)
+	unit = re.sub(r"\bHz\b", r"\\hertz", unit)
+	unit = re.sub(r"\\Omega", r"\\ohm", unit)
+	unit = re.sub(r"\\mu", r"\\micro", unit)
+	unit = re.sub(r"(\w+)\^2", r"\\square\\\1", unit)
+	snip.rv = rf"\qty{{{value}}}{{{unit}}}"
+`$0
+endsnippet
+
+context "math()"
+#snippet "\s*([\+\-]?\d+(?:[\.\,]\d+)?)\s*(?:\\times|\\cdot|\.)?\s*(10\^\{?([\d\+\-]+)\}?)?\s*([^\$\=]+)?.q" "" r
+snippet "\s*([-+]?\d+(?:[.,]\d+)?)?\s*(?:\\times|\\cdot|\.|\^\{\*\}|\*)?\s*(10\^\{?([\d\+\-]+)\}?)?\s*([^\$\=]+)?.q" "" r
+`!p
+num = match.group(1).replace(",", ".")
+if match.group(2):
+	num += f"e{match.group(3)}"
+if match.group(4):
+	g = match.group(4)
+	g = re.sub(r"\s*\\cdot\s*", " ", g)
+	g = re.sub(r"\^\{\\circ\}\s*C", "degreeCelsius", g)
+	g = re.sub(r"\^\{\\circ\}\s*\\mathrm\{C\}", "degreeCelsius", g)
+	g = re.sub(r"\\mathrm\{(\~?(\w+))\}", r"\1", g)
+	names = {1: "", 2: "\\square", 3: "\\cubic"}
+	unit = ""
+	for (v, e) in re.findall(r"([a-zA-Z]+)(?:\^\{(-?\d+)\})?", g):
+		v = v.replace("Omega", "ohm")
+		if not e:
+    	    unit += "\\" + v
+		if e:
+    	    n = int(e)
+    	    if n < 0:
+    	        unit += "\\per" + names[-n] + "\\" + v
+    	    else:
+    	        unit += names[n] + "\\" + v
+qty = f"\\qty{{{num}}}{{{unit}}}"
+snip.rv = qty
+`
+endsnippet
+
+context "math()"
+snippet "\s*([\d\.\,\+\-]+)\s*\^\{?\\circ\}?.a" "" r
+`!p
+num = match.group(1).replace(",", ".")
+snip.rv = f"\\ang{{{num}}}"
+`
+endsnippet
+
+context "math()"
+snippet "\s*([\d\.\,\+\-]+)\s*(?:\\times|\\cdot|\^\{\*\}|\*)?\s*(10\^\{?([\d\+\-]+)\}?)?.n" "" r
+`!p
+num = match.group(1).replace(",", ".")
+if match.group(2):
+	g3 = match.group(3)
+	num += f"e{g3}"
+snip.rv = f"\\num{{{num}}}"
+`
+endsnippet
+
+#snippet pix "Replace qty from mathpix" r
+#${VISUAL:default/(\d+[,.]?\d*)\s*\\mathrm\{\~?(\w+)\}/\\qty{\1}{\2}/g}
+#endsnippet
+
+snippet blue "" i
+{\color{blue}${1:${VISUAL}}}$0
+endsnippet
+
+
+snippet fb "" i
+\fillblank{$1}{${2:${VISUAL}}}$0
+endsnippet
+
+snippet dsm "DS maketitle"
+\dsn{${1:1}}
+\classe{$2}
+\annee{2024/2025}
+\semestre{1}
+\matiere{Physique-Chimie}
+\duree{$3}
+\lycee{${4:Al-Maghreb Al-Arabi Mesti}}
+endsnippet
+
+snippet no "noyau"
+\ce{^{${1:A}}_{${2:Z}}${3:X}}
+endsnippet
+
+snippet "([^/=\s$\>\<]+)/([^/=\s$\<\>]+)" "a/b to \frac{a}{b}" r
+\frac{`!p snip.rv = match.group(1)`}{`!p snip.rv = match.group(2)`}
+endsnippet
+
+snippet mb "math box" i
+\mathbox{${1:${VISUAL}}}$0
+endsnippet
+
+# Section label
+snippet "(\\(sub)?(sub)?section{(.*?)}\s*$)" "" br
+`!p snip.rv = match.group(1)`
+\label{`!p
+import unicodedata
+s = "sec"
+if match.group(2):
+	s = "ssec"
+if match.group(3):
+	s = "sssec"
+text = match.group(4).replace(" ","_")
+text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
+text = re.sub(r"[^\w]","",text)
+snip.rv = s+":"+text.lower()`}
+endsnippet
+
+# Figure
+snippet fig "Figure" b
+\begin{figure}[H]
+	\centering
+	${VISUAL}$1
+	\caption{$2}
+	\label{fig:$3}
+\end{figure}
+$0
+endsnippet
+
+snippet sfig "Subfigure" b
+\begin{subfigure}{0.45\textwidth}
+	\centering
+	$1${VISUAL}
+	\caption{$2}
+	\label{fig:$3}
+\end{subfigure}
+endsnippet
+
+snippet rf "\ref{fig:}" i
+~\ref{fig:$1}$0
+endsnippet
+
+
+context "env('figure')"
+snippet inc "\includegraphics" bA
+\includegraphics[width=\textwidth]{${1:example-image-a}}$0
+endsnippet
+
+context "env('figure')"
+snippet ca "\caption" bA
+\\caption{${1:${VISUAL}}}$0
+endsnippet
+
+context "env('figure')"
+snippet la "label" bA
+\label{fig:${1:${VISUAL}}}$0
+endsnippet
+
+snippet "(?i)figure\s+([\d\.]+)" "" r
+Fig.~\ref{fig `!p snip.rv = match.group(1)`$0
+endsnippet
+
+snippet "(?i)figures\s+([\d\.]+)\s+et\s+([\d\.]+)" "" r
+figures~\ref{fig `!p snip.rv = match.group(1)`$1 et~\ref{fig `!p snip.rv = match.group(2)`$0
+endsnippet
+
+context "env('figure')"
+snippet "(\\caption{(.*?)}\s*$)" "" br
+`!p snip.rv = match.group(1)`
+\label{fig:`!p
+import unicodedata
+text = match.group(2).replace(" ","_")
+text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
+text = re.sub(r"[^\w]","",text)
+snip.rv = text.lower()`}
+endsnippet
+
+# Table
+snippet "(?i)table(?:au)\s+([\d\.]+)" "" r
+Tab.~\ref{tab `!p snip.rv = match.group(1)`$0
+endsnippet
+
+context "env('table')"
+snippet "(\\caption{(.*?)}\s*$)" "" br
+`!p snip.rv = match.group(1)`
+\label{tab:`!p
+import unicodedata
+text = match.group(2).replace(" ","_")
+text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('ascii')
+text = re.sub(r"[^\w]","",text)
+snip.rv = text.lower()`}
+endsnippet
+
+# Equation
+context "env('equation')"
+snippet leq "label" bA
+\label{eq:${1:${VISUAL}}}$0
+endsnippet
+
+snippet re "\ref{eq:}" i
+~\ref{eq:$1}$0
+endsnippet
+
+# TiKz
+snippet tikz "Tikz Environment" b
+\begin{tikzpicture}[$1]
+	${VISUAL}$2
+\end{tikzpicture}
+endsnippet
+
+context "env('tikzpicture')"
+snippet sty "Create a style" i
+${1:name}/.style={${2:options}},$0
+endsnippet
+
+context "env('tikzpicture')"
+snippet node "tikz node" i
+\node[$4] (${1:X}) at (${2:0,0}) {$3};$0
+endsnippet
+
+context "env('tikzpicture')"
+snippet ax "pgfplots axis environment" bi
+\begin{axis}[
+		cycle list name=my color list,
+		width=10cm,height=8cm,
+		xlabel=$${1:x}$,ylabel=$${2:y}$,
+		xmin=${3:0},xmax=${4:1},
+		ymin=${5:0},ymax=${6:1},
+		xtick={$7},
+		xticklabels={$8},
+		ytick={$9},
+		yticklabels={$10},
+	]
+	$11
+\end{axis}
+endsnippet
+
+context "env('tikzpicture')"
+snippet for "foreach" b
+\foreach \\${1:x} [${2:count=\i}] in {$3}{%
+	${VISUAL}$4
+}
+endsnippet
+
+
+context "env('axis')"
+snippet add "addplot" i
+\addplot $1{$2};
+endsnippet
+
+context "env('axis')"
+snippet square "addplot" i
+\addplot {${1:amplitude}*(mod(x+${2:phase},${3:period}) < ${4:duty_cycle}*${5:period} ? ${6:high_value} : ${7:low_value})};
+endsnippet
+
+
+# CircuitTiKz
+snippet ctikz "Circuitikz Environment" bA
+\begin{circuitikz}
+	\newdimen\d \d=${1:3}cm
+	${2:${VISUAL}}
+\end{circuitikz}$0
+endsnippet
+
+snippet 'to(\w)?(v)?(i)?([hjkl])' "Circuitikz things" r
+`!p
+if match.group(1)=="s":
+	to = "to[short"
+elif match.group(1)=="o":
+	to = "to[open"
+elif match.group(1)=="e":
+	to = "to[vsource"
+elif match.group(1)=="i":
+	to = "to[isource"
+else:
+	to = "to[" + match.group(1).upper() + ",l=$" + match.group(1).upper() + "$"
+if match.group(2)=="v":
+	to += ",v=$V$"
+if match.group(3)=="i":
+	to += ",i=$I$"
+to += "] "
+if match.group(4)=="k":
+	to += "++(0,\\d)"
+elif match.group(4)=="j":
+	to += "++(0,-\\d)"
+elif match.group(4)=="h":
+	to += "++(-\\d,0)"
+elif match.group(4)=="l":
+	to += "++(\\d,0)"
+snip.rv = to
+`
+endsnippet
+
+context "env('circuitikz')"
+snippet dr "draw in ctikz" b
+\draw (${1:0,0})
+	to[${2:short}] ++(${3:\d,0})
+endsnippet
+
+context "env('circuitikz')"
+snippet co ""
+coordinate (${1:tmp})
+endsnippet
+
+context "env('circuitikz')"
+snippet amp "" i
+node[op amp,font=\\ttfamily] (OA) $1{OA}
+endsnippet
+
+context "env('circuitikz')"
+snippet gnd "" i
+node[$1ground] $2{};
+endsnippet
+
+snippet in ""
+\input{${1:filename}}
+endsnippet
+
+snippet su "subscript" i
+_{${VISUAL}$1}$0
+endsnippet
+
+snippet sp "superscript" i
+^{${VISUAL}$1}$0
+endsnippet
+
+snippet ch "chemformula command" i
+\ch{${1:${VISUAL}}}$0
+endsnippet
+
+snippet env "" b
+\\begin{minipage}{\\linewidth}
+	${1:${VISUAL}}$0
+\\end{minipage}
+endsnippet
+
+snippet "(\\begin\{enumerate\})" "" r
+`!p snip.rv = match.group(1)+"[resume]"`
+endsnippet
+
+# For mathpix
+snippet f_ "" b
+`!p
+tex = snip.v.text
+tex = re.sub(r"\[h\]", "[H]", tex)
+tex = re.sub(r"(\\includegraphics)\[.+?\]", r"\1[width=.7\\textwidth]", tex)
+newtex = ""
+for line in tex.split("\n"):
+	if "\\begin{center}" in line:
+		line = "\\centering"
+	if "\\end{center}" in line or "\\captionsetup" in line:
+		continue
+	if not "{figure}" in line:
+		line = "\t"+line.strip()
+	newtex += line+"\n"
+snip.rv = newtex
+`
+endsnippet
+
+snippet tab_ "" b
+`!p
+tex = snip.v.text
+tex = tex.replace("{tabular}", "{tabularx}")
+tex = tex.replace("{table}[h]", "{table}[H]")
+tex = re.sub(r"(\\begin{tabularx})(?:\[[tbc]\])?\{([\|lcr]+)\}", lambda m: m.group(1)+r"{\textwidth}{"+m.group(2).upper()+"}", tex)
+newtex = ""
+for line in tex.split("\n"):
+	if "\\begin{center}" in line:
+		line = "\\centering"
+	if "\\end{center}" in line or "\\captionsetup" in line:
+		continue
+	if not "{table}"  in line:
+		line = "\t"+line.strip()
+	newtex += line+"\n"
+
+result = ""
+indent = 0
+for line in newtex.split("\n"):
+    line = line.strip()
+
+    if r"\end{tabularx}" in line:
+        indent -= 1
+
+    if r"\end{table}" in line:
+        indent -= 1
+
+    result += "\t" * indent + line + "\n"
+
+    if r"\begin{table}" in line:
+        indent += 1
+
+    if r"\begin{tabularx}" in line:
+        indent += 1
+
+newtex = result.rstrip()
+
+if not "{table}" in newtex:
+	newtex = r"""
+\begin{table}[H]
+\centering
+%s
+\end{table}
+""" %  newtex.strip()
+snip.rv = newtex
+`
 endsnippet

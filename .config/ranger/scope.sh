@@ -115,6 +115,28 @@ handle_extension() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             ;; # Continue with next handler on failure
+
+        ## Font
+        bdf|pcf|otb|ttf)
+            preview_png="/tmp/$(basename "${IMAGE_CACHE_PATH%.*}").png"
+            if fontimage -o "${preview_png}" \
+                         --pixelsize "120" \
+                         --fontname \
+                         --pixelsize "80" \
+                         --text "  ABCDEFGHIJKLMNOPQRSTUVWXYZ  " \
+                         --text "  abcdefghijklmnopqrstuvwxyz  " \
+                         --text "  0123456789.:,;(*!?') ff fl fi ffi ffl  " \
+                         --text "  The quick brown fox jumps over the lazy dog.  " \
+                         "${FILE_PATH}";
+            then
+                convert -- "${preview_png}" "${IMAGE_CACHE_PATH}" \
+                    && rm "${preview_png}" \
+                    && exit 6
+            else
+                exit 1
+            fi
+            ;;
+
     esac
 }
 
@@ -128,9 +150,13 @@ handle_image() {
     local mimetype="${1}"
     case "${mimetype}" in
         ## SVG
-        # image/svg+xml|image/svg)
-        #     convert -- "${FILE_PATH}" "${IMAGE_CACHE_PATH}" && exit 6
-        #     exit 1;;
+        image/svg+xml|image/svg)
+            # convert -- "${FILE_PATH}" "${IMAGE_CACHE_PATH}" && exit 6
+            # inkscape "${FILE_PATH}" -e "${IMAGE_CACHE_PATH}" && exit 6
+            rsvg-convert --keep-aspect-ratio --width "${DEFAULT_SIZE%x*}" "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}.png" \
+                && mv "${IMAGE_CACHE_PATH}.png" "${IMAGE_CACHE_PATH}" \
+                && exit 6
+            exit 1;;
 
         ## DjVu
         image/vnd.djvu)
@@ -154,10 +180,10 @@ handle_image() {
             exit 7;;
 
         ## Video
-        # video/*)
-        #     # Thumbnail
-        #     ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
-        #     exit 1;;
+        video/*)
+            # Thumbnail
+            ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
+            exit 1;;
 
         ## PDF
         application/pdf)
@@ -179,27 +205,6 @@ handle_image() {
         #     ebook-meta --get-cover="${IMAGE_CACHE_PATH}" -- "${FILE_PATH}" \
         #         >/dev/null && exit 6
         #     exit 1;;
-
-        ## Font
-        application/font*|application/*opentype)
-            preview_png="/tmp/$(basename "${IMAGE_CACHE_PATH%.*}").png"
-            if fontimage -o "${preview_png}" \
-                         --pixelsize "120" \
-                         --fontname \
-                         --pixelsize "80" \
-                         --text "  ABCDEFGHIJKLMNOPQRSTUVWXYZ  " \
-                         --text "  abcdefghijklmnopqrstuvwxyz  " \
-                         --text "  0123456789.:,;(*!?') ff fl fi ffi ffl  " \
-                         --text "  The quick brown fox jumps over the lazy dog.  " \
-                         "${FILE_PATH}";
-            then
-                convert -- "${preview_png}" "${IMAGE_CACHE_PATH}" \
-                    && rm "${preview_png}" \
-                    && exit 6
-            else
-                exit 1
-            fi
-            ;;
 
         ## Preview archives using the first image inside.
         ## (Very useful for comic book collections for example.)

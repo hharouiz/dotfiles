@@ -1,4 +1,4 @@
-#
+#\per
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
@@ -73,9 +73,19 @@ export PATH=$PATH:$MYVIM/pack/bundle/start/fzf/bin
 # ==============================================================================
 # TeX
 # ==============================================================================
-export MYTEXMF=$INSTALLDIR/texmf
 #export TEXMFHOME=$HOME/texmf
+export PATH=$PATH:/usr/local/texlive/2024/bin/x86_64-linux
+export MANPATH=/usr/local/texlive/2024/texmf-dist/doc/man
+export INFOPATH=/usr/local/texlive/2024/texmf-dist/doc/info
 export LYDEX=$BASE/Dropbox/Jobs/Others/AmineSouktani/LyDex
+export TEXMFDIST=/usr/share/texmf-dist # files of the original distribution
+export TEXMFLOCAL=/usr/local/share/texmf:/usr/share/texmf # administrators for system-wide installation of additional or updated macros, fonts, etc.
+export TEXMFSYSVAR=/var/lib/texmf # updmap and fmtutil (user mode) to store (cached) runtime data
+export TEXMFSYSCONFIG=/etc/texmf # updmap and fmtutil (user mode) to store modified configuration data
+export TEXMFHOME=~/texmf # users for their own individual installations of additional or updated macros, fonts, etc.
+#export TEXMFVAR=~/.texlive/texmf-var # updmap and fmtutil (sys mode) to store (cached) runtime data
+#export TEXMFCONFIG=~/.texlive/texmf-config # updmap and fmtutil (sys mode) to store modified configuration data
+export TEXMFCACHE=$TEXMFSYSVAR;$TEXMFVAR # ConTeXt MkIV and LuaLaTeX to store (cached) runtime data
 
 # ==============================================================================
 # WM
@@ -98,7 +108,41 @@ export MYAUR=/home/x/Dropbox/LightTuto/ArchLiux/Doing/AUR
 [[ $(fgconsole 2>/dev/null) == 1 ]] && exec startx -- vt1
 
 # CONDA
+# export PATH="$HOME/anaconda3/bin:$PATH"  # commented out by conda initialize
+export CONDAENVSDIR=$HOME/Dropbox/Install/conda/envs
 # export PATH=$PATH:~/.local/bin
+
+#
+alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+
+# tesseract data
+export TESSDATA_PREFIX="/home/$USER/.tessdata"
+
+# udevadm aliases
+alias udatt='udevadm info --attribute-walk'
+alias udall='udevadm info --query=all'
+alias udrel='sudo udevadm control --reload-rules && sudo udevadm trigger'
+
+# CMEMS
+export PYTHONPATH="/home/x/Dropbox/Jobs/AmineSouktani/PhD/CMEMS:$PYTHONPATH"
+
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
+
+# snap
+export PATH=$PATH:/var/lib/snapd/snap/bin
+
+# Troubleshooting: JDownloader2 plain white window on BSPWM
+# https://www.reddit.com/r/archlinux/comments/lvx1m1/how_to_fix_jdownloader2_plain_white_window_on/
+# https://wiki.archlinux.org/title/Bspwm#Problems_with_Java_applications
+# sudo pacman -S wmname
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+TMPDIR=$HOME/tmp
+
+#export LD_LIBRARY_PATH=/usr/lib:$LD_LIBRARY_PATH
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -115,3 +159,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+alias hdmi="xrandr --output eDP-1 --mode 1920x1080 --output HDMI-2 --mode 1920x1080 --same-as eDP-1 --rate 60"

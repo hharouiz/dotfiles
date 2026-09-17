@@ -119,5 +119,5 @@ class get_last_downloads(Command):
         parts = self.line.split()
         last_downloads = last_downloads[:int(parts[1])]
         for ld in last_downloads:
-            #self.fm.run("echo {}".format(ld))
-            self.fm.run("mv {} .".format(ld))
+            self.fm.run(f"echo {ld}")
+        #    self.fm.run("mv {} .".format(ld))

@@ -1,10 +1,13 @@
-## set
 set selection clipboard clipboard
 set first-page-column 1:1
 set adjust-open "width"
 #set sandbox strict
-set synctex true
+#set dbus-service true
+#set synctex true
+#set synctex-edit-modifier "shift"
 #set synctex-editor-command "svim -G +%{line} %{input}"
+#set synctex-editor-command "vim --remote-silent -v --not-a-term -T dumb -c 'VimtexInverseSearch %{line} %{input}'"
+#set recolor true
 
 ## map
 map z zoom in

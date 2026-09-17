@@ -30,12 +30,12 @@ bspc config border_width            0
 # Rules
 bspc rule -r "*"
 bspc rule -a google-chrome state=tiled
-#bspc rule -a Thunar state=tiled
+bspc rule -a mathpix-snipping-tool state=floating
+bspc rule -a Tk state=floating
 #bspc rule -a Conky sticky=on manage=off
 #bspc rule -a Feh state=floating
 #bspc rule -a Zathura state=tiled
 #bspc rule -a Alacritty:progterm state=floating sticky=on
-bspc rule -a mathpix-snipping-tool state=floating
 #bspc rule -a Skype pseudo_tiled=on
 #bspc rule -a Spotify pseudo_tiled=on
 #bspc rule -a Thunar pseudo_tiled=on
@@ -64,7 +64,7 @@ xsetroot -cursor_name left_ptr &
 # yabar &
 
 # polybar
-$XDG_CONFIG_HOME/polybar/cuts/launch.sh
+$XDG_CONFIG_HOME/polybar/launch.sh
 
 # ==========
 # Scratchpad
@@ -78,7 +78,7 @@ $XDG_CONFIG_HOME/polybar/cuts/launch.sh
 # termite --class dropdown -e "bash -i" &
 
 # Set background
-feh -bg-scale $XDG_CONFIG_HOME/bspwm/backgrounds/charlotte-de-witte.jpg
+#feh -bg-scale $XDG_CONFIG_HOME/bspwm/backgrounds/charlotte-de-witte.jpg
 
 # =======================
 # System Monitor Software
@@ -89,4 +89,14 @@ feh -bg-scale $XDG_CONFIG_HOME/bspwm/backgrounds/charlotte-de-witte.jpg
 # ===============
 # Window Switcher
 # ===============
+#
+# ===============
+# Troubleshooting
+# ===============
+# JDownloader2 plain white window on BSPWM
+# https://www.reddit.com/r/archlinux/comments/lvx1m1/how_to_fix_jdownloader2_plain_white_window_on/
+# https://wiki.archlinux.org/title/Bspwm#Problems_with_Java_applications
+# sudo pacman -S wmname
+wmname LG3D
+
 

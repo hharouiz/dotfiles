@@ -18,12 +18,16 @@
 
 \LoadClass[a4paper]{book}
 
+% Font
+\usepackage{fontspec}
+% \setmainfont[Ligatures=TeX]{Linux Libertine O}
+% \RequirePackage{fourier}
+
 \RequirePackage[left=2.5cm,right=2.5cm,top=2cm]{geometry}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage{arabtex}
+% \RequirePackage[utf8]{inputenc}
+%\RequirePackage{arabtex}
 %\RequirePackage[LAE]{fontenc}
 \RequirePackage{graphicx}
-\RequirePackage[svgnames]{xcolor}
 \RequirePackage[export]{adjustbox}
 \RequirePackage{amsmath}
 \RequirePackage{mathtools}
@@ -31,12 +35,20 @@
 \RequirePackage{amssymb}
 \RequirePackage{stmaryrd}
 \RequirePackage{float}
-\RequirePackage{fourier}
 \RequirePackage[framemethod=tikz]{mdframed}
 \usepackage{fontawesome5}
 \RequirePackage{tikz}
 \usetikzlibrary{arrows.meta,shapes.geometric,patterns,decorations.pathmorphing,
     decorations.markings,matrix,positioning,calc,3d}
+
+\RequirePackage[svgnames]{xcolor}
+\input{colors.tex}
+\colorlet{majorgridcolor}{gray60}
+\colorlet{minorgridcolor}{gray30}
+
+\RequirePackage{pgfplots}
+\input{pgfplots-setup.tex}
+
 \RequirePackage[most]{tcolorbox}
 \RequirePackage{pifont}
 \RequirePackage{latexcolors}
@@ -44,17 +56,22 @@
 \RequirePackage{csquotes}
 \RequirePackage{esvect}
 \RequirePackage[version=4]{mhchem}
+\RequirePackage{enumitem}
+\RequirePackage{hyperref}
+
+% Background
+\RequirePackage[pages=all]{background}
+\backgroundsetup{
+    scale=1,
+    opacity=1.0,
+    angle=0,
+    % contents={}
+    contents={\includegraphics[width=\paperwidth,height=\paperheight]{images/safwan-thottoli-_YgmNICHdss-unsplash.jpg}}
+}
 
 % Units
 \RequirePackage{siunitx}
-\sisetup{%
-    inter-unit-product = \ensuremath { { } \cdot { } },
-    output-decimal-marker = {,},
-    % per-mode = symbol, % symbol, fraction
-    print-unity-mantissa=false,
-}
-\DeclareSIUnit\turn{\text{tr}}
-\DeclareSIUnit\M{\mole\per\liter}
+\input{siunitx-local-units.tex}
 
 
 
@@ -156,7 +173,7 @@
     frametitleaboveskip=5pt,
     frametitlebelowskip = 5pt,%
     frametitlefont={\normalfont\large\bfseries},
-    backgroundcolor=background,
+    backgroundcolor=none,
     singleextra={
         \draw[gray]
             ($(O |- P)+(10pt,-\mdfframetitleboxtotalheight)$) --
@@ -265,6 +282,28 @@
         \renewcommand{\labelenumi}{\bfseries\color{thislc}\arabic{enumi})}%
         \renewcommand{\labelitemi}{\color{thislc}\faMapSigns} % a changer
         \begin{itemize}
+        }%
+        {%
+        \end{itemize}
+    \end{llboxenv}%
+}
+
+\NewDocumentEnvironment{exercices}{}%
+{%
+    \definecolor{primarycolor}{HTML}{008033}
+    \begin{llboxenv}[linecolor=primarycolor,frametitle={Exercices}]%
+        \colorlet{thislc}{primarycolor}%
+        \colorlet{thisbg}{background}%
+        \renewcommand{\labelenumi}{\bfseries\color{thislc}\arabic{enumi})}%
+        \NewDocumentCommand{\Q}{ s O{} }{%
+            \refstepcounter{enumi}%
+            \IfBooleanTF{##1}%
+            {\item[\bfseries\color{gray}\faIcon{toggle-off}~P\arabic{chapter}-\arabic{enumi}.]
+                  {\bfseries ##2}\par}
+            {\item[\bfseries\color{thislc}\faIcon{toggle-on}~P\arabic{chapter}-\arabic{enumi}.]
+                  {\bfseries ##2}\par}
+        }
+        \begin{itemize}[leftmargin=2cm]
         }%
         {%
         \end{itemize}

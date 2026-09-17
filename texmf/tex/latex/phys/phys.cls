@@ -59,57 +59,57 @@
 
 \LoadClass[a4paper]{article}
 
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage[dvipsnames,svgnames]{xcolor}
-\usepackage[export]{adjustbox}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[version=4]{mhchem}
-\usepackage{stmaryrd}
-\usepackage{float}
-\usepackage{esvect}
-\usepackage{LBox}
-%\usepackage{fourier}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,shapes.geometric,patterns,decorations.pathmorphing,
-    decorations.markings,matrix,positioning,calc,intersections,fit,
-    decorations.text,3d,decorations.pathreplacing,decorations.shapes,
-    backgrounds,shapes.arrows}
-\usepackage[most]{tcolorbox}
-\usepackage{pifont}
-\usepackage{latexcolors}
+\RequirePackage[left=1cm,right=1cm,top=1cm,bottom=2cm,footskip=1cm]{geometry}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{graphicx}
+\RequirePackage[dvipsnames,svgnames]{xcolor}
+\RequirePackage[export]{adjustbox}
+\RequirePackage{amsmath}
+\RequirePackage{mathtools}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage[version=4]{mhchem}
+\RequirePackage{stmaryrd}
+\RequirePackage{float}
+\RequirePackage{esvect}
+\RequirePackage{LBox}
+%\RequirePackage{fourier}
+\RequirePackage{lipsum}
+\RequirePackage{tikz}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{pifont}
+\RequirePackage{latexcolors}
+\RequirePackage{siunitx}
+\RequirePackage{fontawesome5}
+\RequirePackage{csquotes}
+\RequirePackage{chemfig}
+%\RequirePackage{arabtex}
+\RequirePackage[explicit]{titlesec} % 
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{enumitem}
+\RequirePackage{subcaption}
+\RequirePackage{hyperref}
+\RequirePackage{skull}
+
+
+% Colors
+\input{colors}
+
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
 \RequirePackage[european,straightvoltages,cute inductor,siunitx]{circuitikz}
-\ctikzset{%
-    % voltage/european label distance=0.5
-    % Colors
-    amplifiers/fill=arylideyellow,
-    capacitors/fill=ashgrey,
-}
-\usepackage{siunitx}
-\sisetup{%
-    inter-unit-product = \ensuremath { { } \cdot { } },
-    output-decimal-marker = {,},
-    % per-mode = symbol, % symbol, fraction
-    print-unity-mantissa=false,
-}
-\DeclareSIUnit[]{\M}{\mole\per\liter}
-\usepackage{fontawesome5}
-\usepackage{csquotes}
-\usepackage{chemfig}
+\input{circuitikz-setup.tex}
 \setchemfig{fixed length=true}
 
 %  typeset words in Arabic
-\usepackage{arabtex}
 
-\usepackage[explicit]{titlesec}
-
-\RequirePackage{booktabs}
-
+% Load useful local units
+\input{siunitx-local-units}
 \graphicspath{ {./images/} }
 \setlength\parindent{0pt}
 
@@ -147,6 +147,23 @@
     \definecolor{primarycolor}{HTML}{03045e}
     \definecolor{secondarycolor}{HTML}{caf0f8}
 
+    \titleformat{\part}[display]
+        {\bfseries\Large}
+        {\filleft\textsc{Partie}~\thepart}
+        {0.4ex}
+        {\titlerule\vspace{1ex}\filright}
+        [\vspace{1ex}\titlerule]
+
+    \setlist{topsep=2pt,itemsep=-2pt}
+
+    \newgeometry{%
+        inner=1cm,
+        outer=1cm,
+        top=1cm,
+        bottom=1.5cm,
+        footskip=1cm,
+    }
+
 	% Old style
     \renewcommand\thesection{Execice~\arabic{section}~:}
     \renewcommand\thesubsection{\Alph{subsection}}
@@ -154,7 +171,7 @@
     \renewcommand\labelenumii{\bfseries\alph{enumii})}
     \newcounter{exercice}
     \stepcounter{exercice}%
-    \include{exercise-styles.tex}
+    \input{exercise-styles.tex}
     \newmdenv[style=ExerciceStyle3]{exercice}
 
     \NewDocumentEnvironment{Ex}{O{} m}%
@@ -169,10 +186,42 @@
 \fi
 
 \if@cours
+    \definecolor{boxbg}{HTML}{ffffff}
+    \definecolor{defcolor}{HTML}{023e8a}
+    \definecolor{cccolor}{HTML}{bc4749}
+    \definecolor{remcolor}{HTML}{4f772d}
+
     \renewcommand\thesection{\Roman{section}}
     \renewcommand\thesubsection{\arabic{subsection}}
     \renewcommand\labelenumi{\bfseries\arabic{enumi})}
     \renewcommand\labelenumii{\bfseries\alph{enumii})}
+    \renewcommand\labelitemi{\scriptsize\faAngleDoubleRight}
+    \renewcommand\labelitemii{\scriptsize\faAngleRight}
+
+    \NewTColorBox{skeleton}{ o o m }{%
+        enhanced,fonttitle=\bfseries,sharp corners,leftupper=5.5mm,
+        boxrule=0pt,frame hidden,
+        IfValueTF={#1}{colbacktitle=#1}{colbacktitle=tcbfgcolor},
+        IfValueTF={#2}{colback=#2}{colback=tcbbgcolor},
+        title=#3,lefttitle=0pt,
+        before title={\faCompass~},
+        drop fuzzy shadow
+    }
+
+    %\NewDocumentEnvironment{definition}{ }%
+    %{\begin{skeleton}[title={Définition},colframe=defcolor]}{\end{skeleton}}
+    %
+    %\NewDocumentEnvironment{remarque}{ }%
+    %{\begin{skeleton}[title={Remarque},colframe=remcolor]}{\end{skeleton}}
+    %
+    %\NewDocumentEnvironment{conclusion}{ }%
+    %{\begin{skeleton}[title={Conclusion},colframe=cccolor]}{\end{skeleton}}
+
+    \NewDocumentEnvironment{preambule}{ }%
+    {\begin{skeleton}[preambulefgcolor]{Préambule}}{\end{skeleton}}
+
+    \NewTColorBox{attention}{ }{attentionstyle}
+
 \fi
 
 \if@mytp
@@ -270,14 +319,34 @@
     \definecolor{primarycolor}{HTML}{03045e}
     \definecolor{secondarycolor}{HTML}{caf0f8}
 
-    \renewcommand\partname{Exercice}
+    \renewcommand\partname{Partie}
     \renewcommand\thesection{\Roman{section}}
-    \renewcommand\thesubsection{\Alph{subsection}}
-    \renewcommand\thesubsubsection{\arabic{subsubsection}}
-    \renewcommand\labelenumi{\bfseries\arabic{enumi})}
+    \renewcommand\thesubsection{\thesection.\Alph{subsection}}
+    \renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+    %k\renewcommand\labelenumi{\bfseries\arabic{enumi})}
+    \setlength{\fboxsep}{1.4pt}
+    \setlength{\fboxrule}{0.6pt}
+    %\renewcommand\labelenumi{\framebox{\bfseries Q \arabic{enumi}}}
+    %\renewcommand\labelenumi{\tikz{\node[draw, circle, fill=blue!20]{\arabic{enumi}};}}
+    \renewcommand\labelenumi{\qitem{Q\,\arabic{enumi}}}
     \renewcommand\labelenumii{\bfseries\alph{enumii})}
     \renewcommand\labelitemi{\color{primarycolor}\scriptsize\faDotCircle[regular]}
     %\renewcommand\labelitemii{\color{black}\scriptsize\faChevronRight}
+
+    \setenumerate{leftmargin=14mm}
+
+    \titleformat{\part}[block]
+        {\clearpage%
+         \noindent%
+        \begin{tcolorbox}[partstyle]}
+        {%
+            \thepart%
+            \tcblower%
+            #1%
+        }
+        {0pt}
+        {}
+        [\end{tcolorbox}]
 
     \newcounter{qacounter}
     \newmdenv[%
@@ -311,6 +380,42 @@
         {%
         \end{questionenv}%
     }
+
+    % Document
+    \newtcbtheorem[]{tcbdoc}{Document}{docstyle}{}
+    \NewDocumentEnvironment{doc}{ m }{
+        \renewcommand\labelitemi{\ding{112}}
+        \renewcommand\labelitemii{\ding{169}}
+        \begin{tcbdoc}[]{#1}{}
+    }{
+        \end{tcbdoc}
+    }
+
+    % Données
+    \newtcbtheorem{tcbdonnees}{Données}{donneesstyle}{}
+    \NewDocumentEnvironment{donnees}{ m }{
+        \renewcommand\labelitemi{\color{donneesfgcolor}\ding{49}}
+        \renewcommand\labelitemii{\ding{169}}
+        \begin{tcbdonnees}[]{#1}{}
+    }{\end{tcbdonnees}}
+
+    % Réponse box
+    \NewTColorBox[auto counter]{reponse}{ O{1} o }{reponsestyle,
+        IfValueTF={#2}{title={Q~\thetcbcounter~: #2}}{title={Q~\thetcbcounter}},
+        %after title={\hfill\color{baremecolor} $(\mathbf{#1})$},
+        before upper={%
+            \renewcommand\labelitemi{\color{repfgcolor}\footnotesize\faPlus}
+            \renewcommand\labelitemii{\ding{169}}
+        },
+        overlay={%
+            %\draw [red,very thick](frame.north east) -- (frame.south west);
+        }
+    }
+    %\NewDocumentEnvironment{reponse}{ O{1} o }{
+    %    \begin{tcbreponse}[#1][#2]
+    %}{\end{tcbreponse}}
+
+
 \fi
 
 \if@mypb
@@ -474,74 +579,49 @@
 }
 % ------------------------------------------------------------------------------
 
-% tcolorbox staff --------------------------------------------------------------
-\colorlet{mathboxcolframe}{primarycolor}
-\colorlet{mathboxcolback}{white}
-\NewDocumentCommand{\mathbox}{ O{mathboxcolframe} O{mathboxcolback} m}{%
-    \tcboxmath[colframe=#1,colback=#2,boxrule=1pt,sharp corners,
-    left=0pt,right=0pt,top=0pt,bottom=0pt,boxsep=2mm]{#3}
-}
 % ------------------------------------------------------------------------------
 
 % ------------------------------------------------------------------------------
 % Chemistry
 % ------------------------------------------------------------------------------
-\include{chemistry.code.tex}
+\input{chemistry.code.tex}
 
 % ------------------------------------------------------------------------------
 % Physics
 % ------------------------------------------------------------------------------
-\newcommand\ex{\vec{e}_{x}}
-\newcommand\ey{\vec{e}_{y}}
-\newcommand\ez{\vec{e}_{z}}
-\newcommand\er{\vec{e}_{r}}
-\newcommand\erho{\vec{e}_{\rho}}
-\newcommand\evphi{\vec{e}_{\varphi}}
-\newcommand\etheta{\vec{e}_{\theta}}
-\newcommand\et{\vec{e}_{t}}
-\newcommand\en{\vec{e}_{n}}
-\newcommand\eb{\vec{e}_{b}}
+\input{les_constantes_physiques.tex}
 
 % Math
 \everymath{\displaystyle}
 
-% pgfplots
+% tikz and pgfplots
 \RequirePackage{pgfplots}
-\definecolor{majorgridcolor}{HTML}{a8dadc}
-\definecolor{minorgridcolor}{HTML}{f1faee}
-\pgfplotsset{
-	grid=both,
-	axis x line=middle,
-	axis y line=middle,
-	minor tick num=4,
-	legend cell align=left,
-	legend pos=north east,
-	every axis x label/.append style={
-		at={(1,0)},anchor=west,
-	},
-	every axis y label/.append style={
-		at={(0,1)},anchor=west,
-	},
-	every axis legend/.append style={
-		at={(1,1)},anchor=north,
-	},
-	every minor grid/.append style={
-		very thin,color=minorgridcolor,
-	},
-	every major grid/.append style={
-		thin,color=majorgridcolor,
-	},
-	tick align=inside,
-	major tick length=0.15cm,
-	minor tick length=0.08cm,
-	every major tick/.append style={
-		thin,black,
-	},
-	every minor tick/.append style={
-		very thin,black,
-	},
-}
+\pgfplotsset{compat=1.18}
+\definecolor{minorgridcolor}{HTML}{dee2e6}
+\definecolor{majorgridcolor}{HTML}{adb5bd}
+\input{tikz-setup.tex}
+\input{pgfplots-setup.tex}
 
+
+
+% Create a section: testing
+%\renewcommand{\part}{\@startsection%
+%    {part}%
+%    {-1}%
+%    {\z@}%
+%    {-1cm}%
+%    {1cm}%
+%    {\normalfont\LARGE\bfseries}}
+
+\def\dotfilll#1{\cleaders\hbox to #1{.}\hfill}
+\newcommand\dotline[2][.5em]{\leavevmode\hbox to #2{\dotfilll{#1}\hfil}}
+
+
+\input{tcolorbox-setup.tex}
+
+
+% Fix for space above/below caused by floated figure
+\setlength{\intextsep}{0pt} 
 
 
 \endinput
