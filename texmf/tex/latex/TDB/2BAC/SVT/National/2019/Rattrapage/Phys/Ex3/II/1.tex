@@ -1,0 +1,87 @@
+\begin{minipage}{0.67\linewidth}
+    La bille ($S$) précédente est attachée à l'extrémité d'un ressort à spires
+    non jointives, d'axe horizontal, de masse négligeable et de raideur $K$. La
+    bille peut glisser sur un rail horizontal (figure~\ref{fig:solide_ressort}).
+    
+    On étudie le mouvement du centre d'inertie $G$ de la bille ($S$) dans un
+    repère $(O,\ex)$ lié à la Terre supposé galiléen. On repère la position de
+    $G$ à un instant $t$ dans ce repère par son abscisse $x$
+    
+    À l'équilibre $x_{G}=x_{0}=0$.
+\end{minipage}
+\hfill
+\begin{minipage}{0.30\linewidth}
+    \begin{figure}[H]
+        \centering
+        \input{figures/solide_ressort}
+        \caption{}
+        \label{fig:solide_ressort}
+    \end{figure}
+\end{minipage}
+
+\begin{donnees}
+    \begin{itemize}
+        \item $m=\qty{0,24}{\kg}$~; $\pi^{2}=10$~;
+        \item Les frottements sont négligeables.
+    \end{itemize}
+\end{donnees}
+
+On écarte ($S$) de sa position d'équilibre d'une distance $X_{m}$ et on
+l'abandonne sans vitesse initiale.
+\begin{enumerate}
+    \item L'étude expérimentale a permis d'obtenir la courbe de la
+          figure~(\ref{fig:d2xG_de_t})
+          représentant les variations de l'accélération $\ddot{x}(t)$ du
+          mouvement de $G$.\par
+          \begin{minipage}{0.63\linewidth}
+              \begin{enumerate}
+                  \item En appliquant la deuxième loi de Newton, établir
+                        l'équation différentielle vérifiée par l'abscisse $x$.
+                  \item La solution de cette équation différentielle s'écrit~:
+                        $x(t)=X_{m}\cdot
+                        \cos\left(\frac{2\pi}{T_{0}}\cdot t\right)$
+
+                        \begin{enumerate}
+                            \item Trouver en fonction des paramètres utiles,
+                                  l’expression de l’accélération $\ddot{x}(t)$.
+                            \item En exploitant la courbe de la
+                                  figure~(\ref{fig:d2xG_de_t}), déterminer les
+                                  valeurs de $T_{0}$ et de $X_{m}$.
+                            \item Déduire la valeur de la raideur $K$.
+                        \end{enumerate}
+              \end{enumerate}
+          \end{minipage}
+          \hfill
+          \begin{minipage}{0.35\linewidth}
+              \begin{figure}[H]
+                  \centering
+                  \begin{tikzpicture}
+                      \def\Xm{0.4}
+                      \def\T{2}
+                      \pgfmathpi\let\pi=\pgfmathresult
+                      \begin{axis}[
+                              xmin=0,xmax=4.5,
+                              ymin=-0.44,ymax=0.59,
+                              width=7cm,height=6cm,
+                              trig format plots=rad,
+                              xtick distance=1, ytick distance=0.2,
+                              xticklabels={,,1},
+                              yticklabels={,,,,{0,2}},
+                              xlabel=$t~(\unit{\second})$,
+                              ylabel=$\ddot{x}~(\unit{\a})$,
+	                          every axis x label/.append style={
+	                          at={(1.03,0.45)},anchor=south east,
+	                          },
+                          ]
+                          \addplot[domain=0:4,samples=200,very thick,blue]
+                              {\Xm*cos(2*pi/\T*x+pi)};
+                      \end{axis}
+                  \end{tikzpicture}
+                  \caption{}
+                  \label{fig:d2xG_de_t}
+              \end{figure}
+          \end{minipage}
+    \item Déterminer dans l'intervalle $[0;\qty{3}{\second}]$ les instants où la
+          vitesse de $G$ est maximale. Calculer la valeur de cette vitesse.
+\end{enumerate}
+

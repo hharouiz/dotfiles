@@ -1,0 +1,47 @@
+\begin{minipage}[t][][t]{0.58\linewidth}
+    On considère deux aimants droits $A_1$ et $A_2$ créant chacun en $M$ des
+    champs magnétiques notés respectivement $\vec{B}_1$ et $\vec{B}_2$. Leurs
+    valeurs sont $B_1=\qty{3}{\mT}$ et $B_2=\qty{4}{\mT}$. Les
+    axes des deux aimants sont perpendiculaires.
+    \begin{enumerate}
+        \item Représenter graphiquement les champs magnétiques $\vec{B}_1$ et
+              $\vec{B}_2$ au point $M$, puis construire le vecteur champ
+              magnétique résultant $\vec{B}$. \textbf{(1pt)}
+
+              \underline{Échelle~:} $\qty{1}{\cm}\leftrightarrow\qty{2}{\mT}$
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}[t][][t]{0.40\linewidth}
+    \vspace{-5mm}
+    \begin{figure}[H]
+    \flushleft
+    \begin{tikzpicture}
+        \foreach \x/\y/\a [count=\i] in {-2.5/0/0,0/-2.5/90}{%
+        \node[inner sep=0pt,draw,thick,minimum width=2cm,minimum height=6mm,
+            rotate=\a,anchor=east,label=below:$(A_{\i})$] (A\i) at (\x,\y) {};
+        \draw (A\i.north) -- (A\i.south);
+        }
+        \node[circle,inner sep=1pt,fill,
+            label={[above right=1mm]:$M$}] (M) at (0,0) {};
+        \draw[densely dashed] (A1.east) -- (M) -- (A2.east);
+        \draw ([shift=(180:0.2)]M.center) -- ++(-90:0.2) -- ++(0:0.2);
+        \node[left] at (A1.east) {S};
+        \node[right] at (A1.west) {N};
+        \node[below] at (A2.east) {S};
+        \node[above] at (A2.west) {N};
+    \end{tikzpicture}
+    \end{figure}
+\end{minipage}
+
+\vspace{-2mm}
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Calculer l'intensité du champ magnétique résultant en
+          $M$.~\textbf{(1pt)}
+    \item Dessiner l'orientation d'une aiguille aimantée qu'on placerait au
+          point $M$.~\textbf{(0,5pt)}
+    \item Déterminez l'angle $\alpha$ que fait le champ magnétique total
+          $\vec{B}$ avec l'axe de l'aimant $A_{2}$.~\textbf{(1pt)}
+\end{enumerate}
+

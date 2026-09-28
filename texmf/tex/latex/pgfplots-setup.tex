@@ -1,0 +1,84 @@
+\pgfplotsset{
+    width=7cm,compat=1.18,
+	grid=both,
+	axis x line=middle,
+	axis y line=middle,
+    every axis plot/.append style={
+        very thick,line join=round,line cap=round,
+    },
+	minor tick num=4,
+	every axis x label/.append style={
+        at={([yshift=1.5mm]current axis.right of origin)},
+        anchor=south east,inner xsep=0,
+	},
+	every axis y label/.append style={
+        at={([xshift=1.5mm]current axis.above origin)},
+        anchor=north west,inner ysep=0,
+	},
+    % LEGENDS
+	legend cell align=left,
+	legend pos=north east,
+    legend style={
+		at={(1,1)},
+        anchor=north east,
+        rounded corners,
+        %line width=0.8pt,
+        draw=none,
+        fill=PageBackgroundColor!95!black,
+    },
+    % GRIDS
+	every minor grid/.append style={
+		color=minorgridcolor,
+        line width=0.8pt,
+	},
+	every major grid/.append style={
+		color=majorgridcolor,
+        line width=0.4pt,
+	},
+    %
+	tick align=inside,
+	major tick length=0.15cm,
+	minor tick length=0.10cm,
+	every major tick/.append style={
+		thick,black,
+	},
+	every minor tick/.append style={
+		thin,black,
+	},
+    /pgf/number format/use comma,
+    every inner x axis line/.append style={
+        thick,-{Latex[round]},line cap=rect,
+    },
+    every inner y axis line/.append style={
+        thick,-{Latex[round]},line cap=rect,
+    },
+    %enlarge x limits={rel=0.1,upper},
+    %enlarge y limits={rel=0.1,upper},
+    %
+    % Hide ticks and their labels if they are
+    % obscured by other axis lines. (applies only for non-boxed fiures)
+    hide obscured x ticks=false,
+    hide obscured y ticks=false,
+    %
+    % Change the layer for any grid lines to axis foreground (page 416)
+    set layers,grid style={/pgfplots/on layer=axis foreground},
+    %
+    title style={font=\bfseries},
+}
+
+\definecolor{C0}{HTML}{3268b7}
+\definecolor{C1}{HTML}{ae3131}
+\definecolor{C2}{HTML}{29957e}
+\definecolor{C3}{HTML}{ba0095}
+\definecolor{C4}{HTML}{7f9229}
+\pgfplotscreateplotcyclelist{my}{
+    {C0,mark=*},
+    {C1,mark=square*},
+    {C2,mark=o},
+    {loosely dotted,mark=+},
+    {brown!60!black,mark options={fill=brown!40},mark=otimes*}% <-- don't add a comma here
+}
+\pgfplotscreateplotcyclelist{my color list}{
+    C0,C1,C2,C3,C4
+}
+

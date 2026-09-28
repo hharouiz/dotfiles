@@ -1,0 +1,107 @@
+\begin{enumerate}
+    \item On dispose de barreaux aimantés identiques créant chacun en un point
+          $M$, équidistant des deux aimants, des champs  magnétiques notés
+          respectivement $\vec{B}_{1}$ et $\vec{B}_{2}$.
+
+          \begin{figure}[H]
+              \centering
+              \begin{tikzpicture}
+                  \def\d{2}
+                  \foreach \x/\y/\a [count=\i] in {-\d/0/east,\d/0/west}{%
+                  \node[inner sep=0pt,draw,thick,minimum width=2cm,
+                      minimum height=6mm,
+                      anchor=\a,label=(\i)] (A\i) at (\x,\y) {};
+                  \draw (A\i.north) -- (A\i.south);
+                  }
+                  \node[circle,inner sep=1pt,fill,
+                      label={[above=1mm]:$M$}] (M) at (0,0) {};
+                  \draw[densely dashed] (A1.east) -- (M) -- (A2.west);
+                  \node[left] at (A1.east) {N};
+                  \node[right] at (A1.west) {S};
+                  \node[right] at (A2.west) {S};
+                  \node[left] at (A2.east) {N};
+                  \begin{scope}[xshift=8cm,yshift=0cm]
+                      \def\al{35}
+                      \foreach \y/\a [count=\i] in
+                          {1.3/180-0.5*\al,-1.3/180+0.5*\al}{%
+                      \node[inner sep=0pt,draw,thick,minimum width=2cm,
+                          minimum height=6mm,
+                          rotate=\a,label={[below,rotate=180+\a]:(\i)}]
+                          (A\i) at (-2,\y) {};
+                      \draw (A\i.north) -- (A\i.south);
+                      }
+                      \path[name path=D1] (A1.west) -- ++(-0.5*\al:5);
+                      \path[name path=D2] (A2.west) -- ++(0.5*\al:5);
+                      \fill[name intersections={of=D1 and D2,by=M}]
+                          (M) circle (1.4pt)
+                          node[above=1mm] {$M$};
+                      \draw[densely dashed] (A1.west) -- (M) -- (A2.west);
+                      \node[rotate=-0.5*\al,anchor=180] at (A1.east) {S};
+                      \node[rotate=-0.5*\al,anchor=0] at (A1.west) {N};
+                      \node[rotate=0.5*\al,anchor=180] at (A2.east) {N};
+                      \node[rotate=0.5*\al,anchor=0] at (A2.west) {S};
+                  \end{scope}
+              \end{tikzpicture}
+          \end{figure}
+          \begin{enumerate}
+              \item Représenter le vecteur champ magnétique crée par chaque
+                    aimant au point $M$, dans chaque cas.~\textbf{(1pt)}
+              \item Représenter le vecteur champ magnétique résultant au point
+                    $M$, dans chaque cas. \textbf{(1pt)}
+          \end{enumerate}
+    \item Le spectre magnétique d’un aimant droit est représenté sur le schéma
+          ci-dessous.
+
+          \begin{minipage}[t][][t]{0.44\linewidth}
+          \begin{enumerate}
+              \item Orienter les lignes de champ représentées. \textbf{(0,5pt)}
+              \item Tracer le vecteur champ magnétique aux points $M_{i}$.
+                    \textbf{(1pt)}
+              \item Dessiner une aiguille aimantée en chaque point $M_{i}$, en
+                    précisant la nature de ses pôles. \textbf{(1pt)}
+          \end{enumerate}
+          \end{minipage}
+          \hfill
+          \begin{minipage}[t][][t]{0.54\linewidth}
+          \vspace{-5mm}
+          \begin{figure}[H]
+              \centering
+              \begin{tikzpicture}
+                  \clip (0,0) ellipse (4.5cm and 2.5cm);
+                  \node[inner sep=0pt,draw,thick,minimum width=5cm,
+                      minimum height=1cm] (A) {};
+                  \draw (A.north) -- (A.south);
+                  \foreach \x [count=\i] in {0.05,0.2,0.35}{%
+                      \draw ($(A.north west)!\x!(A.north east)$) to[bend left=70]
+                          node[pos=0.5] (M\i) {} 
+                          ($(A.north west)!1-\x!(A.north east)$);
+                      \draw ($(A.south west)!\x!(A.south east)$) to[bend right=70]
+                          node[pos=0.75] (N\i) {} 
+                          ($(A.south west)!1-\x!(A.south east)$);
+                  }
+                  \foreach \x/\a/\l [count=\i] in {0.05/130/2.5,0.3/150/4}{%
+                      \draw ($(A.north west)!\x!(A.south west)$)
+                          to[bend left=\a,looseness=\l]
+                          node[pos=0.9] (P\i) {} 
+                          ($(A.north east)!\x!(A.south east)$);
+                      \draw ($(A.north west)!1-\x!(A.south west)$)
+                          to[bend right=\a,looseness=\l]
+                          ($(A.north east)!1-\x!(A.south east)$);
+                  }
+                  \draw (A.east) -- ++(2,0);
+                  \draw (A.west) -- ++(-2,0)
+                      node[pos=0.6,circle,inner sep=1pt,fill,label=$M_{2}$] {};
+                  \node[left=2mm,font=\huge] at (A.east) {S};
+                  \node[right=2mm,font=\huge] at (A.west) {N};
+                  % Mi
+                  \node[circle,inner sep=1pt,fill,label=$M_{1}$] at (M1) {};
+                  \node[circle,inner sep=1pt,fill,label=$M_{3}$] at (N2) {};
+                  \node[circle,inner sep=1pt,fill,label=left:$M_{4}$] at (P1) {};
+              \end{tikzpicture}
+          \end{figure}
+          \end{minipage}
+
+    \item 
+          \input{TDB/1BAC/Phys/Electricite/3/2/ex5_m.tex}
+\end{enumerate}
+

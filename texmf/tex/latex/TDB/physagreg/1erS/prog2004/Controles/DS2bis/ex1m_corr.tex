@@ -1,0 +1,46 @@
+\begin{enumerate}
+    \item Équation de dissolution~:
+          \ch{Al2(SO4)3_{(s)} -> 2 Al^{3+}_{(aq)} + 3 SO4^{2-}_{(aq)}}.
+          \hfill\textbf{(1pt)}
+    \item Chaque ion s'entoure de molécules d'eau car il est \textbf{chargé} et
+          qu'il ne peut pas resté seul dans une solution (manque de stabilité).
+          \hfill\textbf{(0,5pt)} \\
+          Ce phénomène s'appelle \textbf{la solvatation des ions}, quand il
+          s'agit d'eau, on parle d'hydratation des ions.
+          \hfill\textbf{(0,5pt)} \\
+          \begin{center}
+              \begin{tikzpicture}[line width=-2pt]
+                  \node[circle,ball color=green,inner sep=0pt,line width=5pt,
+                      minimum size=1.2cm] (Al) {\ch{Al^3+}};
+                  \coordinate (X) at (Al.south);
+                  \foreach \p/\a/\t in
+                      {south/north/0,north/south/90,east/west/45,west/east/135}{
+                  \node[circle,ball color=red,inner sep=0pt,
+                      minimum size=8mm,anchor=\a,
+                      shape border rotate=\t] (O) at (Al.\p) {\ch{O}};
+                  \node[circle,ball color=white,inner sep=0pt,
+                      minimum size=5mm,
+                      anchor=2*\t+90-52] (H1) at (O.2*\t-90-52) {\ch{H}};
+                  \node[circle,ball color=white,inner sep=0pt,
+                      minimum size=5mm,
+                      anchor=2*\t+90+52] (H1) at (O.2*\t-90+52) {\ch{H}};
+                  }
+              \end{tikzpicture}
+          \end{center}
+          \hfill\textbf{(1pt)}
+      \item 
+            \begin{itemize}
+                \item $[\ch{Al^{3+}_{(aq)}}]=2c=
+                      2\times 0,050=\qty{0.10}{\mol\per\L}$
+                      \hfill\textbf{(0,5pt)}
+                \item $[\ch{SO4^{2-}_{(aq)}}]=3c=
+                      3\times 0,050=\qty{0.15}{\mol\per\L}$
+                      \hfill\textbf{(0,5pt)}
+            \end{itemize}
+    \item On a~: \ $c=\frac{n}{V}$ \ et \ $n=\frac{m}{M}$ donc, \
+          $c=\frac{m}{V \cdot M}$
+          \hfill\textbf{(1pt)}
+    \item $m=c\cdot V\cdot M=0,050\times 0,100\times 342,4=\qty{1.7}{\g}$
+          \hfill\textbf{(0,5pt)}
+\end{enumerate}
+

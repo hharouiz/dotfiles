@@ -1,0 +1,69 @@
+% QCM
+\begin{enumerate}
+    \item Le travail de la force $\vec{F}$, de valeur $F=\qty{5.0}{\N}$, pour
+          le déplacement $AB$ (de $A$ à $B$) tel que $AB=\qty{50}{\cm}$
+          vaut~:
+
+          \begin{tcolorbox}
+          \begin{enumerate*}[itemjoin={\hfill}]
+              \item
+                    \begin{tikzpicture}[
+                            baseline={([yshift=-3mm]current bounding box.north west)},
+                        point/.style={circle,inner sep=1.4pt,fill}]
+                      \foreach \p/\y in {A/0,B/-1.5}
+                      \node[point,label=left:$\p$] (\p) at (0,\y) {};
+                      \draw[thick,postaction={decorate},
+                            decoration={markings,mark=at position 0.57 with
+                            {\arrow{Latex}}}]
+                        (A.center) -- (B.center);
+                      \draw[->,red,very thick]
+                        (A.center) -- node[right] {$\vec{F}$} ($(A)!0.4!(B)$);
+                    \end{tikzpicture}
+              \item
+                    \begin{tikzpicture}[
+                        baseline={([yshift=-3mm]current bounding box.north west)},
+                        point/.style={circle,inner sep=1.4pt,fill}]
+                      \foreach \p/\a in {A/0,B/1.5}
+                      \node[point,label={[below left,inner sep=2pt]:$\p$}]
+                        (\p) at (-45:\a) {};
+                      \draw[thick,postaction={decorate},
+                            decoration={markings,mark=at position 0.57 with
+                            {\arrow{Latex}}}]
+                        (A.center) -- (B.center);
+                      \draw[->,red,very thick]
+                        (A.center) -- node[above right,inner sep=1pt]
+                        {$\vec{F}$} ($(A)!-0.4!(B)$);
+                    \end{tikzpicture}
+              \item
+                    \begin{tikzpicture}[
+                        baseline={([yshift=-3mm]current bounding box.north west)},
+                        point/.style={circle,inner sep=1.4pt,fill}]
+                      \foreach \p/\x in {A/0,B/1.5}
+                      \node[point,label=below:$\p$] (\p) at (\x,0) {};
+                      \draw[thick,postaction={decorate},
+                            decoration={markings,mark=at position 0.57 with
+                            {\arrow{Latex}}}]
+                        (A.center) -- (B.center);
+                      \draw[->,red,very thick]
+                        (A.center) -- node[left] {$\vec{F}$} ++(0,1);
+                      \draw[thick] (0,2mm) -| (2mm,0);
+              \end{tikzpicture}
+          \end{enumerate*}
+          \end{tcolorbox}
+          \begin{tabular}{llll} 
+            Cas a~:  & $\square\qty{250}{\J}$~; & $\square\qty{2.5}{\J}$~;
+                    & $\square\qty{10}{\J}$. \\
+            Cas b~:  & $\square\qty{2.5}{\J}$~; & $\square\qty{250}{\J}$~;
+                    & $\square\qty{-2.5}{\J}$. \\
+            Cas c~:  & $\square\qty{2.5}{\J}$~; & $\square\qty{0}{\J}$~;
+                    & $\square\qty{-2.5}{\J}$. \\
+          \end{tabular}
+    \item La puissance du travail de la force effectuant un travail de
+          $\qty{3000}{\J}$ en 1,0 minute est~: \\
+          \begin{itemize*}[label=$\square$,itemjoin=\quad]
+              \item $\qty{3000}{\W}$~;
+              \item $\qty{50}{\W}$~;
+              \item $\qty{50}{\kW}$.
+          \end{itemize*}
+\end{enumerate}
+

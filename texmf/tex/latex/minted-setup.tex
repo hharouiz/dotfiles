@@ -1,0 +1,12 @@
+\@ifpackageloaded{minted}{
+    \usemintedstyle[python]{manni}   % https://pygments.org/styles/
+    \setminted[python]{autogobble,breaklines}
+    % bgcolor=MaterialBackgroundColor
+    \renewcommand{\theFancyVerbLine}{
+        \sffamily
+        \textcolor{gray40}{
+            \tiny\oldstylenums{
+                \arabic{FancyVerbLine}}}}
+}{
+    \PackageWarningNoLine{minted}{minted not loaded}
+}

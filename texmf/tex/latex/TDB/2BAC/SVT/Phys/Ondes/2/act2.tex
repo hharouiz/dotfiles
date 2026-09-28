@@ -1,0 +1,73 @@
+On fait créer des ondes rectilignes dans la cuve à ondes qui se propagent avec
+une vitesse $v=\qty{1}{\v}$, puis on éclaire la surface de l'eau avec un
+stroboscope de tel sorte que sa fréquence soit égale à celle des ondes
+($f=\qty{10}{\hertz}$), et on voit que tous les points de la surface de l'eau
+apparaissent immobiles. On Place deux plaques parallèles dans la cuve de manière
+à former une fente de largeur $a$ modifiable. On varie $a$ et on obtient les
+deux figures suivantes~:
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[>=Stealth]
+        \definecolor{bg}{HTML}{caf0f8}
+        \newdimen\h \h=3.5cm
+        \newdimen\a \a=1.4cm
+        \newdimen\la \la=5mm
+        \node[fill,inner sep=0pt,minimum width=5pt,minimum height=\h] (P) {};
+        \node[fill=white,inner sep=0pt,minimum width=6pt,minimum height=\a]
+            (F) at (P.center) {};
+        \draw[<->,shorten <=1pt,shorten >=1pt] (F.south) -- (F.north)
+            node[right,pos=0.5] {$a$};
+        \foreach \x [count=\i,evaluate=\x] in {1\la,2\la,...\la,6\la}{
+            \node[fill=blue,inner sep=0pt,minimum width=1.2pt,minimum height=\h]
+                (p\i) at ([xshift=-\x]P.center) {};
+            %\node[left color=white,right color=white,middle color=black,
+            %      inner sep=0pt,minimum width=5mm,minimum height=\h]
+            %    at (\x,0) {};
+        }
+        \draw[<->,shorten <=0.4pt,shorten >=0.4pt]
+            (p3) -- (p4) node[above,pos=0.5] {$\lambda$};
+        \foreach \x/\hh [count=\i] in
+            {0.7/1.2,1.2/1.6,1.7/2,2.2/2.4,2.7/2.8,3.2/3.2}
+        \node[fill=blue,,inner sep=0pt,minimum width=1.2pt,minimum height=\hh cm]
+            (p\i) at (\x,0) {};
+        \draw[<->,shorten <=0.4pt,shorten >=0.4pt]
+            (p3) -- (p4) node[above,pos=0.5] {$\lambda$};
+        \draw[rounded corners=8pt,thick] (-3.4,-0.6\h) rectangle (3.6,0.6\h);
+        \node[below=3.4mm,font=\footnotesize] at (P.south)
+            {Figure~1~: $a=\qty{20}{\cm}$};
+        \begin{scope}[xshift=8cm]
+            \newdimen\a \a=3mm
+            \node[fill,inner sep=0pt,minimum width=5pt,minimum height=\h] (P) {};
+            \node[fill=white,inner sep=0pt,minimum width=6pt,minimum height=\a]
+                (F) at (P.center) {};
+            \foreach \x [count=\i] in {-3,-2.5,...,-0.5}
+            \node[fill=blue,inner sep=0pt,minimum width=1.2pt,minimum height=\h]
+                (p\i) at (\x,0) {};
+            \draw[<->,shorten <=0.4pt,shorten >=0.4pt]
+                (p3) -- (p4) node[above,pos=0.5] {$\lambda$};
+            \coordinate (S) at ([xshift=3pt]F.center);
+            \foreach \r [count=\i] in {0.4,0.9,...,3}
+            \draw[line width=1.2pt,blue]
+                ([shift=(-40:\r cm)]S) arc (-40:40:\r cm);
+            \draw[<->,shorten <=0.6pt,shorten >=0.6pt]
+                ([xshift=2cm]F.center) -- ++(0.5,0)
+                node[above,pos=0.5] {$\lambda$};
+            \draw[rounded corners=8pt,thick] (-3.5,-0.6\h) rectangle (3.5,0.6\h);
+            \node[below=3.4mm,font=\footnotesize] at (P.south)
+                {Figure~2~: $a=\qty{3}{\cm}$};
+        \end{scope}
+    \end{tikzpicture}
+\end{figure}
+
+\begin{enumerate}
+    \item Calculer la longueur d'onde incidente.
+    \item Comparer à la largeur $a$ de la fente dans chaque figure.
+    \item Décrire, pour chaque figure, ce qui arrive aux ondes lorsqu'elles
+          traversent la fente.
+    \item L'onde circulaire est appelée l'onde diffractée et le phénomène
+          s'appelle phénomène de diffraction. Quelle sont les conditions pour
+          que les ondes soient diffractées~?
+    \item Comparer la longueur d'onde diffractée avec la longueur de l'onde
+          incidente.
+\end{enumerate}

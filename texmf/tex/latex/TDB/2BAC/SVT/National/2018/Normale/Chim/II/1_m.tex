@@ -1,0 +1,81 @@
+\begin{minipage}{0.64\linewidth}
+    \begin{donnees}
+        \begin{itemize}
+          \item Masse de la partie immergée de l'électrode de Zinc~:
+                $m=\qty{6,54}{\gram}$;
+          \item Volume de chaque solution~: $V=\qty{50}{\mL}$;
+          \item Concentration de chaque solution~: $C=\qty{1,0}{\M}$;
+          \item $1~\mathcal{F}=\qty{9,65e4}{\coulomb\per\mole}$;
+          \item $M(\ce{Zn})=\qty{65,4}{\gram\per\mole}$.
+        \end{itemize}
+    \end{donnees}
+    On laisse fonctionner la pile (Zinc/Cuivre) de la figure ci-contre pendant
+    une durée $\Delta t$ suffisamment longue jusqu'à ce que elle ne débite plus.
+    
+    L'équation bilan du fonctionnement de cette pile est~:
+    \[
+        \ce{Zn_{(s)} + Cu^{2+}_{(aq)} -> Zn^{2+}_{(aq)} + Cu_{(s)}}
+    \]
+\end{minipage}
+\hfill
+\begin{minipage}{0.34\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \newdimen\bh \bh=1.2cm
+            \foreach \x/\c [count=\i] in {0/capri,3.5/lavendergray}{%
+            \node[inner sep=0pt,minimum width=2cm,
+                minimum height=\bh] (b\i) at (\x,0) {};
+            \fill[\c,opacity=0.5,rounded corners]
+                (b\i.north west) |- (b\i.south east) [sharp corners] --
+                (b\i.north east) -- cycle;
+            \draw[very thick,rounded corners,shorten <=-5mm,shorten >=-5mm]
+                (b\i.north west) |- (b\i.south east) -- (b\i.north east);
+            }
+            % pont salin
+            \coordinate (pb) at
+                ([xshift=-5mm]$(b1.south east)!.4!(b1.north east)$);
+            \coordinate (pe) at
+                ([xshift=5mm]$(b2.south west)!.4!(b2.north west)$);
+            \draw[double,thick,double distance=2pt,rounded corners]
+                (pb) -- ++(0,1.5) coordinate(tmp) -- node[inner sep=2pt] (ps) {}
+                (tmp -| pe) --(pe);
+            \node[above,align=center] (pss) at (ps) {pont salin};
+            % électrodes
+            \node[inner sep=0pt,minimum width=4mm,minimum height=2cm,
+                draw,thick,left color=white,right color=copper,
+                anchor=south] (e1) at ([xshift=-1cm]pb) {};
+            \node[inner sep=0pt,minimum width=4mm,minimum height=2cm,
+                draw,thick,left color=white,right color=gray,
+                anchor=south] (e2) at ([xshift=1cm]pe) {};
+            % Text
+            \draw[{Circle[scale=0.7]}-,shorten <=-5mm] (b1.south) -- ++(0,-0.3)
+                node[below] {$\ce{Cu^{2+}_{(aq)} + SO$^{2-}_{4(aq)}$}$};
+            \draw[{Circle[scale=0.7]}-,shorten <=-5mm] (b2.south) -- ++(0,-0.3)
+                node[below] {$\ce{Zn^{2+}_{(aq)} + SO$^{2-}_{4(aq)}$}$};
+            \node[below left,align=center] at (e1.north west) {$\ce{Cu}$};
+            \node[below right,align=center] at (e2.north east) {$\ce{Zn}$};
+            % Pôles
+            %\node[circle,inner sep=4pt,draw,thick] (ca) at
+            %    ([shift=(145:0.5)]e1.north west) {};
+            %\draw[thick] (ca.east) -- (ca.west) (ca.north) -- (ca.south);
+            %\node[circle,inner sep=4pt,draw,thick] (an) at
+            %    ([shift=(35:0.5)]e2.north east) {};
+            %\draw[thick] (an.east) -- (an.west);
+            % Fils
+            \draw (e1.north) to[short,i=$I$] ++(0,1.5)
+                to[R,l=$R$] ++(2.4,0) coordinate(tmp)
+                to[rmeter,t=A] (tmp -| e2.north) to[short] (e2.north);
+        \end{tikzpicture}
+    \end{figure}
+\end{minipage}
+
+\begin{enumerate}
+    \item Donner le schéma conventionnel de cette pile.
+    \item Montrer que la quantité de matière du cuivre déposé est
+          $n(\ce{Cu})=\qty{5e-2}{\mole}$.
+    \item Déterminer la valeur de la durée $\Delta t$ du fonctionnement de la
+          pile sachant qu'elle délivre un courant d'intensité constante
+          $I=\qty{100}{\mA}$.
+\end{enumerate}
+

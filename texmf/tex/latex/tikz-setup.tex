@@ -1,0 +1,94 @@
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,matrix,decorations.shapes,
+    shapes.symbols,shapes.geometric,3d,calc,positioning,patterns,shapes.misc,
+    decorations.markings,shadows,fadings,patterns,shadings,intersections,
+    shapes.arrows,shapes.multipart,backgrounds,datavisualization,bending,
+    graphs,fit,petri,
+    %circuits.ee.IEC,
+    %graphdrawing, % Needs LuaLatex
+}
+%\usegdlibrary{trees,layered}
+\tikzset{%
+    every picture/.style={%
+            >={Stealth[round]},line join=round,
+    },
+    qstyle/.style={draw},
+    every pin edge/.style={gray,thick},
+    solide/.style args={#1/#2}{draw,fill=lightgray,very thick,
+        minimum width=#1,minimum height=#2,line join=round},
+    corrfont/.style={text=corrcolor,font=\bfseries},
+    point/.style={circle,fill,inner sep=0pt,minimum size=3pt},
+    aimant/.style={%
+    rectangle split,rectangle split parts=2,draw,anchor=center,
+    rectangle split horizontal,
+    rectangle split part fill={lightgray,white},
+    rectangle split empty part width=0.8cm,
+    rectangle split empty part height=0.4cm,thick},
+    every shadow/.style={shadow xshift=.3ex,shadow yshift=-.3ex,
+        opacity=.4,fill=black!60},
+}
+
+\NewDocumentCommand\eprouvette{ s o m m m m}{%
+    \def\cap{#3}
+    \def\maj{#4}
+    \def\min{#5}
+    \def\wsurf{#6}
+    \def\ew{2}
+    \def\eh{5}
+    \def\tw{0.4}
+    \def\Tw{0.8}
+    \def\a{25}
+    \pgfmathparse{\maj*\eh/\cap}\let\mj=\pgfmathresult
+    \pgfmathparse{\min*\eh/\cap}\let\mn=\pgfmathresult
+    \pgfmathparse{\wsurf*\eh/\cap}\let\h=\pgfmathresult
+    \node[inner sep=0pt,minimum width=\ew cm,minimum height=\eh cm] (E) {};
+    \fill[black!30,opacity=0.5] (E.south east) --
+        ([yshift=\h cm]E.south east) coordinate(WS) -|
+        (E.south west) -- cycle;
+    \IfBooleanTF{#1}{%
+        \draw[{Stealth[red,scale=2]}-,shorten <=1pt] (WS) -- ++(3pt,0);
+    }{%
+    }
+    \draw[thick] (E.north west) |- (E.south east) --
+        ([yshift=-2mm]E.north east) -- ([xshift=3mm]E.north east);
+    \foreach \y [parse=true,count=\i] in {\mj,2*\mj,...,\eh-\mj}
+        \draw[line width=1.4pt,line cap=round]
+            ([xshift=2mm,yshift=\y cm]E.south west) -- ++(\Tw,0) node[right]
+            {$\mathbf{\pgfmathparse{\maj*\i}\pgfmathprintnumber{\pgfmathresult}}$};
+    \foreach \y [parse=true] in {\mn,2*\mn,...,\eh-3*\mn}
+        \draw[line width=0.8pt,line cap=round]
+            ([xshift=2mm,yshift=\y cm]E.south west) -- ++(\tw,0);
+    \node[below,font=\bfseries] at (E.north) {mL};
+    \fill ([shift=(180+\a:3mm)]E.south west) -- (E.south west) --
+          (E.south east) -- ++(-\a:3mm) -- cycle;
+    \IfValueTF{#2}{%
+        \node[below=2mm] at (E.south) {Éprouvette~#2};
+    }{}
+}
+
+\NewDocumentCommand\emptybox{ m m }{%
+    \tikz[baseline=(X.base)]
+        \node[inner sep=0pt,minimum width=#1,minimum height=#2,draw,
+              rounded corners] (X) {};
+}
+
+
+\def\PlanIncline#1#2#3#4#5#6{%
+    % 1:A, 2:B, 3:C, 4:\b, 5:\angle, 6:$\alpha$
+    \pgfmathparse{abs(#4)*tan(#5)}\let\a=\pgfmathresult
+    \coordinate (#1) at (0,0);
+    \path[fill=black!10,draw,thick]
+        (#1) -- ++(#4,0) coordinate (#3) -- ++(0,\a)
+        coordinate (#2) -- cycle;
+    \ifnum#4>0
+        \path[draw,thick,fill=DarkTurquoise]
+            (#1) -- ($(#1)!0.3!(#3)$) to[bend right]
+            node[anchor=180+#5/2] {#6} ($(#1)!0.3!(#2)$) -- cycle;
+    \else
+        \path[draw,thick,fill=DarkTurquoise]
+            (#1) -- ($(#1)!0.3!(#3)$) to[bend left]
+            node[anchor=0.3*#5] {#6} ($(#1)!0.3!(#2)$) -- cycle;
+    \fi
+}
+\def\Sol#1#2#3{%
+    \node[minimum width=#1,minimum height=#2,top color=gray] (#3) {};
+}

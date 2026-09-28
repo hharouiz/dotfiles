@@ -1,0 +1,48 @@
+\begin{minipage}{0.78\linewidth}
+    Un pendule simple est constitué d'une boule de masse $m=\qty{50}{\g}$ accrochée
+    au bout d'un fil de longueur $\ell=\qty{30}{\cm}$, de masse négligeable. La
+    boule reçoit en $A$ une impulsion qui fait remonter jusqu'en $B$, de telle
+    manière que le pendule fait alors un angle $\alpha=\ang{30}$ avec la la
+    verticale.
+    \begin{enumerate}
+        \item Calculer le travail du poids de la boule entre $A$ et
+              $B$.~\textbf{(1pt)}
+        \item Quel serait le travail du poids de la boule, si le pendule faisait un
+              tour complet~? Justifier.~\textbf{(0,5pt)}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.20\linewidth}
+      \begin{figure}[H]
+          \centering
+          \begin{tikzpicture}
+              \def\th{30}
+              \newdimen\el \el=3cm
+              \node[draw,thick,pattern=north east lines,
+                    minimum width=1cm,minimum height=3mm] (S) {};
+              \coordinate (O) at (S.south);
+              \path[draw,fill=DarkTurquoise]
+                  (O) -- ([yshift=-1cm]O) arc (270:270+\th:1cm) -- cycle;
+              \node at (270+\th/2:1.5cm) {$\alpha$};
+              \node[circle,fill,inner sep=1.1pt,
+                    label={[anchor=north east,inner sep=1.8pt]:$O$}]
+                    at (O) {};
+              \draw[densely dashed]
+                  (O) +(270:\el) arc (270:270+\th:\el);
+              \foreach \p/\a in {A/0,B/\th}{%
+                  \node[circle,ball color=black!60,inner sep=0pt,
+                        minimum size=4mm,
+                        label={[inner sep=1.6pt]-90+\a:$\p$}]
+                        (\p) at ($(O)+(270+\a:\el)$) {};
+                  \fill (\p.center) circle (1pt);
+                  \draw[thick] (O) -- (\p);
+              }
+              \node[anchor=180+\th,inner sep=1.4pt]
+                  at ($(O)!.5!(B.center)$) {$\ell$};
+          \end{tikzpicture}
+      \end{figure}
+\end{minipage}
+
+\begin{donnees}
+    ${g=\qty{10}{\N\per\kg}}$.
+\end{donnees}

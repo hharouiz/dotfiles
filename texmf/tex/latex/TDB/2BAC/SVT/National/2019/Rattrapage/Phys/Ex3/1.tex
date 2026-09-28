@@ -1,0 +1,44 @@
+\begin{minipage}[t][][t]{0.82\linewidth}
+    On lance une bille $\mathrm{(S)}$, de masse $m$, verticalement vers le haut
+    à l'instant $(t_{0}=0)$ avec une vitesse initiale $\vec{v}_{0}$. On étudie
+    le mouvement de chute libre de la bille dans un repère ($O,\vec{k}$) lié à
+    la Terre supposé galiléen (Fig.~\ref{fig:bille}). On repère la position du
+    centre d'inertie $G$ de la bille à un instant $t$ dans ce repère par
+    l'ordonnée $z_{G}$.
+
+\begin{enumerate}
+    \item En appliquant la deuxième loi de \textsc{Newton}, montrer que
+          l'équation différentielle vérifiée par l'ordonnée $z_{G}$ s'écrit~:
+          $\frac{\mathrm{d}^{2} z_{G}}{\mathrm{d} t^{2}}=-g$.
+    \item Quelle est la nature du mouvement de $G$ au cours de la phase de
+          montée~? Justifier.
+    \item L'équation horaire du mouvement de $G$ est~:
+          $z_{G}=-5 t^{2}+2 t+1,5 \quad (\unit{\m})$
+          \begin{enumerate}
+              \item Déterminer les valeurs de $z_{0}$ et $v_{0}$ à $t_{0}=0$.
+              \item À quel instant la vitesse de $G$ s'annule-t-elle~?
+          \end{enumerate}
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}[t][][t]{0.16\linewidth}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw (-.5,0) -- (.5,0);
+        \foreach \x in {-.5,-.4,...,.5} \draw[thick] (\x,0) -- +(-60:.3);
+        \draw[-Latex,thick] (0,0)
+            node[point,label=above left:$O$] {} -- ++(0,5) node[above] {$z$};
+        \draw[->,very thick] (0,0) -- ++(0,1) node[right,pos=0.8] {$\vec{k}$};
+        \node[circle,ball color=lightgray,draw,inner sep=9pt,
+            label=right:$\mathrm{(S)}$] (S) at (1,2) {};
+        \node[circle,inner sep=1pt,fill,
+            label={[left=-0.5mm]:$G$}] (G) at (S.center) {};
+        \draw[->,line width=0.6pt]
+            (G) -- ++(0,1) node[right,pos=0.85] {$\vec{v}$};
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:bille}
+\end{figure}
+\end{minipage}
+

@@ -1,0 +1,43 @@
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 2.1) \\ 2.2)
+    \tcbitem 
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[]
+                \draw[] (0,0) coordinate(A) -- ++(-5,0) coordinate(B)
+                    to[battery2] ++(0,-2) coordinate(C) -- ++(5,0) coordinate(D);
+                \draw[line width=2pt,shorten <=-2pt,shorten >=-2pt]
+                    ($(A)!.2!(B)$) node[above] (A') {$A$} --
+                    ($(D)!.2!(C)$) node[below] (B') {$B$};
+                \node[circle,draw,inner sep=2pt,thick,xshift=3cm,
+                    label=$\vec{B}$] (O) at
+                    ($(B)!.5!(C)$) {};
+                \node[circle,fill,inner sep=0.8pt] at (O.center) {};
+                % Réponse
+                \draw[red,decorate,decoration={markings,
+                    mark=at position 0.5 with {\arrow[red,line width=1.6pt]{>}}}]
+                    (A'.center) -- node[right] {$I$} (B'.center);
+                \draw[->,blue,very thick] ($(A')!.6!(B')$) --
+                    node[below] {$\vec{F}$} ++(-1.5,0);
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem (0,5pt) \\ (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 2.3)
+    \tcbitem $F=I\ell B\sin(90^\circ)=I\times AB\times B=
+          1,5\times\num{10e-2}\times\num{85e-3}=\qty{0,01275}{\newton}$
+    \tcbitem (1pt)
+\end{tcbitemize}
+

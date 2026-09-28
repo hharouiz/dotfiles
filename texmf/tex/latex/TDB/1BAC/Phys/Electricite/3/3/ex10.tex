@@ -1,0 +1,81 @@
+Un conducteur $MN$, parcouru par un courant d'intensité $I$ est placé
+dans un champ magnétique $\vec{B}$ uniforme.
+
+Dans chacun des cas suivants, \textbf{représenter} la force
+électromagnétique qui s'exerce sur le conducteur et
+\textbf{calculer} l'intensité de cette force.
+\textbf{Données~:}
+$I=\qty{1}{\A}$~; $MN=\qty{10}{\cm}$~;
+$B=\qty{1e-4}{\T}$.~\textbf{(4pt)}
+
+
+\begin{tcbitemize}[raster columns=4,raster rows=1,
+        raster equal height=rows,raster force size=false,
+        raster every box/.style={top=1mm,bottom=0mm}]
+    \tcbitem
+        \textbf{a)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[thick]
+                \node[fil=3cm,anchor=south] (fil) at (0,0) {};
+                \node[below] at (fil.south) {$N$};
+                \node[above] at (fil.north) {$M$};
+                \draw[->,red] (fil.center) --
+                    node[left] {$I$} ++(0,.5);
+                \node[circle,inner sep=1mm,draw,line width=1.2pt,
+                      below right=7mm,
+                      label=below:$\vec{B}$] (c) at (fil.east) {};
+                \node[circle,inner sep=1mm,fill,
+                      inner sep=1pt] at (c.center) {};
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem
+        \textbf{b)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[thick]
+                \node[fil=3cm,anchor=south] (fil) at (0,0) {};
+                \node[below] at (fil.south) {$N$};
+                \node[above] at (fil.north) {$M$};
+                \draw[->,red] (fil.center) --
+                    node[left] {$I$} ++(0,.5);
+                \draw[->] ([xshift=5mm,yshift=-5mm]fil.center) --
+                    node[right] {$\vec{B}$} ++(0,1);
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem
+        \textbf{c)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[thick]
+                \node[fil=3cm,anchor=south] (fil) at (0,0) {};
+                \node[below] at (fil.south) {$N$};
+                \node[above] at (fil.north) {$M$};
+                \draw[->,red] (fil.center) --
+                    node[left] {$I$} ++(0,.5);
+                \node[circle,inner sep=1mm,draw,line width=1.2pt,
+                      below right=7mm,
+                      label=below:$\vec{B}$] (c) at (fil.east) {};
+                \draw[line width=1.2pt]
+                    (c.45) -- (c.225) (c.135) -- (c.315);
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem
+        \textbf{d)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[thick]
+                \node[fil=3cm,anchor=south] (fil) at (0,0) {};
+                \node[below] at (fil.south) {$N$};
+                \node[above] at (fil.north) {$M$};
+                \draw[->,red] (fil.center) --
+                    node[left] {$I$} ++(0,.5);
+                \draw[->] ([xshift=2mm,yshift=-7mm]fil.center)
+                  coordinate (tmp) --
+                  node[right=2mm] {$\vec{B}$} ++(45:1.5);
+                \draw[shorten <=1pt] ([shift=(45:1)]tmp) arc (45:90:1)
+                  node[pos=0.3,above=1mm] {$\ang{45}$};;
+            \end{tikzpicture}
+        \end{figure}
+\end{tcbitemize}
+

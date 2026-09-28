@@ -1,0 +1,50 @@
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster rows=7,raster equal height=rows,
+            raster force size=false,
+            raster column skip=-0.8pt,raster row skip=-0.8pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    \tcbitem 1)
+    \tcbitem 
+             \begin{enumerate}[label=\textbf{(\arabic*)}]
+                 \item pH-mètre
+                 \item Solution d'hydroxyde de sodium
+                       (solution titrante)
+                 \item Solution d'acide azélaïque
+                       (solution titrée)
+             \end{enumerate}
+    \tcbitem (0,75pt)
+    \tcbitem 2)
+    \tcbitem $\ce{AH_{(aq)} + HO^-_{(aq)} -> A^-_{(aq)} + H2O_{(\ell)}}$
+    \tcbitem (0,5pt)
+    \tcbitem 3)
+    \tcbitem $V_{B\mathrm{E}}=\qty{10.0}{\mL} \quad;\quad \mathrm{pH_{E}}=8,1$
+    \tcbitem (1pt)
+    \tcbitem 4)
+    \tcbitem $C\times V_A=C_B\times V_{B\mathrm{E}}\quad\Rightarrow\;
+             C=\frac{C_B\times V_{B\mathrm{E}}}{V_A}=
+             \frac{\num{1,00e-2}\times\num{10,0}}{\num{10,0}}=
+             \qty{1.00e-2}{\M}$
+    \tcbitem (1pt)
+    \tcbitem 5)
+    \tcbitem[raster multicolumn=2,raster multirow=4,blankest]
+        \begin{tcbitemize}[raster rows=4,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries,
+                valign=center}
+            ]
+            \tcbitem L'indicateur convenable est le \textbf{rouge de crésol}.
+            \tcbitem (0,25pt)
+            \tcbitem \textbf{Justification~:}
+                     sa zone de virage encadre le $\mathrm{pH}$ à l'équivalence
+                     ($8,1$).
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+\end{tcbitemize}

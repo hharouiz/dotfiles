@@ -1,0 +1,44 @@
+\begin{minipage}{0.62\linewidth}
+    Un solide cubique, de masse $m=\qty{50,0}{\gram}$, est lancé avec
+    une vitesse de valeur $v=\qty{2,5}{\v}$.
+    
+    Il glisse vers le haut sur une pente inclinée d'un angle $\alpha=\ang{15}$ sur
+    l'horizontale.
+    
+    On néglige tous les frottements.
+
+\end{minipage}
+\hfill
+\begin{minipage}{0.37\linewidth}
+    \flushright
+    \begin{tikzpicture}[solide/.style={minimum width=1cm,minimum height=6mm,draw,
+            fill=black!20,thick}]
+        \def\al{15}
+        \def\L{6}
+        \pgfmathparse{\L*tan(\al)}\let\H=\pgfmathresult
+        \node[inner sep=0pt,minimum width=\L cm,minimum height=\H cm] (R) {};
+        \draw (R.north east) coordinate(B) |- (R.south west) coordinate(A) -- cycle;
+        \foreach \p/\v [count=\i] in {0/$\vec{v}$,0.7/$\vec{v}^{\prime}$}{
+            \node[solide,above right=0.6pt and 0,
+                  rotate=\al] (S\i) at ($(A)!\p!(B)$) {};
+            \node[circle,inner sep=1pt,fill] at (S\i.center) {};
+            \draw[->] (S\i.center) -- ++(\al:1.5) node[above] {\v};
+        }
+        \draw ([xshift=1.5cm]R.south west) arc (0:\al:1.5)
+            node[right,pos=0.7] {$\alpha=\ang{\al}$};
+        \draw[dashed] (S1.center) -- (S1.center -| S2.center) coordinate(tmp);
+        \draw[<->,shorten <=1pt,shorten >=2pt]
+            (tmp) -- node[right] {$h$} (S2.center);
+    \end{tikzpicture}
+\end{minipage}
+
+\begin{enumerate}
+    \item Montrer que la variation de l'énergie mécanique du système est nulle.
+    \item En déduire la relation entre la variation d'énergie cinétique et la
+          variation d'énergie potentielle de pesanteur.
+    \item En déduire la valeur $v^{\prime}$ de sa vitesse lorsque le centre
+          du solide s'est élevé d’une hauteur $h=\qty{15}{\cm}$.
+    \item Quelle distance $L$ parcourt-il le long de la pente
+          avant de s'arrêter et de redescendre~?
+\end{enumerate}
+

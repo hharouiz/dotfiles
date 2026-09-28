@@ -1,0 +1,31 @@
+Compléter le tableau suivant~: \textbf{(8 \texttimes{} 0,25pt)}
+
+\begin{minipage}{\linewidth}
+    \begin{table}[H]
+        \centering
+        \setlength{\arrayrulewidth}{0.8pt}
+        %\setlength{\tabcolsep}{18pt}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabularx}{\textwidth}{|C|C|C|}
+            \hline \textbf{Nom d'atome} & \textbf{Symbole} &
+                   \textbf{Modèle atomique} \\
+            \hline Hydrogène & \ch{H} & \tikz[baseline=-1mm]
+                                        \node[inner sep=0pt,minimum size=2.5mm,
+                                              circle,ball color=white,
+                                              label=right:(blanc)] {};\\
+            \hline Carbone   & \ch{C} & \tikz[baseline=-1mm]
+                                        \node[inner sep=0pt,minimum size=5mm,
+                                              circle,ball color=black,
+                                              label=right:(noir)] {}; \\
+            \hline Azote     & \ch{N} & \tikz[baseline=-1mm]
+                                        \node[inner sep=0pt,minimum size=4.6mm,
+                                              circle,ball color=blue,
+                                              label=right:(bleu)] {};\\
+            \hline Oxygène   & \ch{O} & \tikz[baseline=-1mm]
+                                        \node[inner sep=0pt,minimum size=4.3mm,
+                                              circle,ball color=red,
+                                              label=right:(rouge)] {}; \\
+            \hline
+        \end{tabularx}
+    \end{table}
+\end{minipage}

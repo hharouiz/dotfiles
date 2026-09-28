@@ -1,0 +1,70 @@
+\begin{minipage}{0.58\linewidth}
+    Un moteur fait tourner un disque homogène de diamètre ${d=\qty{20}{\cm}}$
+    autour d'un axe fixe ($\Delta$) passant par son centre.
+    
+    On donne la représentation de la variation de l'abscisse angulaire en
+    fonction du temps.
+
+    \begin{enumerate}
+    \item Quelle est la nature du mouvement de rotation du disque? Justifier
+          votre réponse. \textbf{(1pt)}
+    \item
+          \begin{enumerate}
+              \item Déterminer graphiquement la vitesse angulaire $\omega$ et la
+                    valeur de l'abscisse angulaire $\theta_{0}$ à $t=0$.
+                    \textbf{(1pt)}
+              \item Écrire l'équation horaire $\theta(t)$ du mouvement du
+                    disque. \textbf{(0,5pt)}
+              %\item Déterminer la valeur de la fréquence $f$ du mouvement de
+              %      rotation du disque en ($\unit{\Hz}$) puis en
+              %      ($\unit{\tr\per\min}$). \textbf{(1pt)}
+              %\item Déterminer la valeur de la période $T$ de rotation du
+              %      disque. \textbf{(0,5pt)}
+          \end{enumerate}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.40\linewidth}
+        \flushright
+        \begin{tikzpicture}
+            \draw[lightgray] (0,0) grid (5.5,5.5);
+            \draw[-Latex] (0,0) -- (5.7,0) node[above] {$t~(\unit{\second})$};
+            \draw[-Latex] (0,0) -- (0,5.7)
+                node[right] {$\theta~(\unit{\radian})$};
+            \draw[very thick] (0,1) -- ++(45:6);
+            \foreach \x/\l in {0/0,1/0.5,2/1,3/1.5,4/2,5/2.5}
+            \draw (\x,3pt) -- (\x,0) node[below] {$\num{\l}$};
+            \foreach \y/\l in {0/0,1/12.7,2/25.4,3/38.1,4/50.8,5/63.5}
+            \draw (3pt,\y) -- (0,\y) node[left] {$\num{\l}$};
+        \end{tikzpicture}
+\end{minipage}
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item[]
+          \begin{enumerate}
+              \setcounter{enumii}{2}
+              %\item Déterminer graphiquement la vitesse angulaire $\omega$ et la
+              %      valeur de l'abscisse angulaire $\theta_{0}$ à $t=0$.
+              %      \textbf{(1pt)}
+              %\item Écrire l'équation horaire $\theta(t)$ du mouvement du
+              %      disque. \textbf{(0,5pt)}
+              \item Déterminer la valeur de la fréquence $f$ du mouvement de
+                    rotation du disque en ($\unit{\Hz}$) puis en
+                    ($\unit{\tr\per\min}$). \textbf{(1pt)}
+              \item Déterminer la valeur de la période $T$ de rotation du
+                    disque. \textbf{(0,5pt)}
+          \end{enumerate}
+    \item Donner l'équation horaire de l'abscisse curviligne $s(t)$ d'un point
+          du périmètre du disque. \textbf{(1pt)}
+    \item
+          \begin{enumerate}
+              \item Calculer la valeur de $\theta$ à l'instant~:
+                    $t=\qty{0,25}{\second}$. \textbf{(0,5pt)}
+              \item Quel est le nombre de tours $n$ effectués par le disque à
+                    l'instant~: $t=\qty{0,25}{\second}$~? \textbf{(1pt)}
+              \item Sachant que un point $M$ du disque a pour vitesse
+                    $v=\qty{1,27}{\meter\per\s}$, déterminer la distance qui le
+                    sépare de l'axe de rotation. \textbf{(0,5pt)}
+          \end{enumerate}
+\end{enumerate}

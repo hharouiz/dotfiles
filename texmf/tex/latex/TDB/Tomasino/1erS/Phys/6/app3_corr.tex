@@ -1,0 +1,72 @@
+\begin{enumerate}
+    \item Les forces appliquées à la bille du pendule sont~:
+          \begin{itemize}
+              \item son poids $\vec{P}$ (vertical, vers le bas, appliqué en son
+                    centre d'inertie $G$)
+              \item la tension $\vec{T}$ du fil (dirigée suivant le fil, vers le
+                    point $O$ et appliquée au point d'attache).
+          \end{itemize}
+
+          \begin{figure}[H]
+              \centering
+              \begin{tikzpicture}
+                  \def\th{30}
+                  \def\tho{60}
+                  \newdimen\el \el=4cm
+                  \node[draw,thick,pattern=north east lines,
+                        minimum width=1cm,minimum height=5mm] (S) {};
+                  \coordinate (O) at (S.south);
+                  \path[draw,fill=DarkTurquoise]
+                      (O) -- ([yshift=-1cm]O) arc (270:270+\tho:1cm) --
+                      cycle;
+                  \node[circle,fill,inner sep=1.1pt,
+                        label={[anchor=north east,inner sep=1.8pt]:$O$}]
+                        at (O) {};
+                  \draw[densely dashed]
+                      (O) +(270-\tho:\el) arc (270-\tho:270+\tho:\el);
+                  \foreach \p/\a in {A/\tho,G/\th,B/0}{%
+                      \node[circle,ball color=black!60,inner sep=0pt,
+                            minimum size=4mm,
+                            label={[inner sep=1.6pt]-90+\a:$\p$}]
+                            (\p) at ($(O)+(270+\a:\el)$) {};
+                      \fill (\p.center) circle (1pt);
+                      \draw[thick] (O) -- (\p);
+                  }
+                  \node[anchor=180+\tho,inner sep=1.4pt]
+                      at ($(O)!.5!(A.center)$) {$\ell$};
+                %node[pos=0.9,below] {$\theta_{0}$};
+                  \draw[densely dashed] (A) -- (A -| O) coordinate (H)
+                      node[anchor=south west,inner sep=1.2pt] {$H$};
+                  \draw[thick,<->] (H) +(-3mm,0) coordinate(tmp) --
+                      node[left] {$h$} (tmp |- B.center);
+                  \draw[thick] (H) +(0,-6pt) -| +(6pt,0);
+                  \draw[->,very thick,red] (G) -- ++(90+\th:0.5\el)
+                      node[pos=0.6,right=1mm,inner sep=1.0pt] {$\vec{T}$};
+                  \draw[->,very thick,blue] (G.center) -- ++(270:0.3\el)
+                      node[pos=0.8,left] {$\vec{P}$};
+              \end{tikzpicture}
+          \end{figure}
+          
+    \item 
+          \begin{itemize}
+              \item Travail de la tension $\vec{T}$~:
+                    
+                    La trajectoire du point d'application de $\vec{T}$ est un
+                    cercle de centre $O$. $\vec{T}$ est suivant le rayon de ce
+                    cercle et un déplacement élémentaire $\vv{MM}^{\prime}$
+                    coïncide avec la tangente au cercle~; la force $\vec{T}$ est
+                    donc constamment perpendiculaire au déplacement et
+                    $W(\vec{T})=0$.
+              \item Travail du poids $\vec{P}$~:
+
+                    $W_{AB}(\vec{P})=mg(z_{A}-z_{B})=+mgh$ car la bille descend.
+
+                    La figure montre que~: $h=HB=OB-OH$~; $OB=\ell$ et
+                    $OH=\ell\cos\theta_0$.
+                    \begin{gather*}
+                        W(\vec{P})=+mg\ell(1-\cos\theta_0) \\
+                        W(\vec{P})=0,250\times9,8\times1,00\times
+                        (1-\cos\ang{60})\approx\qty{1.2}{\J}.
+                    \end{gather*}
+          \end{itemize}
+\end{enumerate}

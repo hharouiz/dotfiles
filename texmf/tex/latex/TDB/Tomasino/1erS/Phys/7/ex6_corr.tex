@@ -1,0 +1,55 @@
+\begin{minipage}{0.65\linewidth}
+    On applique le théorème d'énergie cinétique~:
+    
+    \[
+        \Delta E_c=\sum W_{AB}(\vec{F}_{\text{ext}})
+    \]
+    avec~:
+    \[
+        \left\{
+        \begin{array}{l}
+            \Delta E_c=\frac{1}{2}m v_B^2-\frac{1}{2}m v_A^2=
+            \frac{1}{2}m v^2-0 \\[3mm]
+            \sum W_{AB}(\vec{F}_{\text{ext}})=W(\vec{P})=mg(z_{A}-z_{B})=mgh
+        \end{array}\right.
+    \]
+    donc~:
+    \[
+        \frac{1}{2}m v^2=mgh
+        \quad\Rightarrow\
+        \mathbox{v=\sqrt{2gh}}
+    \]
+
+    Application numérique~:
+    \[
+        v=\sqrt{2\times 9,8\times 300}
+        \quad\Rightarrow\
+        v\approx \qty{77}{\v}
+    \]
+    
+\end{minipage}
+\hfill
+\begin{minipage}{0.34\linewidth}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \def\h{4}
+        \Sol{3cm}{3mm}{sol}
+        \coordinate (O) at (sol.north west);
+        \draw[-{Latex},thick] (O) +(0,-0.5) -- +(0,5) node[right] {$z$};
+        \foreach \z/\n in {\h+0.15/A,0.15/B}{
+            \draw[thick] ($(O)+(-2pt,\z)$) node[left] {$z_{\n}$} -- ++(4pt,0);
+            \node[circle,ball color=black!40,inner sep=0pt,
+                minimum size=3mm,label=$\n$] (\n) at ($(O)+(2,\z)$) {};
+            \node[circle,inner sep=0.6pt,fill] (\n) at (\n.center) {};
+            \draw[dashed] (\n) -- (\n -| O);
+        }
+        \draw[->,thick,blue] (A.center) -- ++(0,-1.2) node[left] {$\vec{P}$};
+        \draw[<->,shorten <=1pt,shorten >=1pt] ([xshift=0.5cm,yshift=0.15cm]O) --
+            node[right] {$h$} ++(0,\h);
+        \node[right=2mm] at (A.east) {$v_{A}=0$};
+        \node[right=2mm] at (B.east) {$v_{B}=v$};
+    \end{tikzpicture}
+\end{figure}
+\end{minipage}

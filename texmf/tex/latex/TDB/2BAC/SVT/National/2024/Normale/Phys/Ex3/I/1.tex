@@ -1,0 +1,48 @@
+\begin{minipage}[t][][t]{0.78\linewidth}
+    À un instant choisi comme origine de temps ($t_{0}=0$), on lance verticalement
+    vers le haut avec une vitesse initiale $\vec{V}_{0}$ une bille de masse $m$
+    d'une position $A$ située à la hauteur $h=\qty{1.2}{\m}$ du sol.
+    
+    On étudie le mouvement du centre d'inertie $G$ de la bille dans un référentiel
+    terrestre considéré galiléen. On repère la position de $G$ à un instant $t$ par
+    son abscisse $z_{G}$ dans le repère ($O,\vec{k}$) où $z_{A}=0$
+    (Fig.~\ref{fig:2bac_svt_national_2024_normale_phys_ex3_1}).
+    
+    \begin{enumerate}
+        \item En appliquant la deuxième loi de \textsc{Newton}, établir l'équation
+              différentielle vérifiée par l'abscisse $z_{G}$.
+        \item Déterminer la nature du mouvement de $G$.
+        \item L'équation de la vitesse de $G$ durant son mouvement s'écrit\\
+              ${v_{G}=10\cdot t-4 \quad (\unit{\m\per\s})}$.
+              \begin{enumerate}
+                  \item Déterminer la valeur de l'instant $t_{1}$ où $G$ atteint la
+                        hauteur maximale.
+                  \item Déterminer la valeur de la hauteur maximale $h_{m}$ atteinte
+                        par $G$ par rapport au sol.
+              \end{enumerate}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}[t][][t]{0.2\linewidth}
+\begin{figure}[H]
+	\centering
+    \begin{tikzpicture}[thick]
+        \def\h{4}
+        \def\xA{1}
+        \coordinate (O) at (0,0);
+        \draw[-Latex] (0,2) -- (0,-\h) node[left,pos=0.98] {$z$};
+        \draw[very thick] (3pt,0) -- (-3pt,0) node[left] {$O$};
+        \draw[->,very thick] (O) -- ++(0,-1) node[left,pos=0.8] {$\vec{k}$};
+        \node[circle,fill=gray,draw,inner sep=5pt,
+              label=above left:$A$] (S) at (\xA,0) {};
+        \draw[->] (S.center) -- ++(0,1) node[right,pos=0.85] {$\vec{V}_{0}$};
+        \draw[densely dashed,thin] (O) -- +(2.5*\xA,0);
+        \node[minimum width=3cm,minimum height=3mm,top color=black!80,
+              anchor=north west] at (-.5,-\h) {};
+        \draw[<->,shorten <=1pt,shorten >=1pt]
+            (2*\xA,0) -- node[right] {$h$} +(0,-\h);
+    \end{tikzpicture}
+	\caption{}
+	\label{fig:2bac_svt_national_2024_normale_phys_ex3_1}
+\end{figure}
+\end{minipage}

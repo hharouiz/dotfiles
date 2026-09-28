@@ -1,0 +1,69 @@
+\begin{minipage}{0.60\linewidth}
+    Un pendule est constitué d'une petite boule métallique, de masse
+    $m=\qty{80}{\g}$, suspendue à un fil inextensible, de masse considérée comme
+    négligeable et de longueur $\ell=\qty{1.00}{\m}$.
+    
+    Le fil est accroché en un point fixe $O$ et les mouvements du pendule
+    s'effectuent dans un plan vertical. Le fil du pendule étant initialement
+    vertical, on l'écarte de cette position d'un angle $\theta_{m}=\ang{45}$.
+    
+    Puis, fil tendu, on le lâche sans vitesse (position~$A$).
+\end{minipage}
+\hfill
+\begin{minipage}{0.38\linewidth}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \def\tho{45}
+        \newdimen\el \el=4cm
+        \node[draw,thick,pattern=north east lines,
+              minimum width=1cm,minimum height=5mm] (S) {};
+        \coordinate (O) at (S.south);
+        \path[draw,fill=DarkTurquoise]
+            (O) -- ([yshift=-1cm]O) arc (270:270+\tho:1cm) --
+            cycle;
+        \node at ($(O)+(270+\tho/2:1.4)$) {$\theta_{m}$};
+        \node[circle,fill,inner sep=1.1pt,
+              label={[anchor=north east,inner sep=1.8pt]:$O$}]
+              at (O) {};
+        \draw[densely dashed]
+            (O) +(270:\el) arc (270:270+\tho:\el);
+        \foreach \p/\a in {A/\tho,B/0}{%
+            \node[circle,ball color=black!60,inner sep=0pt,
+                  minimum size=4mm,
+                  label={[inner sep=1.6pt]-90+\a:$\p$}]
+                  (\p) at ($(O)+(270+\a:\el)$) {};
+            \fill (\p.center) circle (1pt);
+            \draw[thick] (O) -- (\p);
+        }
+        \node[anchor=180+\tho,inner sep=1.4pt]
+            at ($(O)!.5!(A.center)$) {$\ell$};
+        \draw[densely dashed] (A) -- (A -| O) coordinate (H)
+            node[anchor=east] {$H$};
+        \draw[thick] (H) +(0,-6pt) -| +(6pt,0);
+        \node[right=2mm] at (A) {$(v=0)$};
+        \draw[densely dashed] ([xshift=-1.2cm]B.center) -- ++(4,0)
+            node[signal,draw,fill=lightgray,anchor=west,solid,
+            signal to=west] {$E_{pp}=0$};
+        \draw[->,thick,blue] (B.center) -- ++(-0.8,0)
+            node[pos=0.8,below] {$\vec{v}^{\prime}$};
+    \end{tikzpicture}
+\end{figure}
+\end{minipage}
+
+
+\begin{enumerate}
+    \item Décrire le mouvement de la boule.
+
+          Justifier la conservation de la somme $E_{c}+E_{pp}$ pour la boule du
+          pendule.
+    
+          Quelle est la transformation d'énergie qui s'effectue au cours du
+          mouvement~?
+    \item Déterminer la valeur $v^{\prime}$ de la vitesse de la boule
+          lorsqu'elle passe par la position verticale (position~$B$).
+    
+          Justifier le calcul.
+    
+          Faire le calcul littéral et procéder à l'application numérique.
+\end{enumerate}

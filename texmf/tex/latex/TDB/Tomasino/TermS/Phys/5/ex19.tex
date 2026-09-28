@@ -1,0 +1,63 @@
+% Vallée de stabilité
+\begin{minipage}{0.61\linewidth}
+Le diagramme ci-dessous donne les noyaux stables des éléments tels que
+$1\leqslant Z\leqslant8$.
+
+    \begin{enumerate}
+    \item Comment sont-ils disposés~?
+    \item Placer dans ce diagramme les isotopes 11 et 14 du carbone; 13, 16 et
+          17 de l'azote; 15 et 19 de l'oxygène.
+    \item Quels sont les noyaux radioactifs $\beta^{-}$~? Quels sont les noyaux
+          radioactifs $\beta^{+}$~? Qu'est-ce qui caractérise chacune des deux
+          catégories~?
+    \item Écrire l'équation de la désintégration du carbone 14. Sur le
+          diagramme, tracer une flèche symbolisant la transformation. Comment
+          rejoint-on la vallée de stabilité~?
+    \item Écrire l'équation de la désintégration de l'azote 12. Sur le
+          diagramme, tracer une flèche symbolisant la transformation. Comment
+          rejoint-on la vallée de stabilité~?
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.38\linewidth}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[]
+        \matrix[matrix of nodes,nodes in empty cells,
+            nodes={anchor=center,minimum size=6.3mm,draw},
+        ] (m)
+        {
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+        };
+        \foreach \N [count=\i from 1] in {11,10,...,0}
+            \node[left] at (m-\i-1.west) {\N};
+        \foreach \Z [count=\i from 1] in {0,...,8}
+            \node[below] at (m-12-\i.south) {\Z};
+        \draw[Latex-Latex] ([xshift=5mm]m-12-9.south east)
+            node[below] {$Z$} -| ([yshift=5mm]m-1-1.north west)
+            node[right] {$N$};
+        \foreach \i/\j/\X/\A in {2/9/O/18,3/9/O/17,4/9/O/16,4/8/N/15,5/8/N/14,
+                                 5/7/C/13,6/7/C/12,6/6/B/11,7/6/B/10,7/5/Be/9,
+                                 8/4/Li/7,9/4/Li/6,10/3/He/4,11/3/He/3,
+                                 11/2/H/2,12/2/H/1}
+            \node[fill=black!15,font=\footnotesize,inner sep=0.6pt,
+                minimum size=5.5mm,
+                rounded corners=1.4pt] at (m-\i-\j.center) {\ch{^{\A}\X}};
+            %row 9 column 11/.style={nodes={fill=black!20}}, 
+    \end{tikzpicture}
+\end{figure}
+\end{minipage}
+
+
+

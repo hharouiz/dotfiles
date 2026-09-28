@@ -1,0 +1,36 @@
+On réalise l’électrolyse d’une solution de bromure de cuivre dans un
+électrolyseur à électrodes de carbone.
+
+La caractéristique $U=f(I)$ de cet électrolyseur peut être modélisée par le
+graphique ci-contre.
+
+On peut donc écrire~: $U=E+r I$.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                cycle list name=my color list,
+                width=9cm,height=6cm,
+                xlabel=$I~(\unit{\mA})$,ylabel=$U~(\unit{\volt})$,
+                xmin=0,xmax=245,
+                ymin=0,ymax=3.5,
+                xtick distance=50,
+                ytick distance=1,
+                domain=0:200
+            ]
+            \addplot {0.012*\x+0.8};
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+\begin{enumerate}
+    \item Déterminer la valeur de $E$ (préciser l'unité) et celle de la
+          résistance interne $r$ de l'électrolyseur.
+    \item On maintient aux bornes de l'électrolyseur une tension
+          $U=\qty{2,0}{\volt}$ pendant une durée $\Delta t=20$ minutes.
+          Quelle est l'énergie chimique fournie~?
+    \item Quel est le rendement de l'électrolyseur~?
+\end{enumerate}
+
+

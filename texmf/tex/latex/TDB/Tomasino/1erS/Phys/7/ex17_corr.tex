@@ -1,0 +1,114 @@
+\begin{enumerate}
+    \item \mbox{}
+          \begin{minipage}[t][][t]{0.65\linewidth}
+              On applique le théorème d'énergie cinétique (voir figure
+              ci-contre)~:
+          
+              \[
+                  \Delta E_c=\sum W_{AB}(\vec{F}_{\text{ext}})
+              \]
+              avec~:
+              \[
+                  \left\{
+                  \begin{array}{l}
+                      \Delta E_c=\frac{1}{2}m v_B^2-\frac{1}{2}m v_A^2=
+                      0-\frac{1}{2}m v^2 \\[3mm]
+                      \sum W_{AB}(\vec{F}_{\text{ext}})=W(\vec{P})=
+                      mg(z_{A}-z_{B})=-mgh
+                  \end{array}\right.
+              \]
+              donc~:
+              \[
+                  -\frac{1}{2}m v^2=-mgh
+                  \quad\Rightarrow\
+                  \mathbox{h=\frac{v^{2}}{2g}}
+              \]
+          
+              Application numérique~:
+              \[
+                  h=\frac{(15,0)^{2}}{2\times 9,8}
+                  \quad\Rightarrow\
+                  h\approx \qty{11.5}{\m}
+              \]
+          
+          \end{minipage}
+          \hfill
+          \begin{minipage}[t][][t]{0.34\linewidth}
+              \begin{figure}[H]
+                  \centering
+                  \begin{tikzpicture}
+                      \def\h{4}
+                      \foreach \z/\n in {0/A,\h/B}{
+                          \node[circle,ball color=black!40,inner sep=0pt,
+                              minimum size=3mm,
+                              label=left:$\n$] (\n) at (0,\z) {};
+                          \node[circle,inner sep=0.6pt,
+                              fill] (\n) at (\n.center) {};
+                      }
+                      \draw[<->,shorten <=1pt,shorten >=1pt]
+                          (-1,0) -- node[right] {$h$} ++(0,\h);
+                      \draw[->,thick,red] (A.center) -- ++(0,1)
+                          node[right] {$\vec{v}$};
+                      \draw[->,thick] (1,\h/3) --
+                          node[right] {mouvement} ++(0,1);
+                      \node[right=2mm] at (A.east) {$v_{A}=v=\qty{15.0}{\v}$};
+                      \node[right=2mm] at (B.east) {$v_{B}=0$};
+                  \end{tikzpicture}
+              \end{figure}
+          \end{minipage}
+    \item \mbox{}
+          \begin{minipage}[t][][t]{0.52\linewidth}
+              On applique T.E.C entre $A$ et $C$ (voir figure ci-contre)~:
+          
+              \begin{align*}
+                  &\frac{1}{2}m v_C^2-\frac{1}{2}m v_A^2=W_{AC}(\vec{P}) \\
+                  &\Rightarrow \frac{1}{2}m v_C^2-\frac{1}{2}m v_A^2=-mgh^{\prime} \\
+                  &\Rightarrow \frac{1}{2}m v_C^2=\frac{1}{2}m v_A^2-mgh^{\prime} \\
+                  &\Rightarrow v_C^2=v_A^2-2gh^{\prime} \\
+                  &\Rightarrow v_C=\sqrt{v_A^2-2gh^{\prime}}
+              \end{align*}
+          
+              Application numérique~:
+              \[
+                  v_C=\sqrt{(15,0)^2-2\times 9,8\times 2}
+                  \quad\Rightarrow\
+                  v_{C}\approx \qty{13.6}{\v}
+              \]
+          \end{minipage}
+          \hfill
+          \begin{minipage}[t][][t]{0.46\linewidth}
+              \begin{figure}[H]
+                  \centering
+                  \begin{tikzpicture}
+                      \def\h{4}
+                      \def\hp{1}
+                      \foreach \z/\n in {0/A,\hp/C,\h/B}{
+                          \node[circle,ball color=black!40,inner sep=0pt,
+                              minimum size=3mm,
+                              label=left:$\n$] (\n) at (0,\z) {};
+                          \node[circle,inner sep=0.6pt,
+                              fill] (\n) at (\n.center) {};
+                      }
+                      \draw[<->,shorten <=1pt,shorten >=1pt]
+                          (-3,0) -- node[left] {$h=\qty{11.5}{\m}$} ++(0,\h);
+                      \draw[<->,shorten <=1pt,shorten >=1pt]
+                          (-1,0) -- node[left] {$h^{\prime}=\qty{2}{\m}$}
+                          ++(0,\hp);
+                      \draw[->,thick] (0.7,\h/2) --
+                          node[right] {mouvement} ++(0,1);
+                      \node[right=2mm] at (A.east) {$v_{A}=\qty{15.0}{\v}$};
+                      \node[right=2mm] at (B.east) {$v_{B}=0$};
+                      \node[right=2mm] at (C.east) {$v_{C}$};
+                  \end{tikzpicture}
+              \end{figure}
+          \end{minipage}
+    \item Soit $D$ le point d'arrivée au sol, donc~: $z_{A}=z_{D}$.
+              
+          On applique T.E.C entre $A$ et $D$~:
+          \[
+              \frac{1}{2}m v_D^2-\frac{1}{2}m v_A^2=mg(z_{A}-z_{D})
+              \quad\Rightarrow\ \frac{1}{2}m v_D^2-\frac{1}{2}m v_A^2=0
+              \quad\Rightarrow\ v_D=v_A=\qty{15.0}{\v}
+          \]
+\end{enumerate}
+

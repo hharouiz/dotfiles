@@ -1,0 +1,70 @@
+\begin{minipage}{0.65\linewidth}
+    Dans un jeu de lancement sur un rail $AB$ rectiligne horizontal, un solide
+    $\mathrm{(S_{0})}$ de masse $m_{0}$ et de centre d'inertie $G$ est lancé à
+    partir d'une position $A$ avec une vitesse initiale $\vec{v}_{0}$
+    horizontale pour atteindre une cible $\mathrm{(C)}$ qui se trouve en $B$ à
+    la distance $d=AB$
+    (Fig.~\ref{fig:2bac_svt_national_2025_normale_phys_ex3_1}).
+    
+    Le mouvement de $\mathrm{(S_{0})}$ sur le rail $AB$ se fait avec des
+    frottements modélisés par une force $\vec{f}$ constante de sens opposé au
+    sens du vecteur vitesse.
+\end{minipage}
+\hfill
+\begin{minipage}{0.34\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[]
+            \Sol{5cm}{3mm}{sol}
+            \node[solide={7mm/7mm},anchor=south west] (S) at (sol.north west) {};
+            \node[point,label={[above=3mm]:$A$}] (A) at (S.center) {};
+            \draw[->] (A.center) -- ++(2,0)
+                node[anchor=south east,inner xsep=0pt] {$\vec{v}_{0}$};
+            \draw[->,thick] (A.center) -- ++(1,0)
+                node[anchor=south east,inner xsep=0pt] {$\ex$};
+            \node[minimum width=1mm,minimum height=1cm,anchor=south east,
+                inner xsep=0pt,fill,label=right:$B$] (C) at (sol.north east) {};
+            \node[anchor=south east,inner xsep=0pt,
+                inner ysep=1pt] at (C.north east) {Cible $\mathrm{(C)}$};
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:2bac_svt_national_2025_normale_phys_ex3_1}
+    \end{figure}
+\end{minipage}
+    
+Pour étudier le mouvement de $G$ sur $AB$, on choisit le repère $(A,\ex)$ lié à
+la Terre supposé galiléen.
+    
+À $t_{0}=0$~: $x_{G}=x_{A}=0$.
+
+% \begin{donnees}
+%     \begin{itemize}
+%         \item $g=\qty{10}{\m\per\square\s}$~; $d=AB=\qty{1}{\m}$~;
+%               $m_{0}=\qty{0.1}{\kg}$.
+%     \end{itemize}
+% \end{donnees}
+
+\textbf{\textsc{Données~:}}
+$g=\qty{10}{\m\per\square\s}$~; $d=AB=\qty{1}{\m}$~; $m_{0}=\qty{0.1}{\kg}$.
+
+\begin{enumerate}
+    \item En appliquant la deuxième loi de \textsc{Newton}, montrer que
+          l'équation différentielle vérifiée par l'abscisse $x_{G}$ s'écrit~:
+          $\frac{\mathrm{d}^{2}x_{G}}{\mathrm{d}t^{2}}=-\frac{f}{m_{0}}$.~\textbf{(1,25pt)}
+    \item En déduire la nature du mouvement de $G$.~\textbf{(0,5pt)}
+    \item L'équation de la vitesse $v_{G}(t)$ de $G$ s'écrit~:
+          $v_{G}(t)=-1,5\cdot t+1,5$ ($\unit{\v}$).
+          \begin{enumerate}
+              \item Écrire l'expression numérique de l'équation horaire du
+                    mouvement de $G$.~\textbf{(1pt)}
+              \item Déterminer l'instant $t_{1}$ ou $\mathrm{(S_{0})}$
+                    s'arrête.~\textbf{(1pt)}
+              \item Déterminer la valeur de $f$.~\textbf{(1pt)}
+              \item Le solide $\mathrm{(S_{0})}$ atteint-il la cible
+                    $\mathrm{(C)}$~? Justifier.~\textbf{(1pt)}
+          \end{enumerate}
+    % \item Déterminer, la valeur minimale $v_{0,\min}$ de la vitesse
+    %       initiale avec laquelle $\mathrm{(S_{0})}$ doit être lancé pour qu'il
+    %       atteigne la cible $\mathrm{(C)}$.
+\end{enumerate}
+

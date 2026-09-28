@@ -1,0 +1,58 @@
+
+\begin{minipage}{0.78\linewidth}
+    \begin{enumerate}
+        \item $W_{AB}(\vec{P})=mg(z_{A}-z_{B})=-mgh$ car la bille monte.
+              \hfill\textbf{(0,25pt)}
+        
+                  La figure montre que~: $h=HA=OA-OH$~; $OA=\ell$ et
+                  $OH=\ell\cos\alpha$.
+    
+                  $W(\vec{P})=-mg\ell(1-\cos\alpha)$
+                  \hfill\textbf{(0,25pt)}
+                  
+                  $W(\vec{P})=-0,050\times 10\times0,30\times(1-\cos\ang{30})
+                  \approx \qty{-2.01e-2}{\J}.$
+                  \hfill\textbf{(0,5pt)}
+        \item $W_{AB}(\vec{P})=0$ car dans ce cas~: $z_{A}=z_{B}$.
+              \hfill\textbf{(0,5pt)}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.20\linewidth}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \def\th{30}
+        \newdimen\el \el=3cm
+        \node[draw,thick,pattern=north east lines,
+              minimum width=1cm,minimum height=3mm] (S) {};
+        \coordinate (O) at (S.south);
+        \path[draw,fill=DarkTurquoise]
+            (O) -- ([yshift=-1cm]O) arc (270:270+\th:1cm) -- cycle;
+        \node at (270+\th/2:1.5cm) {$\alpha$};
+        \node[circle,fill,inner sep=1.1pt,
+              label={[anchor=north east,inner sep=1.8pt]:$O$}]
+              at (O) {};
+        \draw[densely dashed]
+            (O) +(270:\el) arc (270:270+\th:\el);
+        \foreach \p/\a in {A/0,B/\th}{%
+            \node[circle,ball color=black!60,inner sep=0pt,
+                  minimum size=4mm,
+                  label={[inner sep=1.6pt]-90+\a:$\p$}]
+                  (\p) at ($(O)+(270+\a:\el)$) {};
+            \fill (\p.center) circle (1pt);
+            \draw[thick] (O) -- (\p);
+        }
+        \node[anchor=180+\th,inner sep=1.4pt]
+            at ($(O)!.5!(B.center)$) {$\ell$};
+        \draw[densely dashed] (B) -- (B -| O) coordinate (H)
+            node[anchor=south east,inner xsep=1pt,
+            inner ysep=3pt] {$H$};
+        \draw[thick,<->] (H) +(-4mm,0) coordinate(tmp) --
+            node[left] {$h$} (tmp |- A.center);
+        \draw[thick] (H) +(0,6pt) -| +(6pt,0);
+    \end{tikzpicture}
+\end{figure}
+\end{minipage}
+
+

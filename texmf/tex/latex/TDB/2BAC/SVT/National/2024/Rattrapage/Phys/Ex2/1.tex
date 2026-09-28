@@ -1,0 +1,66 @@
+Un générateur de tension, de force électromotrice $E$ alimente un conducteur
+ohmique de résistance $R=\qty{100}{\ohm}$ et un condensateur de capacité $C$.
+
+Un oscilloscope numérique est utilisé pour suivre l'évolution temporelle des
+deux tensions en voie~1 et en voie~2 (Fig.~\ref{fig:1}).
+
+Le condensateur étant préalablement déchargé. À l'instant ${t_{0}=0}$, on ferme
+l'interrupteur $\mathrm{K}$. Les évolutions temporelles des deux tensions sont
+traduites par les courbes données par la Fig.~\ref{fig:2}.
+\begin{minipage}{0.48\linewidth}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{1}
+        \caption{}
+        \label{fig:1}
+    \end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\linewidth}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{2}
+        \caption{}
+        \label{fig:2}
+    \end{figure}
+\end{minipage}
+
+\begin{enumerate}
+    \item Recopier sur votre copie le schéma de la Fig.~\ref{fig:1} et
+          représenter, en convention récepteur, la tension $u_{C}$ aux bornes du
+          condensateur et la tension $u_{R}$ aux bornes du conducteur ohmique.
+    \item Parmi les courbes \ding{182} et \ding{183} de la Fig.~\ref{fig:2},
+          quelle est celle qui correspond à la tension $u_{C}$~? Justifier.
+    \item Montrer que l'équation différentielle vérifiée par la tension $u_{C}$
+          s'écrit $R\cdot C\cdot\frac{\mathrm{d}u_{C}}{\mathrm{d}t}+u_{C}=E$.
+    \item En admettant que $u_{c}=E\cdot\bigl(1-e^{-\frac{t}{\tau}}\bigr)$ est
+          solution de l'équation différentielle, déterminer l'expression de
+          $\tau$ en fonction des paramètres du circuit.
+    \item Calculer la valeur de $C$.
+    \item Recopier, sur votre copie, le numéro de la question et choisir la
+          lettre correspondante à la proposition vraie. L'expression de
+          l'intensité $i(t)$ du courant qui traverse le circuit est~:
+
+          \begin{minipage}{\linewidth}
+          \begin{table}[H]
+              \centering
+              \setlength{\arrayrulewidth}{0.8pt}
+              \renewcommand{\arraystretch}{1.5}
+              \begin{tabularx}{\textwidth}{|
+                  >{\arraybackslash\centering}p{6mm}|C|
+                  >{\arraybackslash\centering}p{6mm}|C|}
+              \hline
+              $\mathrm{A}$ & $i(t)=0,06\cdot e^{-3333,3\cdot t}~(\unit{\A})$
+              &
+              $\mathrm{B}$ & $i(t)=-0,06\cdot e^{-3333,3\cdot t}~(\unit{\A})$ \\
+              \hline
+              $\mathrm{C}$ & $i(t)=0,6\cdot e^{-3333,3\cdot t}~(\unit{\A})$
+              &
+              $\mathrm{D}$ & $i(t)=6\cdot e^{-3333,3\cdot t}~(\unit{\A})$ \\
+              \hline
+              \end{tabularx}
+          \end{table}
+          \end{minipage}
+\end{enumerate}
+
+

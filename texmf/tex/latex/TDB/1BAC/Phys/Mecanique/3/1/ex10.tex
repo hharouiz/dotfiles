@@ -1,0 +1,71 @@
+Un skieur aborde une piste constituée de trois parties (voir figure).
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[thick]
+        \def\be{30}
+        \def\th{30}
+        \def\AB{4}
+        \def\BC{8}
+        \def\r{2.4}
+        \draw[very thick] (0,0) node[point,label=$A$] (A) {} --
+            ++(-\be:\AB) node[point,label=$B$] (B) {} --
+            ++(\BC,0) node[point,label=$C$] (C) {} arc(90:0:\r)
+            node[point,label=right:$D$] (D) {};
+        \draw[densely dashed,thick]
+            (B.center) -- (B.center -| A.center);
+        \draw ([xshift=-1cm]B.center) arc (180:180-\be:1)
+            node[pos=0.6,left] {$\beta$};
+        \draw[thick,densely dashed] (C) -- ++(0,-\r) coordinate (O)
+            node[below left,inner sep=1pt] {$O$} -- (D);
+        \draw[thick,densely dashed] (O) -- ++(\th:\r)
+            node[point,label=above right:$M$] {};
+        \draw ([xshift=1cm]O.center) arc (0:\th:1)
+            node[pos=0.6,right] {$\theta$};
+    \end{tikzpicture}
+\end{figure}
+
+Le skieur, de masse $m=\qty{80}{\kg}$, part du point $A$ à une vitesse
+$v_{A}=\qty{3}{\m\per\s}$.
+
+\textbf{On donne~:} $g=\qty{10}{\N\per\kg}$.
+\begin{enumerate}
+    \item La première partie $AB$, de longueur $AB=\qty{4}{\m}$, est un plan
+          incliné d'angle $\beta=\ang{30}$ sur l'horizontal.
+    
+          Les frottements sont négligeables sur la partie $AB$.
+          
+    
+          \begin{enumerate}
+              \item Faire le bilan et représenter les forces qui s'exercent sur
+                    le skieur sur la partie $AB$.~\textbf{(1pt)}
+              \item En appliquant le théorème de l'énergie cinétique entre $A$
+                    et $B$, montré que la vitesse du skieur en $B$ est
+                    $v_{B}=\qty{7}{\m\per\s}$.~\textbf{(1,5pt)}
+          \end{enumerate}
+    
+    \item La partie $BC$, horizontale, de longueur $BC=\qty{8}{\m}$~; les
+          frottements sont équivalents à une force d'intensité
+          $f=\qty{120}{\N}$.
+          \begin{enumerate}
+              \item Faire le bilan et représenter les forces qui s'exercent sur
+                    le skieur sur la partie $BC$.~\textbf{(1,5pt)}
+              \item Calculer sur la partie $BC$, le travail de la force de
+                    frottement $\vec{f}$.~\textbf{(1pt)}
+              \item En appliquant le théorème de l'énergie cinétique entre $B$
+                    et $C$, calculer la vitesse $v_{C}$ du skieur en
+                    $C$.~\textbf{(1,5pt)}
+          \end{enumerate}
+    \item La partie $CD$, est un arc de cercle de centre $O$ et de rayon
+          $r=\qty{2.4}{\m}$. Les frottements sont négligeables sur la partie
+          $CD$. La position de point $M$ est repéré par l'angle
+          $\theta=(\widehat{\overrightarrow{OD},\overrightarrow{OM}})$
+          \begin{enumerate}
+              \item Exprimer la vitesse $v_{M}$ du skieur au point $M$ en
+                    fonction de l'angle $\theta$, le rayon $r$ et
+                    $V_{C}$.~\textbf{(1pt)}
+              \item Calculer l'angle $\theta$ pour que la vitesse du skieur au
+                    point $M$ soit $v_{M}=\qty{7}{\m\per\s}$.~\textbf{(1pt)}
+          \end{enumerate}
+\end{enumerate}
+

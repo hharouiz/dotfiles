@@ -1,0 +1,121 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[thick]
+        \def\be{30}
+        \def\th{30}
+        \def\AB{4}
+        \def\BC{8}
+        \def\r{2.4}
+        \draw[very thick] (0,0) node[point,label=$A$] (A) {} --
+            ++(-\be:\AB) node[point,label=$B$] (B) {} --
+            ++(\BC,0) node[point,label=$C$] (C) {} arc(90:0:\r)
+            node[point,label=right:$D$] (D) {};
+        \draw[densely dashed,thick]
+            (B.center) -- (B.center -| A.center);
+        \draw ([xshift=-1cm]B.center) arc (180:180-\be:1)
+            node[pos=0.6,left] {$\beta$};
+        \draw[thick,densely dashed] (C) -- ++(0,-\r) coordinate (O)
+            node[below left,inner sep=1pt] {$O$} -- (D);
+        \draw[thick,densely dashed] (O) -- ++(\th:\r)
+            node[point,label=above right:$M$] {};
+        \draw ([xshift=1cm]O.center) arc (0:\th:1)
+            node[pos=0.6,right] {$\theta$};
+        % Correction
+        % AB
+        \node[anchor=south,font=\LARGE,rotate=-3,yshift=-2.4mm] (S) at
+            ($(A.center)!0.5!(B.center)$) {\faSkiing};
+        \draw[->,thick,blue] ([yshift=0.8mm]S.center) -- ++(0,-2)
+            node[above right,inner ysep=0pt] {$\vec{P}$};
+        \draw[->,thick,red] ([xshift=-1.3mm,yshift=3.4mm]S.south) -- ++(90-\be:2)
+            node[below right,inner ysep=0pt] {$\vec{R}$};
+        % BC
+        \node[anchor=south,font=\LARGE,rotate=27,yshift=-2.4mm] (S) at
+            ($(B.center)!0.5!(C.center)$) {\faSkiing};
+        \draw[->,thick,blue] ([yshift=0.8mm]S.center) -- ++(0,-1.5)
+            node[above right,inner ysep=0pt] {$\vec{P}$};
+        \draw[->,thick,red] ([xshift=-3mm,yshift=2.3mm]S.south) -- ++(0,1.5)
+            node[below right,inner ysep=0pt] {$\vec{R}_{N}$};
+        \draw[->,thick,Green] ([xshift=-2.9mm,yshift=2.4mm]S.south) -- ++(-1.5,0)
+            node[above right,inner xsep=0pt] {$\vec{f}$};
+    \end{tikzpicture}
+\end{figure}
+
+\begin{enumerate}
+    \item
+          \begin{enumerate}
+              \item Bilan des forces~:~\textbf{(0,5pt)}
+                        \begin{itemize}
+                            \item $\vec{P}$~: Poids du skieur.
+                            \item $\vec{R}$~: Réaction du plan incliné (les
+                                  frottements négligeables).
+                        \end{itemize}
+                    Représentation~: voir figure ci-dessous.~\textbf{(0,5pt)}
+              \item On applique T.E.C~:
+                    \begin{gather*}
+                        \Delta E_{c}=\sum W_{AB}(\vec{F}_{\text{ext}}) \\
+                        E_{c}(B)-E_{c}(A)=W_{AB}(\vec{P})+W_{AB}(\vec{R})
+                        \tag{0,5pt} \\
+                        \frac{1}{2} m v_{B}^{2}-\frac{1}{2} m \cdot v_{A}^{2}=
+                        mgh+0 \\
+                        v_{B}^{2}-v_{A}^{2}=2 g \cdot AB \cdot \sin \beta \\
+                        v_{B}=\sqrt{v_{A}^{2}+2 g \cdot A B \cdot \sin \beta}
+                        \tag{0,5pt} \\
+                        v_{B}=\sqrt{3^{2}+2\times10\times4\times
+                        \sin(\ang{30})}=\qty{7}{\m\per\s}
+                        \tag{0,5pt}
+                    \end{gather*}
+          \end{enumerate}
+    \item 
+          \begin{enumerate}
+              \item Bilan des forces~:~\textbf{(0,5pt)}
+                    \begin{itemize}
+                        \item $\vec{P}$~: Poids du skieur.
+                        \item $\vec{R}_{N}$~: Réaction normale.
+                        \item $\vec{f}$~: Force de frottement.
+                    \end{itemize}
+                    Représentation~: voir figure ci-dessous.~\textbf{(0,5pt)}
+              \item $W_{AB}(\vec{f})=\vec{f}\cdot\vv{BC}=
+                    f\cdot BC\cdot\cos(\ang{180})=-f\cdot BC$
+                    \hfill\textbf{(0,5pt)}
+                    
+                    $\Rightarrow W_{AB}(\vec{f})=-120 \times 8=
+                    \qty{-960}{\N}$ \hfill\textbf{(0,5pt)}
+
+              \item On applique T.E.C~:
+                    \begin{gather*}
+                        \Delta E_{c}=\sum W_{BC}(\vec{F}_{\text{ext}}) \\
+                        E_{c}(C)-E_{c}(B)=W_{BC}(\vec{P})+W_{BC}(\vec{R})+
+                        W_{BC}(\vec{R}_{N})
+                        \tag{0,5pt} \\
+                        \frac{1}{2}m v_{C}^{2}-\frac{1}{2}m v_{B}^{2}=
+                        0+0+W_{BC}(\vec{f}) \\
+                        v_{C}^{2}-v_{B}^{2}=\frac{2 W_{BC}(\vec{f})}{m} \\
+                        v_{C}=\sqrt{v_{B}^{2}+\frac{2 W_{BC}(\vec{f})}{m}}
+                        \tag{0,5pt} \\
+                        v_{B}=\sqrt{7+\frac{2\times(-960)}{80}}=\qty{5}{\m\per\s}
+                        \tag{0,5pt}
+                    \end{gather*}
+          \end{enumerate}
+    \item
+          \begin{enumerate}
+              \item On applique T.E.C~:
+                    \begin{gather*}
+                        \Delta E_{c}=\sum W_{CM}(\vec{F}_{\text{ext}}) \\
+                        E_{c}(M)-E_{c}(C)=W_{CM}(\vec{P})+W_{CM}(\vec{R})
+                        \tag{0,5pt} \\
+                        \frac{1}{2}m v_{M}^{2}-\frac{1}{2}m v_{C}^{2}=mgh+0 \\
+                        v_{M}^{2}-v_{C}^{2}=2gh \\
+                        v_{M}=\sqrt{v_{C}^{2}+2gr(1-\sin\theta)}
+                        \tag{0,5pt}
+                    \end{gather*}
+              \item $v_{M}^{2}-v_{C}^{2}=2gr(1-\sin\theta)
+                    \quad\Rightarrow\
+                    \sin\theta=1-\frac{v_{M}^{2}-v_{C}^{2}}{2gr}
+                    \quad\Rightarrow\
+                    \theta=\arcsin\left(1-\frac{v_{M}^{2}-
+                    v_{C}^{2}}{2gr}\right)$
+
+                    $\Rrightarrow\theta=\arcsin\left(1-
+                    \frac{7^{2}-5^{2}}{2\times10\times2,4}\right)=\ang{30}$
+          \end{enumerate}
+\end{enumerate}

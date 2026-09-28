@@ -1,0 +1,92 @@
+% Datation par le carbone 14
+\begin{minipage}{0.58\linewidth}
+    \begin{Block}[Principe de la datation]
+    \small
+    Dans la haute atmosphère, les rayons cosmiques provoquent des réactions
+    nucléaires qui libèrent des neutrons.
+
+    Ces neutrons, une fois ralentis, sont absorbés par des noyaux d'azote
+    \ch{_{7}^{14}N} au cours d'une réaction qui donne naissance à du carbone
+    \ch{_{6}^{14}C} et à une autre particule.
+
+    Le carbone 14 ainsi créé est radioactif.
+
+    Le carbone 14 est alors assimilé comme le carbone stable (\ch{_{6}^{12}C})
+    par les plantes au cours de la synthèse chlorophyllienne. Pendant toute leur
+    vie, la proportion de carbone 14 reste très stable dans les plantes.
+
+    À leur mort, la quantité de carbone 14 décroît par radioactivité. Il suffit
+    donc de mesurer la proportion de carbone 14 restante dans l'échantillon
+    étudié pour dater sa mort.
+\end{Block}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\linewidth}
+En s'aidant éventuellement des documents ci-dessous, répondre aux questions
+suivantes.
+
+\vspace{3mm}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \def\No{100}
+        \def\tm{5570}
+        \pgfmathparse{\tm/ln(2)}\let\ta=\pgfmathresult
+        \begin{axis}[
+                cycle list name=my color list,
+                width=8.5cm,height=7cm,
+                xlabel={\small temps en années},
+                ylabel={\small
+                    \begin{tabular}{l}
+                        nombre de noyaux de carbone radioactif \\
+                        dans un échantillon de carbone
+                    \end{tabular}},
+                xmin=0,xmax=20000,
+                ymin=0,ymax=120,
+                xtick={0,\tm,2*\tm,3*\tm,4*\tm},
+                ytick={0,\No/8,\No/4,\No/2,\No},
+                variable=\t,
+                samples=200,
+                grid=none,
+                scaled ticks=false,
+                    xticklabel style={ /pgf/number format/.cd, 1000 sep={ } },
+	            every axis x label/.append style={
+                    at={([yshift=-3.5mm]current axis.right of origin)},
+                    anchor=north east,inner xsep=0,
+	            },
+	            every axis y label/.append style={
+                    at={(current axis.above origin)},
+                    anchor=north west,inner ysep=0,
+	            },
+            ]
+            \addplot[domain=0:19000,very thick] {\No*exp(-\t/\ta)};
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+\end{minipage}
+
+
+\begin{enumerate}
+    \item Donner la composition des noyaux \ch{_{6}^{14}C} et \ch{_{6}^{12}C}.
+          Comment appelle-t-on de tels noyaux~?
+    \item Après avoir rappelé les lois de conservation, écrire l'équation de la
+          réaction nucléaire relative au deuxième paragraphe du texte (réaction
+          d'un neutron sur un atome d'azote).
+
+          Quelle est la particule apparue en plus du carbone 14~?
+    \item Le carbone 14 est radioactif $\beta^{-}$. Quelle est la nature de ce
+          rayonnement? Écrire l'équation de la réaction nucléaire relative à la
+          désintégration radioactive du carbone 14 .
+    \item Qu'appelle-t-on demi-vie d'un noyau radioactif~?
+
+          Quelle est la demi-vie du carbone 14~?
+    \item Dans un échantillon de bois vivant, on détecte un atome de carbone 14
+          pour $10^{12}$ atomes de carbone 12.
+    
+          Dans un morceau de bois ancien, mort, on constate qu'il n'y a plus
+          qu'un atome de carbone 14 pour $8 \times 10^{12}$ atomes de carbone
+          12. Quel est l'âge de ce morceau de bois~?
+\end{enumerate}
+
+

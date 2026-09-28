@@ -1,0 +1,85 @@
+% Vallée de stabilité
+\begin{minipage}{0.54\linewidth}
+Le diagramme ci-dessous donne les noyaux stables des éléments tels que
+$1\leqslant Z\leqslant8$.
+
+    \begin{enumerate}
+    \item Ces noyaux sont disposés autour de la première bissectrice ($N=Z$).
+    \item voir figure ci-contre.
+    \item 
+          \begin{itemize}
+              \item Les noyaux radioactifs $\beta^{-}$ sont en dessus de la
+                    bissectrice~: \ch{^{14}C} , \ch{^{16}N}, \ch{^{17}N},
+                    \ch{^{19}O}
+              \item Les noyaux radioactifs $\beta^{+}$ sont en dessous de la
+                    bissectrice~: \ch{^{11}C} , \ch{^{13}N}, \ch{^{15}O}
+          \end{itemize}
+
+    \item \ch{^{146}_{6}C -> ^{147}_{6}N + ^{0}_{-1}e}  
+
+           On rejoint la vallée de stabilité en se dirigeant directement vers la
+           bissectrice.
+
+    \item \ch{^{12}_{7}N -> ^{12}_{6}N + ^{0}_{+1}e}
+
+          On rejoint la vallée de stabilité par désintégration en se dirigeant
+          directement vers la bissectrice.
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.46\linewidth}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[]
+        \matrix[matrix of nodes,nodes in empty cells,
+            nodes={anchor=center,minimum size=6.3mm,draw},
+        ] (m)
+        {
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+            &&&&&&&& \\
+        };
+        \foreach \N [count=\i from 1] in {11,10,...,0}
+            \node[left] at (m-\i-1.west) {\N};
+        \foreach \Z [count=\i from 1] in {0,...,8}
+            \node[below] at (m-12-\i.south) {\Z};
+        \draw[Latex-Latex] ([xshift=5mm]m-12-9.south east)
+            node[below] {$Z$} -| ([yshift=5mm]m-1-1.north west)
+            node[right] {$N$};
+        \foreach \i/\j/\X/\A in {2/9/O/18,3/9/O/17,4/9/O/16,4/8/N/15,5/8/N/14,
+                                 5/7/C/13,6/7/C/12,6/6/B/11,7/6/B/10,7/5/Be/9,
+                                 8/4/Li/7,9/4/Li/6,10/3/He/4,11/3/He/3,
+                                 11/2/H/2,12/2/H/1}
+            \node[fill=black!15,font=\footnotesize,inner sep=0.6pt,
+                minimum size=5.5mm,
+                rounded corners=1.4pt] at (m-\i-\j.center) {\ch{^{\A}\X}};
+        % Correction
+        \foreach \i/\j/\X/\A in {7/7/C/11,4/7/C/14,7/8/N/12,6/8/N/13,3/8/N/16,
+                                 2/8/N/17,1/9/O/19,5/9/O/15}
+            \node[font=\footnotesize,inner sep=0.6pt,
+                minimum size=5.5mm,
+                rounded corners=1.4pt] at (m-\i-\j.center) {\ch{^{\A}\X}};
+        \draw[thick,blue,shorten >=-2.9cm,opacity=0.7]
+            (m-12-1.south west) -- (m-4-9.north east)
+            node[rotate=45,below right] {$N=Z$}
+            node[font=\small,rotate=45,above right,pos=1.04]
+            {1$^{\text{ère}}$ bissectrice};
+        \draw[very thick,red,->,shorten <=2.5mm,shorten >=2.5mm]
+            (m-4-7.center) -- (m-5-8.center);
+        \draw[very thick,red,->,shorten <=2.5mm,shorten >=2.5mm]
+            (m-7-8.center) -- (m-6-7.center);
+    \end{tikzpicture}
+\end{figure}
+\end{minipage}
+
+
+

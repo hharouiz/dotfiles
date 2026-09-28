@@ -1,0 +1,39 @@
+\begin{minipage}{0.54\linewidth}
+Un générateur de force électromotrice $E=\qty{24}{\V}$ et de résistance interne
+$r=\qty{3}{\ohm}$ alimente un circuit électrique contenant un électrolyseur de
+force contre-électromotrice $E^{\prime}$ et de résistance interne
+$r^{\prime}=\qty{4}{\ohm}$.
+
+Le générateur débite un courant électrique d'intensité~: $I=\qty{0.5}{\A}$
+pendant une durée $\Delta t=\qty{30}{\min}$.
+\end{minipage}
+\hfill
+\begin{minipage}{0.44\linewidth}
+    \centering
+    \begin{circuitikz}
+        \draw (0,0) node[below=2pt] {$N$}
+                    to[battery2,invert,l={$(E,r)$},*-*] ++(0,2.5)
+                    node[above=2pt] {$P$}
+                    to[short,i=$I$] ++(4,0)
+                    node[above=2pt] {$A$}
+                    to[dcvsource,name=E,l={$(E^{\prime},r^{\prime})$},*-*]
+                    ++(0,-2.5)
+                    node[below=2pt] {$B$}
+                    to[short] (0,0);
+        \draw[thick] (E.left) -- ++(0,-3.2mm) (E.right) -- ++(0,3.2mm);
+    \end{circuitikz}
+\end{minipage}
+\begin{enumerate}
+    \item Par application de la loi des mailles, montrer que la valeur de la
+          force contre-électromotrice de l'électrolyseur est~:
+          $E^{\prime}=\qty{20.5}{\V}$~\textbf{(1pt)}
+    \item Calculer $W_{t}$ l'énergie totale du générateur.~\textbf{(1pt)}
+    \item Calculer $W_{e}$ l'énergie électrique fournie par le
+          générateur.~\textbf{(1pt)}
+    \item En déduire le rendement du générateur.~\textbf{(1pt)}
+    \item Calculer $W_{u}$ l'énergie utile de l'électrolyseur.~\textbf{(1pt)}
+    \item Calculer $W_{J}$ l'énergie électrique dissipée par effet joule dans
+          l'électrolyseur.~\textbf{(1pt)}
+    \item Calculer $\rho_{c}$ le rendement global du circuit.~\textbf{(1pt)}
+\end{enumerate}
+

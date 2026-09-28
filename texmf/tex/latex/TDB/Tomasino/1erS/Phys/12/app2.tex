@@ -1,0 +1,23 @@
+On dispose d'une part d'un générateur de fém $E=\qty{6,4}{\volt}$ et de
+résistance interne négligeable, et d'autre part de trois conducteurs ohmiques
+identiques de résistance $R=\qty{12}{\ohm}$ et de puissance nominale
+$P=\qty{3,4}{\watt}$.
+
+On monte ces trois conducteurs ohmiques aux bornes du générateur comme le
+montre le schéma ci-contre. Calculer la résistance équivalente du circuit et
+en déduire l'intensité du courant délivré par le générateur.
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \newdimen\d \d=3.4cm
+        \draw (0,0) node[below] {$N$}
+            to[vsource,v_=$E$,*-*] ++(0,\d) node[above] {$P$}
+            to[short,i=$I$,-*] ++(\d,0) node[above] {$A$} coordinate(A)
+            to[R,l=$R$,i>^=$I_{2}$,-*] ++(\d,0) node[above] {$B$} coordinate(B)
+            to[short] ++(0,-\d)
+            to[R,l=$R$,-*] ++(-\d,0) node[below] {$C$} coordinate(C)
+            to[short] ++(-\d,0);
+        \draw (A) to[R,l=$R$,i>^=$I_{1}$] (C);
+    \end{circuitikz}
+\end{figure}
+

@@ -1,0 +1,67 @@
+On mélange initialement à $t_{0}=0$, une solution aqueuse de sulfate de fer(II)
+(\ce{Fe$^{2+}$_{(aq)} + SO$_4^{2-}$_{(aq)}}) avec une solution aqueuse de
+sulfate de mercure(II) (\ce{Hg$^{2+}$_{(aq)} + SO$_4^{2-}$_{(aq)}}).  Le volume
+du mélange est $V=\qty{100}{\mL}$.
+
+La transformation chimique qui se produit est modélisée par l'équation chimique
+suivante~:
+\begin{center}
+    \ce{2Fe$^{2+}$_{(aq)} + 2Hg$^{2+}$_{(aq)} -> 2Fe$^{3+}$_{(aq)} + Hg$_2^{2+}$_{(aq)}}
+\end{center}
+
+\begin{donnees}
+    Concentrations molaires effectives des ions dans le mélange à l'état
+    initial~: \\
+    $\left[\ce{Fe$^{2+}$_{(aq)}}\right]_{0}=\qty{1.0e-2}{\mol\per\L}$~;
+    $\left[\ce{Hg$^{2+}$_{(aq)}}\right]_{0}=\qty{2.0e-2}{\mol\per\L}$.
+\end{donnees}
+\begin{minipage}{0.52\linewidth}
+    Le suivi de la transformation permet de tracer la courbe représentant
+    l'évolution temporelle de l'avancement $x$ de la réaction (figure
+    ci-contre).
+
+    \begin{enumerate}
+        \item Dresser le tableau d'avancement de la réaction.
+              \textbf{(1pt)}
+        \item Vérifier que la valeur de l'avancement maximal est
+              $x_{\max}=\qty{5e-4}{\mol}$.
+              \textbf{(0,5pt)}
+        \item Définir le temps de demi-réaction $t_{1/2}$ et déterminer sa valeur
+              graphiquement.
+              \textbf{(1pt)}
+        \item Déterminer, en ($\unit{\mol\per\L\per\h}$), la vitesse volumique de
+              réaction à $t_{0}=0$.
+              \textbf{(1pt)}
+        \item Comment évolue la vitesse volumique de réaction au cours de cette
+              transformation~?
+              \textbf{(0,5pt)}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.44\linewidth}
+\begin{tikzpicture}[]
+    \def\ta{20}
+    \def\xf{0.5}
+    %\pgfmathparse{ln(2)*\ta}\let\tm=\pgfmathresult
+    \pgfmathparse{\xf/\ta}\let\p=\pgfmathresult
+    \begin{axis}[
+            cycle list name=my color list,
+            width=9cm,height=8cm,
+            xlabel=$t~(\unit{\h})$,ylabel=$x~(\unit{\mmol})$,
+            xmin=0,xmax=59,
+            ymin=0,ymax=0.54,
+            %xtick={},
+            %xticklabels={},
+            %ytick={},
+            %yticklabels={},
+            variable=t,
+            samples=200,
+        ]
+        \addplot[domain=0:60] {\xf*(1-exp(-\t/\ta))};
+        \addplot[domain=0:21,dashed,thick] {\p*\t};
+    \end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+
+

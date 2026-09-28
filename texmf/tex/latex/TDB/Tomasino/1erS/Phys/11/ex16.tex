@@ -1,0 +1,30 @@
+La caractéristique intensité-tension d’un générateur est la courbe
+$U_{PN}=f(I)$ représentée sur le schéma ci-dessous.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                cycle list name=my color list,
+                width=9cm,height=6cm,
+                xlabel=$I~(\unit{\A})$,ylabel=$U~(\unit{\volt})$,
+                xmin=0,xmax=0.95,
+                ymin=0,ymax=5.5,
+                xtick distance=0.1,
+                ytick distance=1,
+            ]
+            \addplot {-1.5/0.7*\x+4.5};
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
+
+\begin{enumerate}
+    \item Déterminer la fém $E$ et la résistance interne $r$ de ce
+          générateur.
+    \item Calculer la puissance électrique qu'il fournit au circuit quand le
+          courant qu'il débite a une intensité $I=\qty{0,25}{\ampere}$.
+          Quelle est l'énergie totale convertie si le générateur fonctionne
+          pendant 20 minutes~?
+\end{enumerate}
+
+

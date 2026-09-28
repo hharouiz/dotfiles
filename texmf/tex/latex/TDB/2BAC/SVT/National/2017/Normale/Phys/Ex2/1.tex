@@ -1,0 +1,108 @@
+Un ensemble de circuits électriques et électroniques comportent des
+condensateurs et des bobines. Le comportement de ces circuits diffère selon
+l'effet imposé par ces composants. Le but de cet exercice est d'étudier un
+circuit RLC série dans différents cas.
+
+\begin{minipage}{0.70\linewidth}
+    On réalise le montage expérimental représenté sur la
+    Fig.~\ref{fig:2bac_svt_national_2017_normale_phys_ex2_1} qui comporte~:
+    \begin{itemize}
+        \item un générateur idéal de tension de force électromotrice
+              ${E=\qty{6}{\volt}}$~;
+        \item un condensateur de capacité $C$~;
+        \item un conducteur ohmique de résistance $R$~;
+        \item une bobine $b$ d'inductance $L$ et de résistance $r$~;
+        \item un interrupteur $\mathrm{K}$.
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.28\linewidth}
+    \flushright
+    \begin{figure}[H]
+    \begin{circuitikz}
+        \newdimen\d \d=3cm
+        \draw (0,0) node[cute spdt mid,rotate=90] (Sw) {};
+        \node[above,font=\ttfamily\small] at (Sw.out 1) {1};
+        \node[above,font=\ttfamily\small] at (Sw.out 2) {2};
+        \node[above=9mm] at (Sw.in) {K};
+        \draw (Sw.out 1)
+             to[R,l_=$R$,voltage shift=2.5] ++(-0.7\d,0)
+             to[vsource,v_<=$E$,i<^=$i$,voltage shift=0.5] ++(0,-\d)
+             to[short] ++(1.4\d,0) coordinate(M)
+             to[L,l={$(L,r)$},mirror,voltage shift=3.5,name=C] ++(0,\d)
+             to[short] (Sw.out 2);
+        \draw (Sw.in) to[C,l_=$C$] (Sw.in |- M);
+    \end{circuitikz}
+    \caption{}
+    \label{fig:2bac_svt_national_2017_normale_phys_ex2_1}
+    \end{figure}
+\end{minipage}
+
+\begin{enumerate}
+    \item On place l'interrupteur dans la position~(1), le condensateur se
+          charge totalement. Sa charge maximale est
+          $Q_{\max }=\qty{1,32e-4}{\coulomb}$.
+          
+          
+          Calculer la valeur de l'énergie électrique maximale $E_{e,\max}$
+          emmagasinée dans le condensateur.
+    \item On réalise trois expériences en utilisant trois bobines différentes
+          $b_1$, $b_2$ et $b_3$ dont les caractéristiques sont~:
+          \[
+              b_1\left(L_1=\qty{260}{\mH}~; r_1=0\right), \quad
+              b_2\left(L_2=\qty{115}{\mH}~; r_2=0\right) \quad \text{et} \quad
+              b_3\left(L_3~; r_3=\qty{10}{\ohm}\right)
+          \]
+
+          Dans chaque expérience, on charge totalement le condensateur et on le
+          décharge dans l'une des trois bobines.
+
+          Les courbes de la
+          Fig.~\ref{fig:2bac_svt_national_2017_normale_phys_ex2_2} représentent
+          les variations de la tension $u_C(t)$ aux bornes du condensateur.
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.8\linewidth]{2bac_svt_national_2017_normale_phys_ex2_2}
+              \caption{}
+              \label{fig:2bac_svt_national_2017_normale_phys_ex2_2}
+          \end{figure}
+
+          \begin{enumerate}
+              \item Nommer les régimes d'oscillations mis en évidence par les
+                    courbes~(a) et~(c).
+              \item En comparant les périodes des oscillations électriques,
+                    montrer que la courbe~(a) correspond à la bobine $b_2$.
+              \item Vérifier que $C \simeq \qty{2,2e-5}{\farad}$.
+          \end{enumerate}
+    \item On considère le cas de la décharge du condensateur à travers la bobine
+          $b_2\left(L_2=\qty{115}{\mH}~; r_2=0\right)$.
+
+          Dans ce cas le circuit LC est idéal.
+          \begin{enumerate}
+              \item Établir l'équation différentielle vérifiée par la tension
+                    $u_C(t)$.
+              \item La solution de l'équation différentielle s'écrit~:
+                    $u_c(t)=U_{\mathrm{C,\max}} \cdot
+                    \cos\left(\frac{2 \pi}{T_0}\cdot t+\varphi\right)$.
+                    \begin{enumerate}
+                        \item Écrire l'expression numérique de la tension
+                              $u_c(t)$.
+                        \item Calculer l'énergie totale du circuit LC sachant
+                              qu'elle se conserve.
+                    \end{enumerate}
+          \end{enumerate}
+    \item On considère le cas de la décharge du condensateur à travers la bobine
+          $b_3\left(L_3~; r_3=\qty{10}{\ohm}\right)$.
+
+          Pour entretenir les oscillations électriques, on ajoute au circuit un
+          générateur qui délivre une tension proportionnelle à l'intensité du
+          courant $u_g=k\cdot i(t)$ où $k$ est une constante positive. On obtient
+          des oscillations électriques sinusoïdales de période
+          $T=\qty{10}{\ms}$.
+          \begin{enumerate}
+              \item Déterminer la valeur de $k$.
+			  \item En déduire la valeur de $L_3$.
+          \end{enumerate}
+\end{enumerate}
+

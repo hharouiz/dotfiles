@@ -1,0 +1,63 @@
+\begin{minipage}{0.72\linewidth}
+    Deux électrodes, de surface $S_1=\qty{2,0}{\square\cm}$ et distantes de
+    $L_1=\qty{2,0}{\cm}$ l'une de l'autre plongent dans une solution ionique
+    contenant un seul soluté.
+    
+    On réalise le montage représenté sur le schéma ci-dessous~; le voltmètre
+    indique une tension $U_1=\qty{1,0}{\volt}$ et l'ampèremètre une intensité
+    $I_1=\qty{5,0}{\mA}$.
+
+    Après avoir rapproché les électrodes, on note une tension de
+    $\qty{1,0}{\volt}$ et une intensité de $\qty{7,0}{\mA}$.
+    \begin{enumerate}[series=x]
+        \item Calculer la conductance $G$ de la solution dans les deux cas.
+        \item Calculer la distance entre les deux électrodes dans le deuxième
+              cas.
+        \item Calculer la constante de cellule dans les deux cas (préciser
+              l'unité).
+        \item Calculer la conductivité de la solution.
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.25\linewidth}
+    \flushright
+    \begin{tikzpicture}
+        \newdimen\W \W=3cm
+        \newdimen\H \H=2.5cm
+        \newdimen\d \d=1.5cm
+        \pgfmathparse{0.6\W}\let\L=\pgfmathresult
+        \node[inner sep=0pt,fill=lightgray,minimum width=\W,
+            minimum height=0.7\H] (S) {};
+        \node[inner sep=0pt,minimum width=\W,
+            minimum height=\H,anchor=south] (B) at (S.south) {};
+        \draw[draw,thick] (B.north east) -- (B.south east) -| (B.north west);
+        \node[inner sep=0pt,minimum width=\L,
+            minimum height=0.55\H,anchor=south] (C) at (B.south) {};
+        \foreach \a in { east, west}
+        \node[anchor=north,trapezium,draw,fill=copper,trapezium left angle=120,
+            trapezium right angle=60,shape border rotate=90,minimum width=7mm,
+            minimum height=6mm,inner sep=0pt] at (C.north \a) {$S$};
+        \draw (C.north east) to[short] ++(0,\d)
+            to[short] ++(\d,0)
+            to[short] ++(0,1.5\d)
+            to[rmeter,t={\footnotesize GBF}] ++(-\d-0.5*\L,0)
+            to[rmeter,t=A] ++(-\d-0.5*\L,0) coordinate(t1)
+            to[short] ++(0,-1.5\d) coordinate(t2)
+            to[short] ++(\d,0)
+            to[short] (C.north west);
+        \draw ($(t1)!0.5!(t2)$) to[rmeter,t=V] ++(2\d+\L,0);
+        \draw[<->,shorten <=1pt,shorten >=1pt]
+            ([yshift=1cm]C.north west) -- node[above] {$L$} ++(\L pt,0);
+    \end{tikzpicture}
+\end{minipage}
+\begin{enumerate}[resume=x]
+    \item Dans une troisième expérience, les électrodes sont identiques à celles
+          de la première expérience (même distance $L_1$ et même surface $S_1$),
+          la solution ionique contient le même soluté et on opère à la même
+          température; le voltmètre indique une tension de $\qty{1,0}{\volt}$ et
+          l'ampèremètre une intensité de \qty{15}{\mA}. Quelles sont les
+          grandeurs physiques qui ont changé dans cette expérience~?
+
+          Décrire brièvement l'expérience à réaliser pour vérifier les résultats
+          précédents.
+\end{enumerate}

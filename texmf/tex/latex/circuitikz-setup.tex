@@ -1,0 +1,35 @@
+
+\ctikzset{%
+    % voltage/european label distance=0.5
+    % Colors
+    amplifiers/fill=iceberg,
+    capacitors/fill=palesilver,
+    resistors/fill=meatbrown,
+    %sources/fill=turquoise,
+    %bipoles/esource/voltage/distance from node/.initial=0.1,
+    %bipoles/capacitor/voltage/distance from node/.initial=0.0,
+    voltage/distance from node/.initial=0.2,
+    voltage shift=1.0,
+    bipoles/cuteswitch/thickness=0.4,
+    bipoles/cuteswitch/shape=circ,
+    bipoles/cuteswitch/height=0.5,
+    %bipoles/cuteswitch/width=0.4,
+    %misc/fill=xanadu,
+    % From CircuiTikZ
+}
+\tikzset{
+    longL/.style={%
+        cute inductor,inductors/scale=1.2,
+        inductors/width=1.6,inductors/coils=11
+    }
+}
+
+% From the manual
+\NewDocumentCommand{\fixedvlen}{O{0.5cm} m m O{}}{% [semilength]{node}{label}[extra options]
+    % get the center of the standard arrow
+    \coordinate (#2-Vcenter) at ($(#2-Vfrom)!0.5!(#2-Vto)$);
+    % draw an arrow of a fixed size around that center and on the same line
+    \draw[-Triangle, #4] ($(#2-Vcenter)!#1!(#2-Vfrom)$) -- ($(#2-Vcenter)!#1!(#2-Vto)$);
+    % position the label as in the normal voltages
+    \node[anchor=\ctikzgetanchor{#2}{Vlab}, #4] at (#2-Vlab) {#3};
+}

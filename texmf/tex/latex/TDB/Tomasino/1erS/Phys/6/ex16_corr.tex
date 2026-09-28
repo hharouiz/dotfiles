@@ -1,0 +1,92 @@
+\begin{enumerate}
+    \item Forces exercées sur la caisse (absence de frottement)~: \par
+          \begin{minipage}{0.65\linewidth}
+              \begin{itemize}
+                  \item Poids $\vec{P}$~: vertical, vers le bas.
+                  \item Réaction du sol $\vec{R}$~: verticale, vers le haut.
+                  \item Force de traction $\vec{F}$~: dirigée suivant le câble,
+                        appliquée au point d'attache.
+              \end{itemize}
+          \end{minipage}
+          \hfill
+          \begin{minipage}{0.34\linewidth}
+              \begin{figure}[H]
+                  \centering
+                  \begin{tikzpicture}
+                      \def\a{60}
+                      \def\P{1.6}
+                      \def\F{1.5}
+                      \def\RN{1.6}
+                      \Sol{5cm}{5mm}{sol}
+                      \node[solide={1cm/1cm},anchor=south] (S) at (sol.north) {};
+                      \node[circle,inner sep=1pt,fill,
+                            label={[right=-0.8mm]:{$G$}}] at (S.center) {};
+                      \draw[thick] (S.east) -- ++(\a:2) coordinate(tmp);
+                      \draw[densely dashed] (S.east) -- (S.east -| tmp);
+                      \draw[] ([shift=(0:0.5)]S.east) to[bend right]
+                          node[anchor=180+\a/2] {$\alpha$} ([shift=(\a:0.5)]S.east);
+                      \draw[->,thick,blue] ([xshift=-0.4pt]S.center) -- ++(0,-\P)
+                          node[anchor=south west,inner ysep=0pt] {$\vec{P}$};
+                      \draw[->,thick,red] ([xshift=0.4pt]S.south) -- ++(0,\RN)
+                          node[anchor=north west,inner ysep=0pt] {$\vec{R}$};
+                      \draw[->,thick,Green] (S.east) -- ++(\a:\F)
+                          node[right] {$\vec{F}$};
+                  \end{tikzpicture}
+              \end{figure}
+          \end{minipage}
+    \item $W_{AB}(\vec{F})=\vec{F}\cdot\vv{AB}=F\times AB\times\cos\alpha=
+          10\times5,0\times\cos(\ang{60})=\qty{25}{\joule}$
+
+          $W_{AB}(\vec{P})=W_{AB}(\vec{R})=\qty{0}{\joule}$
+    \item 
+          \begin{itemize}
+          \item Forces exercées sur la caisse (avec frottement)~: \par
+                \begin{minipage}{0.65\linewidth}
+                    \begin{itemize}
+                        \item Poids~: $\vec{P}$.
+                        \item Réaction du sol~: $\vec{R}_{N}$ + frottement $\vec{f}$.
+                        \item Force de traction~: $\vec{F}$.
+                    \end{itemize}
+                \end{minipage}
+                \hfill
+                \begin{minipage}{0.34\linewidth}
+                    \begin{figure}[H]
+                        \centering
+                        \begin{tikzpicture}
+                            \def\a{60}
+                            \def\P{1.6}
+                            \def\F{1.5}
+                            \def\RN{1.6}
+                            \def\f{1.5}
+                            \Sol{5cm}{5mm}{sol}
+                            \node[solide={1cm/1cm},anchor=south] (S) at (sol.north) {};
+                            \node[circle,inner sep=1pt,fill,
+                                  label={[right=-0.8mm]:{$G$}}] at (S.center) {};
+                            \draw[thick] (S.east) -- ++(\a:2) coordinate(tmp);
+                            \draw[densely dashed] (S.east) -- (S.east -| tmp);
+                            \draw[] ([shift=(0:0.5)]S.east) to[bend right]
+                                node[anchor=180+\a/2] {$\alpha$} ([shift=(\a:0.5)]S.east);
+                            \draw[->,thick,blue] ([xshift=-0.4pt]S.center) -- ++(0,-\P)
+                                node[anchor=south west,inner ysep=0pt] {$\vec{P}$};
+                            \draw[->,thick,red] ([xshift=0.4pt]S.south) -- ++(0,\RN)
+                                node[anchor=north west,inner ysep=0pt] {$\vec{R}_{N}$};
+                            \draw[->,thick,Green] (S.east) -- ++(\a:\F)
+                                node[right] {$\vec{F}$};
+                            \draw[->,very thick,orange] (S.south) -- ++(180:\f)
+                                node[above] {$\vec{f}$};
+                        \end{tikzpicture}
+                    \end{figure}
+                \end{minipage}
+          \item $W_{AB}(\vec{F})=\qty{25}{\joule}$
+                
+                $W_{AB}(\vec{f})=\vec{f}\cdot\vv{AB}=-f\times AB=
+                -10\times5,0=-\qty{4}{\joule}$
+
+                $W_{AB}(\vec{P})=W_{AB}(\vec{R}_{N})=\qty{0}{\joule}$
+          \end{itemize}
+\end{enumerate}
+
+
+
+
+

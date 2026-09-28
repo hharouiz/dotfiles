@@ -1,0 +1,43 @@
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1) \\ 2) \\ 5) \\ 6)
+    \tcbitem
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.95\linewidth]{solenoid_corr}
+        \end{figure}
+    \tcbitem (0,5pt) \\ (0,5pt) \\ (0,5pt) \\ (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 3)
+    \tcbitem
+            $B=\mu_{0}\cdot\frac{N}{L}\cdot I$
+
+            A.N. \;
+            $B=4\pi \times 10^{-7}\times\frac{1000}{\num{80e-2}}
+            \times\num{400e-3}$
+            $\quad\Rightarrow\; B=\qty{6.3e-4}{\tesla}=\qty{0.63}{\mT}$
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 4)
+    \tcbitem
+            $B'=\mu_{0}\cdot\frac{N}{L}\cdot I'$ \quad
+            $\Rightarrow\; I'=\frac{L\cdot B'}{\mu_{0}\cdot N}$
+
+            A.N. \;
+            $I'=\frac{\num{80e-2}\times\num{3e-3}}
+            {4\pi\times 10^{-7}\times 1000}$
+            $\quad\Rightarrow\; I'\simeq\qty{1.9}{\ampere}$
+    \tcbitem (1pt)
+\end{tcbitemize}
+

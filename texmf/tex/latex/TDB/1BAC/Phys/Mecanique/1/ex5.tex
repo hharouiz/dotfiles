@@ -1,0 +1,41 @@
+Le tambour d'une machine à laver est entraîné par un moteur électrique. La
+transmission du mouvement est assurée par une courroie tournant sans
+glissement. La fréquence de rotation du moteur est
+$f_{A}=\qty{3000}{tr\per\min}$.
+
+La poulie du moteur a un diamètre $D_{A}=\qty{10}{\cm}$ et celui de la poulie du
+tambour est $D_{B}=\qty{40}{\cm}$.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[>=Stealth]
+        \newdimen\ri \ri=4mm
+        \newdimen\rii \rii=8mm
+        \newdimen\R \R=15mm
+        \node[circle,draw,fill=lightgray,inner sep=0pt,
+            minimum size=2\R] (S) {};
+        \foreach \x/\r/\l [count=\i] in {-6/\ri/A,0/\rii/B}
+        \node[circle,draw,fill=gray,inner sep=0pt,minimum size=2\r,
+            label=below:poulie~\l] (P\i) at (\x,0) {};
+        \draw[thick] (P2.95) arc (95:-95:\rii) --
+            (P1.-95) arc (-95:-270+5:\ri) --
+            node[above,sloped,pos=0.4] {courroie} (P2.north);
+        \foreach \i in {1,2}
+            \node[circle,fill,inner sep=1pt] at (P\i.center) {};
+        \node[above=1mm] at (P1.north) {moteur};
+        \node[above=1mm] at (S.north) {tambour};
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:scie}
+\end{figure}
+\begin{enumerate}
+    \item Calculer la fréquence de rotation du moteur en tours par seconde.
+    \item Déterminer la vitesse angulaire $\omega_{A}$ du moteur en $\unit{\w}$.
+    \item Calculer la vitesse linéaire d'un point de la courroie en
+          $\unit{\v}$.
+    \item Déterminer la vitesse angulaire $\omega_{B}$ du tambour.
+    \item En déduire la relation littérale entre les fréquences de rotation
+          $f_{A}$ et $f_{B}$ du moteur et du tambour. Calculer $f_{B}$ en
+          $\unit{\tr\per\min}$.
+    \item Calculer la vitesse d'un point de la circonférence du tambour de
+          diamètre $D_{T}=\qty{100}{\cm}$.
+\end{enumerate}

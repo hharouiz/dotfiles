@@ -1,0 +1,48 @@
+Un générateur de force électromotrice $E=\qty{6}{\V}$ et de résistance interne
+$r=\qty{1.2}{\ohm}$ alimente un électrolyseur de force contre-électromotrice
+$E^{\prime}=\qty{2}{\V}$ et de résistance interne $r^{\prime}=\qty{8.8}{\ohm}$.
+
+\begin{minipage}{0.56\linewidth}
+    \begin{enumerate}[series=x]
+        \item Montrer que l'intensité du courant qui circule dans le circuit
+              est~: $I=\qty{0.4}{\A}$.~\textbf{(1pt)}
+        \item
+              \begin{enumerate}
+                  \item Calculer la puissance totale du
+                        générateur.~\textbf{(0,5pt)}
+                  \item Calculer la puissance électrique fournie par le
+                        générateur.~\textbf{(0,5pt)}
+                  \item En déduire le rendement du générateur.~\textbf{(0,5pt)}
+              \end{enumerate}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\linewidth}
+    \flushright
+    \begin{circuitikz}
+        \draw (0,0) node[below=2pt] {$N$}
+                    to[battery2,invert,l={$(E,r)$},*-*] ++(0,2.5)
+                    node[above=2pt] {$P$}
+                    to[short,i=$I$] ++(4,0)
+                    node[above=2pt] {$A$}
+                    to[dcvsource,name=E,l={$(E^{\prime},r^{\prime})$},*-*]
+                    ++(0,-2.5)
+                    node[below=2pt] {$B$}
+                    to[short] (0,0);
+        \draw[thick] (E.left) -- ++(0,-3.2mm) (E.right) -- ++(0,3.2mm);
+    \end{circuitikz}
+\end{minipage}
+\begin{enumerate}[resume=x]
+    \item 
+          \begin{enumerate}
+              \item Calculer la puissance électrique reçue par
+                    l'électrolyseur.~\textbf{(0,5pt)}
+              \item Calculer la puissance utile (chimique) de
+                    l'électrolyseur.~\textbf{(0,5pt)}
+              \item En déduire le rendement de l'électrolyseur.~\textbf{(0,5pt)}
+          \end{enumerate}
+    \item Calculer la puissance dissipée par effet Joule dans le
+          circuit.~\textbf{(1pt)}
+    \item Calculer le rendement global du circuit.~\textbf{(1pt)}
+\end{enumerate}
+

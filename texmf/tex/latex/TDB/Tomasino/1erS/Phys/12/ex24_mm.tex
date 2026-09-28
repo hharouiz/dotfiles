@@ -1,0 +1,46 @@
+\begin{minipage}{0.62\linewidth}
+    Un générateur de force électromotrice $E=\qty{12}{\V}$ et de résistance interne
+    $r=\qty{2}{\ohm}$ est utilisé pour alimenter le <<pont de résistances>>
+    représenté sur le schéma ci-contre.
+    \begin{enumerate}
+        \item Déterminer la résistance équivalente à l'ensemble
+              $R_{\text{éq}}$.~\textbf{(1pt)}
+        \item Écrire la loi d'Ohm pour le générateur.~\textbf{(1pt)}
+        \item Calculer l'intensité $I$ du courant débité par le
+              générateur.~\textbf{(1pt)}
+        \item Calculer la puissance électrique $P_{e}$ transférée par le
+              générateur au circuit résistif.~\textbf{(1pt)}
+    \end{enumerate}
+
+    \begin{donnees}
+        $R_{1}=\qty{20}{\ohm}$~; $R_{2}=\qty{5.0}{\ohm}$~;
+        $R_{3}=\qty{15}{\ohm}$~; $R_{4}=60 \Omega$.
+    \end{donnees}
+\end{minipage}
+\hfill
+\begin{minipage}{0.36\linewidth}
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \newdimen\d \d=4cm
+        \draw (0,0) node[left] {$N$} coordinate (N)
+            to[vsource,v_=$(E{,}r)$,*-*] ++(0,\d) node[left] {$P$} coordinate (P)
+            to[short,i=$I$] ++(1\d,0)
+            to[short,-*] ++(0,-0.1\d) node[above right] {$A$} coordinate(A)
+            to[short] ++(-0.2\d,0)
+            to[R,l_=$R_{1}$,-*] ++(0,-0.4\d)
+            to[R,l_=$R_{3}$] ++(0,-0.4\d)
+            to[short,-*] ++(0.2\d,0) node[below right] {$B$} coordinate(B)
+            to[short] ++(0,-0.1\d)
+            to[short] (N);
+        \draw (A)
+            to[short] ++(0.2\d,0)
+            to[R,l=$R_{2}$,-*] ++(0,-0.4\d)
+            to[R,l=$R_{4}$] ++(0,-0.4\d)
+            to[short,-*] (B);
+    \end{circuitikz}
+\end{figure}
+\end{minipage}
+
+
+

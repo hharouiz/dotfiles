@@ -1,0 +1,29 @@
+\begin{enumerate}
+    \item $W_{AB}(\vec{P})=mg(z_{A}-z_{B})=-mgh=
+          -mg\times AB\times\sin\alpha\approx
+          \qty{-17}{\J}$.
+    \item $W_{AB}(\vec{R})=\qty{0}{\J}$.
+    \item $W_{AB}(\vec{f})=-f\times AB=\qty{-10}{\J}$.
+\end{enumerate}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \def\a{20}
+        \def\F{1.2}
+        \def\AC{6.3}
+        \PlanIncline{A}{B}{C}{\AC}{\a}{$\alpha$}
+        \foreach \x/\p [count=\i] in {0.9/A,0.3/B}{%
+            \node[solide={1cm/7mm},rotate=\a,anchor=south,
+                outer ysep=1.2pt,label=$S$] (S\i) at ($(A)!\x!(B)$) {};
+            \coordinate (G\i) at (S\i.center);
+            \node[circle,fill,inner sep=1.0pt] at (G\i) {};
+            \node[circle,fill,inner sep=1.0pt,label=left:$\p$] at (G\i) {};
+        }
+        \draw (G1) -- (G2) -- (G2 -| G1) coordinate(H) --
+            node[right] {$h$} (G1);
+        \draw[thick] ([xshift=-5pt]H) |- +(5pt,5pt);
+        \path[draw,fill=DarkTurquoise]
+            (G2) -- ($(G2)!0.2!(H)$) to[bend right]
+            node[anchor=180+\a/2] {$\alpha$} ($(G2)!0.2!(G1)$) -- cycle;
+    \end{tikzpicture}
+\end{figure}

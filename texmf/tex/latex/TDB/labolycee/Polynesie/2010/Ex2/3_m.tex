@@ -1,0 +1,37 @@
+% Oscillations dans un circuit (R, L, C).
+Une autre solution pour déterminer la valeur de la capacité du condensateur est
+d'établir des oscillations électriques dans un circuit ($R, L, C$). Le
+condensateur, préalablement chargé sous une tension $E=\qty{5.0}{\V}$, est
+relié à une bobine d'inductance $L=\qty{1.0}{\H}$ et de résistance
+$r=\qty{20}{\ohm}$, selon le schéma suivant~:
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \ctikzset{bipoles/cuteswitch/height=0.4}
+        \newdimen\d \d=4cm
+        \draw (0,0)
+            to[C,l_=$C$,v^>=$u$] ++(0,\d)
+            to[cute open switch,l=$\mathrm{K}$] ++(0.8\d,0)
+            to[L,l={($L=\qty{1}{\H}$, $r=\qty{20}{\ohm}$)}] ++(0,-\d)
+            to[short] (0,0);
+   \end{circuitikz}
+\end{figure}
+
+L'acquisition de la tension aux bornes du condensateur permet d’obtenir la
+courbe suivante~:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.6\textwidth]{polynesie_2010_ex2_8}
+\end{figure}
+
+\begin{enumerate}
+    \item Qualifier le régime d'oscillations obtenu.
+    \item Déterminer la valeur d'une grandeur temporelle liée aux
+          oscillations. Donner son nom.
+    \item Donner l'expression de la période propre $T_{0}$ de l'oscillateur en
+          fonction de $L$ et de $C$.
+    \item En assimilant la grandeur temporelle précédente à cette valeur, en
+          déduire la capacité du condensateur.
+\end{enumerate}

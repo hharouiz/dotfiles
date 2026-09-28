@@ -1,0 +1,49 @@
+La figure ci-dessous représente une scie circulaire de rayon $R$ qui peut
+tourner autour de son axe. Une courroie liée la poulie ($P_{1}$) d'un moteur
+électrique et la poulie ($P_{2}$) de la scie.
+
+La courroie ne glisse pas sur les deux poulies. L'arbre du moteur effectue
+$\qty{1800}{tr\per\min}$.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[>=Stealth]
+        \newdimen\ri \ri=6mm
+        \newdimen\rii \rii=10mm
+        \newdimen\R \R=20mm
+        \draw[decoration={zigzag,amplitude=1mm,segment length=4.163mm},
+            decorate,fill=gray] (0,0) circle (1.06\R);
+        \node[circle,draw,fill=lightgray,inner sep=0pt,
+            minimum size=2\R] (S) {};
+        \foreach \x/\r [count=\i] in {-6/\ri,0/\rii}
+        \node[circle,draw,fill=gray,inner sep=0pt,minimum size=2\r,
+            label=below:$(P_{\i})$] (P\i) at (\x,0) {};
+        \draw[thick] (P2.north) arc (90:-90:\rii) --
+            (P1.south) arc (-90:-270:\ri) --
+            node[above,sloped,pos=0.4] {courroie} (P2.north);
+        \foreach \i in {1,2}{
+            \node[circle,fill,inner sep=0.6pt] at (P\i.center) {};
+            \draw[<->,shorten <=1.2pt,shorten >=1pt]
+                (P\i.center) -- (P\i.-45)
+                node[pos=0.5,above right=-1mm,font=\scriptsize] {$r_{\i}$};
+        }
+        \draw[<->,shorten <=1.2pt,shorten >=1pt]
+            (P2.center) -- (S.45)
+            node[pos=0.6,below right=-1mm,font=\small] {$R$};
+        \node[above=3mm] at (P1.north) {moteur};
+        \node[above=3mm] at (S.north) {scie};
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:scie}
+\end{figure}
+
+\begin{enumerate}
+    \item Calculer la vitesse angulaire de l'arbre du moteur. 
+    \item Déterminer la vitesse linéaire d'un point de la courroie. 
+    \item En déduire la fréquence de rotation de la scie. 
+    \item Trouver la vitesse d'une des dents de la scie. 
+\end{enumerate}
+
+\textbf{Données~:} Rayons des poulies ($P_{1}$) et ($P_{2}$) sont~:
+$r_{1}=\qty{10}{\cm}$, $r_{2}=\qty{20}{\cm}$, $R=\qty{40}{\cm}$.
+

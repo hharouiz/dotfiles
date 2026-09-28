@@ -1,0 +1,15 @@
+% Identifier les dipôles sur un schéma
+Quels sont les dipôles du circuit schématisé ci-dessous
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}[thick]
+        \ctikzset{bipoles/cuteswitch/thickness=0.6}
+        \newdimen\d \d=3cm
+        \draw (0,0)
+            to[cute closed switch] ++(0,\d)
+            to[battery1] ++(1.5\d,0)
+            to[short] ++(0,-\d)
+            to[lamp] (0,0);
+    \end{circuitikz}
+\end{figure}
+

@@ -1,0 +1,65 @@
+\begin{donnees}
+    \begin{itemize}
+        \item $m=\qty{100}{\gram}$~; les frottements sont négligeables.
+    \end{itemize}
+\end{donnees}
+
+On écarte $\mathrm{(S)}$ (Fig.~\ref{fig:solide_ressort}) de sa position
+d'équilibre d'une distance $X_{m}$ et on l'abandonne sans vitesse initiale à
+l'instant $t_{0}=0$. Le solide $\mathrm{(S)}$ effectue 10 oscillations pendant
+la durée ${\Delta t=\qty{3,14}{\second}}$.
+
+\begin{minipage}[t][][t]{0.65\linewidth}
+    \begin{enumerate}
+        \item Déterminer la valeur de la période propre $T_{0}$.
+        \item Déduire la valeur de $K$.
+        \item On choisit l'état où le ressort n'est pas déformé comme référence
+              de l'énergie potentielle élastique $E_{\mathrm{pe}}$ et le plan
+              horizontal contenant $G$ comme état de référence de l'énergie
+              potentielle de pesanteur $E_{\mathrm{pp}}$.
+
+              La courbe de la
+              Fig.~\ref{fig:2bac_svt_national_2018_normale_phys_ex3_4} représente le
+              diagramme d'énergie potentielle élastique $E_{\mathrm{pe}}=f(x)$.
+              
+              En exploitant le diagramme, déterminer les valeurs de~:
+              \begin{enumerate}
+                  \item L'amplitude $X_{m}$.
+                  \item L'énergie mécanique $E_{m}$ du système oscillant.
+                  \item La vitesse maximale du mouvement de ($S$).
+              \end{enumerate}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}[t][][b]{0.33\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \def\K{40}
+            \begin{axis}[
+                    xmin=-0.049,xmax=0.049,
+                    ymin=0,ymax=39,
+                    width=7cm,height=7cm,
+                    xlabel=$x~(\unit{\meter})$,
+                    ylabel=$E_{pe}~(\unit{\mJ})$,
+                    scaled ticks=false,
+                    xtick distance=0.01, ytick distance=4,
+                    xticklabels={,,,,,,0,,{0,02}}, yticklabels={,,,8},
+                    minor tick num=0,
+                ]
+                \addplot[domain=-0.04:0.04,samples=200,
+                    very thick,blue] {0.5*\K*x^2*1e3}
+                    coordinate[pos=0](A) coordinate[pos=1](B);
+            \end{axis}
+            \foreach \n/\a in {A/200,B/-20}{%
+            \draw[very thick] ([yshift=-5mm]\n) -- ([yshift=5mm]\n);
+            \foreach \f in {0.02,0.14,...,1}
+                \draw[thick]
+                    ($([yshift=-5mm]\n)!\f!([yshift=5mm]\n)$) -- ++(\a:.2);
+            }
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:2bac_svt_national_2018_normale_phys_ex3_4}
+    \end{figure}
+\end{minipage}
+

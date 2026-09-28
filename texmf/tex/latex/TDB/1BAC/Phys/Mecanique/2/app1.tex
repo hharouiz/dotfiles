@@ -1,0 +1,48 @@
+    \begin{minipage}{0.58\linewidth}
+        Un enfant tire un chariot de $\qty{2.0}{\kg}$ sur une distance de
+        $\qty{20}{\m}$, le sol faisant un angle $\beta$ de $\qty{10}{\degree}$
+        par rapport à l'horizontale. La tension du fil à une direction faisant
+        un angle $\alpha$ de $\qty{20}{\degree}$ par rapport au sol. Son
+        intensité est de $\qty{9.2}{\N}$.
+
+        On néglige les frottements.
+
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.40\linewidth}
+        \begin{figure}[H]
+            \flushright
+            \begin{tikzpicture}
+                \def\a{20}
+                \def\b{10}
+                \def\F{1.2}
+                \def\AC{6.3}
+                \pgfmathparse{\AC*tan(\b)}\let\BC=\pgfmathresult
+                \coordinate (A) at (0,0);
+                \path[fill=black!10,draw,thick]
+                    (A) -- ++(\AC,0) coordinate (C) -- ++(0,\BC)
+                    coordinate (B) -- cycle;
+                \node[solide={1cm/7mm},rotate=\b,anchor=south,
+                    outer ysep=1.2pt] (S) at ($(A)!0.5!(B)$) {};
+                \node[circle,fill,inner sep=0.8pt] (F) at (S.east) {};
+                \draw[dashed] (F.center) -- ++(\b:2.8);
+                \draw[thick,postaction={decorate},
+                    decoration={markings,mark=at position 0.8 with
+                    {\arrow{stealth}}}]
+                    (F.center) -- ++(\b+\a:3);
+                \draw[->,shorten >=0.4pt]
+                    ([xshift=2cm]A) arc (0:\b:2cm)
+                    node[pos=0.5,right,font=\footnotesize] {$\beta$};
+                \draw[->,shorten >=0.4pt]
+                    ([shift=(\b:1)]F.center) arc (\b:\b+\a:1)
+                    node[pos=0.7,right,font=\footnotesize] {$\alpha$};
+            \end{tikzpicture}
+        \end{figure}
+        
+    \end{minipage}
+
+\begin{enumerate}
+    \item Déterminer les forces exercées sur le chariot.
+    \item Calculer les travaux des forces extérieures exercées sur ce chariot.
+\end{enumerate}
+

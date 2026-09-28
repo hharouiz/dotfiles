@@ -1,0 +1,83 @@
+\begin{enumerate}
+   \item La courbe $\theta=f(t)$ est une fonction \textbf{affine}. Cela signifie
+         que la vitesse angulaire $\omega$ est \textbf{constante}. Par
+         conséquent, le mouvement de rotation du disque est \textbf{uniforme}.
+         \hfill\textbf{(1pt)}
+    \item
+          \begin{enumerate}
+              \item $\omega=\frac{\Delta\theta}{\Delta t}=
+                    \frac{\theta_{B}-\theta_{A}}{t_{B}-t_{A}}$ \\[2mm]
+                    $\omega=\frac{63,5-25,4}{2-0,5}=
+                     \qty{25.4}{\radian\per\second}$
+                    \hfill\textbf{(0,5pt)}
+
+                    À $t=0$, l'ordonnée à l'origine est~:
+                    $\theta_{0}=\qty{12,7}{\radian}$.
+                    \hfill\textbf{(0,5pt)}
+
+                    \begin{figure}[H]
+                    \centering
+                    \begin{tikzpicture}
+                        \def\w{25.4}
+                        \def\tho{12.7}
+                        \begin{axis}[
+                                cycle list name=my color list,
+                                width=8cm,height=7cm,
+                                xlabel=$t~(\unit{\second})$,
+                                ylabel=$\theta~(\unit{\radian})$,
+                                xmin=0,xmax=2.99,
+                                ymin=0,ymax=70,
+                                xtick distance=0.5,
+                                ytick distance=12.7,
+                                %xtick={},
+                                %xticklabels={},
+                                %ytick={},
+                                %yticklabels={},
+                                variable=\t,
+                            ]
+                            \addplot {\w*t+\tho}
+                                coordinate (O) at (0.0,0.0)
+                                coordinate (A) at (0.5,25.4)
+                                coordinate (B) at (2.0,63.5);
+                        \end{axis}
+                        \foreach \p in {A,B}{%
+                            \node[circle,fill,draw=white,
+                                  inner sep=1.6pt,label=$\p$] at (\p) {};
+                            \draw[densely dashed,thick] (\p) -- (\p |- O);
+                            \draw[densely dashed,thick] (\p) -- (\p -| O);
+                        }
+                    \end{tikzpicture}
+                    \end{figure}
+                    
+              \item $\theta(t)=\omega\cdot t+\theta_{0}$ \\
+                    $\Rrightarrow\theta(t)=25,4\cdot t+12,7
+                    \quad (\unit{\radian})$
+                    \hfill\textbf{(0,5pt)}
+
+              \item $f=\frac{\omega}{2\pi}=\frac{25,4}{2\pi}\simeq
+                     \qty{4}{\hertz}$
+                    \hfill\textbf{(0,75pt)}
+
+                    $f=4 \times 60=\qty{240}{\tr\per\min}$
+                    \hfill\textbf{(0,25pt)}
+              \item $T=\frac{1}{f}=\frac{1}{4}=\qty{0.25}{\second}$
+                    \hfill\textbf{(0,5pt)}
+          \end{enumerate}
+    \item $s(t)=R\cdot\theta(t)=\frac{d}{2}\times\theta(t)$ \\
+          $\Rrightarrow s(t)=2,54\cdot t+1,27$
+          \hfill\textbf{(1pt)}
+
+    \item
+          \begin{enumerate}
+              \item $\theta(\qty{0,25}{\second})=
+                     25,4\times 0,25+12,7\simeq \qty{19}{\radian}$
+                    \hfill\textbf{(0,5pt)}
+
+              \item $n=\frac{\theta}{2\pi}=\frac{19}{2\pi}\simeq \qty{3}{\tr}$
+                    \hfill\textbf{(1pt)}
+
+              \item $v=r\cdot\omega \quad\Rightarrow\ r=\frac{v}{\omega}$ \\
+                    $r=\frac{1,27}{25,4}=\qty{0.05}{\meter}=\qty{5}{\cm}$
+                    \hfill\textbf{(0,5pt)}
+          \end{enumerate}
+\end{enumerate}

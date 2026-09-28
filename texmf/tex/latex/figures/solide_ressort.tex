@@ -1,0 +1,34 @@
+\begin{tikzpicture}
+    \node[inner sep=0pt,minimum width=4.5cm,minimum height=3mm,
+        top color=black!70] (sol) {};
+    % Axe xx'
+    \coordinate (O) at ($(sol.south west)!.8!(sol.south east)$);
+    \draw[-Latex] (sol.south west)
+        node[below right,inner xsep=0pt] {$x^{\prime}$} -- (O)
+        node[below=0.4mm] {$O$} -- (sol.south east) -- ++(0.7,0)
+        node[below left,inner xsep=0pt,inner ysep=2mm] {$x$};
+    % Fixed
+    \node[inner sep=0pt,draw,minimum width=3mm,minimum height=7mm,
+        anchor=south,pattern=north west lines,
+        thick] (fix) at ([xshift=3mm,yshift=0.4pt]sol.north west) {};
+    % Solide (S)
+    \node[inner sep=0pt,draw,minimum width=7mm,minimum height=7mm,
+        anchor=south,rounded corners=2pt,thick,label=$\mathrm{(S)}$,
+        fill=lightgray] (S) at
+        ([yshift=0.4pt]O |- sol.north) {};
+        %([xshift=-6mm,yshift=0.4pt]sol.north east) {};
+    \node[inner sep=1pt,circle,fill,
+        label={[right=-0.8mm,font=\scriptsize]:$G$}] (G) at (S.center) {};
+    \draw[{Rectangle[length=1pt,width=4pt]}-{Stealth[length=5pt]},
+        thick] (O) -- ++(0.8,0)
+        node[below left,inner xsep=0pt] {$\ex$};
+    % Ressort
+    \draw[decoration={
+          coil,
+          aspect=0.3,
+          segment length=2.0mm,
+          amplitude=2.4mm,
+          pre length=1mm,
+          post length=1mm},
+          decorate,thick,black] (fix.east) -- (S.west);
+\end{tikzpicture}

@@ -1,0 +1,54 @@
+\begin{enumerate}
+    \item On dispose d'une solution $(S)$ de chlorure de potassium \ce{KCl} de
+          concentration $c_1$ inconnue. Pour déterminer cette concentration
+          plusieurs solutions de chlorure de potassium, de concentrations $c$,
+          ont été réalisées. La mesure de la conductivité de ces solutions
+          fournit les résultats suivants:
+          % \begin{table}[H]
+          %     \flushright
+          %     \renewcommand{\arraystretch}{1.5}
+          %     \begin{tabularx}{0.94\textwidth}{|p{3cm}|C|C|C|C|C|C|}
+          %         \hline $c$~(\unit{\mmol\per\liter}) & $1$ & $2$ & $4$ &
+          %                $6$ & $8$ & $10$ \\
+          %         \hline $\sigma~(\times\qty{1e-4}{\siemens\per\meter})$ &
+          %                149,8 & 299,6 & 599,2 & 898,7 & 1198,3 & 1498 \\
+          %         \hline
+          %     \end{tabularx}
+          % \end{table}
+
+          \begin{figure}[H]
+              \centering
+              \begin{tikzpicture}
+                  \begin{axis}[
+                        xmin=0,xmax=11.9,
+                        ymin=0,ymax=1700,
+                        width=9cm,height=7cm,
+                        xlabel=$c~(\unit{\mmol\per\liter})$,
+                        ylabel=$\sigma~(\times\qty{1e-4}{\siemens\per\meter})$,
+                      ]
+                      \addplot[
+                          only marks,mark=+,mark options={very thick,scale=1.6},
+                      ] table {data2.dat};
+                      \addplot[domain=0:11,thick] {149.7937*x};
+                  \end{axis}
+              \end{tikzpicture}
+          \end{figure}
+          \begin{enumerate}
+              \item Sachant que la conductivité de $(S)$ vaut~:
+                    $\sigma_1=\qty{374,5e-4}{\siemens\per\meter}$, calculer
+                    $c_1$ en \unit{\M}.
+              \item Déduire des résultats expérimentaux la valeur de la
+                    conductivité molaire $\lambda_{\ce{Cl-}}$ des ions chlorure.
+          \end{enumerate}
+    \item On ajoute à la solution $(S)$, sans variation de volume,
+          $c_2=\qty{3e-3}{\M}$ de chlorure de sodium. Calculer la conductivité
+          $\sigma^{\prime}$ de cette solution.
+\end{enumerate}
+% \begin{donnees}
+%     Conductivités molaires des ions \ce{K$^+$_{(aq)}} et
+%     \ce{Na$^+$_{(aq)}}~:
+    
+%     $\lambda_{\ce{K+}}=\qty{73.5e-4}{\lambda}$ et 
+%     $\lambda_{\ce{Na+}}=\qty{50.1e-4}{\lambda}$
+% \end{donnees}
+

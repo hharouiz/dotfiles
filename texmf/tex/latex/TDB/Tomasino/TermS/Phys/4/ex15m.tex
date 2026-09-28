@@ -1,0 +1,42 @@
+% Hémi-cylindre
+\begin{minipage}{0.72\linewidth}
+    Un mince faisceau de lumière monochromatique bleue vient frapper un
+    hémi-cylindre de Plexiglas comme le montre la figure ci-contre.
+    \begin{enumerate}
+        \item Calculer la valeur de l'indice du Plexiglas pour cette radiation
+              monochromatique sachant que les angles d'incidence et de
+              réfraction valent~:
+              \[
+                  i=\ang{65.0}
+                  \qquad\text{et}\qquad
+                  r=\ang{37.2}.
+              \]
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.24\linewidth}
+    \flushright
+    \begin{tikzpicture}
+        \def\r{2}
+        \def\i{65}
+        \draw[fill=non-photoblue,thick] (-\r,0) arc (180:360:\r) -- cycle;
+        \draw[dashed] (0,-1.1*\r) -- (0,0.8*\r);
+        \draw[blue,very thick,postaction={decorate},
+              decoration={markings,mark=at position 0.5 with
+              {\arrowreversed{Straight Barb}}}] (0,0) -- ++(90+\i:\r);
+        \draw (90:0.4*\r) arc (90:90+\i:0.4*\r) node[above,pos=0.5] {$i$};
+        \node[above left] at (\r,0) {air};
+    \end{tikzpicture}
+\end{minipage}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Calculer la valeur de l'angle de réfraction pour une radiation
+          lumineuse jaune qui vient frapper l'hémi-cylindre dans les mêmes
+          conditions que la radiation bleue ($i=\ang{65.0}$) sachant que pour
+          la lumière jaune, l'indice du Plexiglas est égal à $1,48$.
+    \item Tracer la marche des rayons bleu et jaune dans l'hémi-cylindre et
+          conclure.
+    \item L'hémi-cylindre permet-il de réaliser la dispersion d'une lumière
+          blanche~?
+\end{enumerate}

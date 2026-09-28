@@ -1,0 +1,78 @@
+La cuve à ondes peut être utilisée comme dispositif pour étudier la propagation
+des ondes. Selon les conditions de l'expérience, on peut assister aux phénomènes
+de propagation et de diffraction ce qui permet d'identifier certaines
+caractéristiques des ondes et du milieu de propagation.
+
+À l'aide du vibreur de la cuve à ondes, on crée à $t_{0}=0$ en un point $S$ de
+la surface libre de l'eau une onde progressive sinusoïdale de fréquence
+$\freq=\qty{20}{\Hz}$.
+
+\begin{enumerate}
+    \item L'onde se propage à la surface de l'eau avec une célérité $v$ sans
+          amortissement ni réflexion.
+          \begin{enumerate}
+              \item Définir une onde mécanique progressive sinusoïdale.
+                    \textbf{(1pt)}
+              \item L'onde étudiée est-elle longitudinale ou transversale~?
+                    Justifier.
+                    \textbf{(1pt)}
+          \end{enumerate}
+    \item \mbox{}
+          \begin{minipage}[t][][t]{0.72\linewidth}
+              La figure ci-contre schématise l'aspect de la surface de l'eau à
+              un instant $t$ où les cercles représentent les crêtes.
+              \begin{enumerate}
+                  \item Déterminer la valeur de la longueur d'onde $\lambda$.
+                        \textbf{(1pt)}
+                  \item Déterminer la valeur de la vitesse de propagation de
+                        l'onde à la surface de l'eau.
+                        \textbf{(1pt)}
+                  \item À quel instant $t_{1}$ les points situés à la distance
+                        $d=\qty{4}{\cm}$ de $S$ sont-ils atteints par l'onde.
+                        \textbf{(1pt)}
+              \end{enumerate}
+          \end{minipage}
+          \hfill
+          \begin{minipage}[t][][t]{0.26\linewidth}
+              \begin{figure}[H]
+                  \centering
+                  \begin{tikzpicture}[]
+                      \node[circle,fill,inner sep=1.6pt,label=$S$] (S) {};
+                      \foreach \r [count=\i] in {0.6,1.2,...,2.2}
+                      \node[circle,draw,very thick,inner sep=0pt,
+                            minimum size=2*\r cm] (C\i) {};
+                      \draw[dashed,thick] (C1.east) -- ++(0,-2) coordinate (A);
+                      \draw[dashed,thick] (C3.east) -- ++(0,-2) coordinate (B);
+                      \draw[<->,shorten <=1pt,shorten >=1pt] (A) -- 
+                          node[below] {$\qty{4}{\cm}$} (B);
+                  \end{tikzpicture}
+              \end{figure}
+          \end{minipage}
+
+    \item On considère le point $M$ de la surface de l'eau situé au repos à la
+          distance $d=\qty{4}{\cm}$ de la source $S$. Écrire l'élongation
+          $y_{M}(t)$ du point $M$ en fonction de l'élongation de la source $S$.
+          \textbf{(1pt)}
+  
+    \item On règle la fréquence du vibreur sur la valeur
+          $\freq^{\prime}=\qty{10}{\Hz}$, on obtient à la surface de l'eau une onde
+          de longueur d'onde $\lambda^{\prime}=\qty{3}{\cm}$. Déduire, en
+          justifiant la réponse, une propriété du milieu de propagation.
+          \textbf{(1pt)}
+    \item On excite à nouveau la surface de l'eau avec une réglette mince, on
+          obtient une onde rectiligne progressive périodique de fréquence
+          $\freq=\qty{20}{\Hz}$ qui se propage à la vitesse
+          $v=\qty{0.4}{\m\per\s}$.
+
+          On place un obstacle muni d'une ouverture de largeur
+          $a=\qty{0.5}{\cm}$ sur le trajet des ondes.
+          \begin{enumerate}
+              \item Justifier que l'onde subit la diffraction après la traversée
+                    de l'ouverture.
+                    \textbf{(1pt)}
+              \item Donner les caractéristiques de l'onde après la traversée de
+                    l'ouverture.
+                    \textbf{(1pt)}
+          \end{enumerate}
+\end{enumerate}
+

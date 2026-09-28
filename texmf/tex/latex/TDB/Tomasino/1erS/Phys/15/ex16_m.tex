@@ -1,0 +1,37 @@
+\begin{minipage}[t][][t]{0.60\linewidth}
+    On réalise l'expérience des rails de Laplace décrite dans le cours. Le
+    champs magnétique $\vec{B}$ est dirigé vers le haut. Le tige métallique AB
+    peut glisser sans frottement en restant perpendiculaire aux rails.
+\end{minipage}
+\hfill
+\begin{minipage}[t][][t]{0.38\linewidth}
+    \vspace{-5mm}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[]
+            \draw[] (0,0) coordinate(A) -- ++(-5,0) coordinate(B)
+                to[battery2] ++(0,-2) coordinate(C) -- ++(5,0) coordinate(D);
+            \draw[line width=2pt,shorten <=-2pt,shorten >=-2pt]
+                ($(A)!.2!(B)$) node[above] {$A$} --
+                ($(D)!.2!(C)$) node[below] {$B$};
+            \node[circle,draw,inner sep=2pt,thick,xshift=3cm,
+                label=$\vec{B}$] (O) at
+                ($(B)!.5!(C)$) {};
+            \node[circle,fill,inner sep=0.8pt] at (O.center) {};
+        \end{tikzpicture}
+    \end{figure}
+\end{minipage}
+
+\vspace{-5mm}
+\begin{enumerate}
+    \item Indiquer dans quel sens le courant circule dans la
+          tige.~\textbf{(0,5pt)}
+    \item Indiquer le sens de la force de Laplace (sens du mouvement de la barre
+          sur les rails).~\textbf{(0,5pt)}
+    \item Calculer la valeur de la force de Laplace avec~:~\textbf{(1pt)}
+          \[
+              I=\qty{1.5}{\A}~;~B=\qty{85}{\mT}~;~\ell=\qty{10}{\cm}.
+          \]
+\end{enumerate}
+
+

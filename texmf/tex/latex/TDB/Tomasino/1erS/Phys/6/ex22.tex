@@ -1,0 +1,29 @@
+Un solide $S$ de masse $m=\qty{2.5}{\kg}$ glisse le long d'un plan incliné de
+l'angle $\alpha=\ang{20}$ sur l'horizontale.
+
+Il descend ainsi de $A$ à $B$ tel que $A B=\qty{2.0}{\m}$.
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \def\a{20}
+        \def\F{1.2}
+        \def\AC{6.3}
+        \PlanIncline{A}{B}{C}{\AC}{\a}{$\alpha$}
+        \node[solide={1cm/7mm},rotate=\a,anchor=south,
+            outer ysep=1.2pt,label=$S$] (S) at ($(A)!0.6!(B)$) {};
+        \node[circle,fill,inner sep=1.0pt] at (S.center) {};
+        \foreach \x/\p in {0.9/A,0.3/B}
+            \node[circle,fill,inner sep=1.0pt,label=$\p$] at ($(A)!\x!(B)$) {};
+    \end{tikzpicture}
+\end{figure}
+
+\begin{enumerate}
+    \item Calculer le travail du poids de $S$ au cours de ce déplacement. On
+          prendra~: $g=\qty{10}{\N\per\kg}$.
+    \item Quel est le travail de la réaction du plan incliné si le contact entre
+          $S$ et le plan est sans frottement~?
+    \item Quel est le travail de cette réaction si, maintenant, le contact a
+          lieu avec frottement, la force de frottement ayant une valeur
+          constante $f=\qty{5.0}{\N}$~?
+\end{enumerate}

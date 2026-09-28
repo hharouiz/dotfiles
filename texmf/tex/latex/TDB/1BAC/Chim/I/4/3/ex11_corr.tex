@@ -1,0 +1,102 @@
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1)
+    \tcbitem Le but d'un dosage est de déterminer la concentration inconnue
+        d'une espèce chimique en solution.
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 2)
+    \tcbitem 
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{2026-04-12_142810-}
+        \end{figure}
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 3)
+    \tcbitem 
+        \begin{itemize}
+            \item Le réactif titrant~: $\ce{MnO^-_4}$
+            \item Le réactif titré~: $\ce{Fe^{2+}}$
+        \end{itemize}
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 4)
+    \tcbitem
+        \begin{itemize}
+            \item $\ce{MnO^-_4_{(aq)} + 8H^+_{(aq)} + 5e^{-} <=>
+                  Mn^2+_{(aq)} + 4H2O_{(\ell)}}$
+            \item $\ce{Fe^2+_{(aq)} <=> Fe^{3+}_{(aq)} + 1e^{-}}$
+        \end{itemize}
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 5)
+    \tcbitem $\ce{MnO^-_4_{(aq)} + 5Fe^2+_{(aq)} + 8H^+_{(aq)} -> 
+             Mn^2+_{(aq)} + 5Fe^{3+}_{(aq)} + 4H2O_{(\ell)}}$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 6)
+    \tcbitem
+        \begin{figure}[H]
+            \centering
+            \begin{table}[H]
+                \centering
+            \small
+                \renewcommand{\arraystretch}{1.5}
+                \begin{tabularx}{\textwidth}{|p{2cm}|
+                    >{\arraybackslash\centering}p{1.4cm}|
+                    >{\arraybackslash\centering}p{2.2cm}|
+                    >{\arraybackslash\centering}p{2.2cm}|C|C|C|C|}
+                \hline
+                \multicolumn{2}{|c|}{Équation} & \multicolumn{6}{c|}{
+                    $\ce{MnO^-_4_{(aq)} + 5Fe^2+_{(aq)} + 8H^+_{(aq)} -> 
+                    Mn^2+_{(aq)} + 5Fe^{3+}_{(aq)} + 4H2O_{(\ell)}}$} \\
+                \hline
+                État & Avanc. &
+                \multicolumn{6}{c|}{Quantités de matière (en mol)} \\
+                \hline
+                Initial & $0$ & $C_{1}\times V_{1}$ & $C\times V$ & excès & $0$ &
+                $0$ & excès \\
+                \hline
+                En cours & $x$ & $C_{1}\times V_{1}-x$ & $C\times V-5x$ &
+                excès & $x$ & $5x$ & excès \\
+                \hline
+                Équivalence & $x_{\eq}$ & $C_{1}\times V_{1E}-x_{\eq}$ &
+                $C\times V-5x_{\eq}$ & excès & $x_{\eq}$ & $5x_{\eq}$ &
+                excès \\
+                \hline
+                \end{tabularx}
+            \end{table}
+        \end{figure}
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 7)
+    \tcbitem À l'équivalence~: $C_{1}\times V_{1E}=\frac{C\times V}{5}$
+
+             $\Rightarrow C=\frac{5C_{1}\times V_{1E}}{V}=
+             \frac{5\times\num{2,0e-2}\times\num{12,4e-3}}{\num{25e-3}}=
+             \qty{4,96e-2}{\M}$
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 8)
+    \tcbitem On a~: $x_{\eq}=C_{1}\times V_{1E}=\qty{2,48e-4}{\mole}$
+        \begin{itemize}
+            \item $n(\ce{MnO^-_4})=\qty{0}{\mole}$
+            \item $n(\ce{Fe^2+})=\qty{0}{\mole}$
+            \item $n(\ce{Mn^2+})=x_{\eq}=\qty{2,48e-4}{\mole}$
+            \item $n(\ce{Fe^3+})=5x_{\eq}=\qty{1,24e-3}{\mole}$
+        \end{itemize}
+    \tcbitem (1pt)
+\end{tcbitemize}
+

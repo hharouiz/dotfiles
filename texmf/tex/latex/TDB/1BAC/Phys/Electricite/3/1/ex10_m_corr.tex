@@ -1,0 +1,139 @@
+\tikzset{arr/.style={-{Latex[round]},thick},
+    orientation/.style args={#1/#2}{postaction={decorate},
+        decoration={markings,
+        mark=at position #1 with {\arrowreversed[scale=1.5]{Latex}},
+        mark=at position #2 with {\arrowreversed[scale=1.5]{Latex}},
+}}}
+
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1)
+    \tcbitem 
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \def\d{1.5}
+                \foreach \x/\y/\a [count=\i] in {-\d/0/east,\d/0/west}{%
+                \node[inner sep=0pt,draw,thick,
+                    minimum width=2cm,minimum height=6mm,
+                    anchor=\a,label=(\i)] (A\i) at (\x,\y) {};
+                \draw (A\i.north) -- (A\i.south);
+                }
+                \node[circle,inner sep=1pt,fill,
+                    label={[above=1mm]:$M$}] (M) at (0,0) {};
+                \draw[densely dashed] (A1.east) -- (M) -- (A2.west);
+                \node[left] at (A1.east) {S};
+                \node[right] at (A1.west) {N};
+                \node[right] at (A2.west) {S};
+                \node[left] at (A2.east) {N};
+                % Réponse
+                \draw[arr,red] ([yshift=2pt]M.center) -- ++(-1,0)
+                    node[above] {$\vec{B}_{1}$};
+                \draw[arr,red] ([yshift=-2pt]M.center) -- ++(1,0)
+                    node[below] {$\vec{B}_{2}$};
+                \node[blue,below] at (M.center) {$\vec{B}=\vec{0}$};
+                \begin{scope}[xshift=8.5cm]
+                    \def\al{35}
+                    \foreach \y/\a [count=\i] in
+                        {1.3/180-0.5*\al,-1.3/180+0.5*\al}{%
+                    \node[inner sep=0pt,draw,thick,
+                        minimum width=2cm,minimum height=6mm,
+                        rotate=\a,label={[below,rotate=180+\a]:(\i)}]
+                        (A\i) at (-2,\y) {};
+                    \draw (A\i.north) -- (A\i.south);
+                    }
+                    \path[name path=D1] (A1.west) -- ++(-0.5*\al:5);
+                    \path[name path=D2] (A2.west) -- ++(0.5*\al:5);
+                    \fill[name intersections={of=D1 and D2,by=M}]
+                        (M) circle (1.4pt)
+                        node[above=1mm] {$M$};
+                    \draw[densely dashed] (A1.west) -- (M) -- (A2.west);
+                    \node[rotate=-0.5*\al,anchor=180] at (A1.east) {N};
+                    \node[rotate=-0.5*\al,anchor=0] at (A1.west) {S};
+                    \node[rotate=0.5*\al,anchor=180] at (A2.east) {N};
+                    \node[rotate=0.5*\al,anchor=0] at (A2.west) {S};
+                    % Réponse
+                    \draw[arr,red] (M.center) -- ++(180-0.5*\al:1) coordinate(B1)
+                        node[above] {$\vec{B}_{1}$};
+                    \draw[arr,red] (M.center) -- ++(0.5*\al:-1) coordinate(B2)
+                        node[below] {$\vec{B}_{2}$};
+                    \draw[densely dashed]
+                        (B2) -- ++(180-0.5*\al:1) coordinate(B) -- (B1);
+                    \draw[arr,blue] (M.center) -- (B) node[below] {$\vec{B}$};
+                \end{scope}
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem (1pt) \\ (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 2)
+    \tcbitem 
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \clip (0,0) ellipse (6cm and 2.5cm);
+                \node[inner sep=0pt,draw,thick,minimum width=5cm,
+                    minimum height=1cm] (A) {};
+                \draw (A.north) -- (A.south);
+                \foreach \x [count=\i] in {0.05,0.2,0.35}{%
+                    \draw[orientation={0.2/0.9}]
+                        ($(A.north west)!\x!(A.north east)$) to[bend left=70]
+                        node[pos=0.5] (M\i) {} 
+                        ($(A.north west)!1-\x!(A.north east)$);
+                    \draw[orientation={0.2/0.95}]
+                        ($(A.south west)!\x!(A.south east)$) to[bend right=70]
+                        node[pos=0.75] (N\i) {} 
+                        ($(A.south west)!1-\x!(A.south east)$);
+                }
+                \foreach \x/\a/\l [count=\i] in {0.05/130/2.5,0.3/150/4}{%
+                    \draw[orientation={0.08/0.95}] 
+                        ($(A.north west)!\x!(A.south west)$)
+                        to[bend left=\a,looseness=\l]
+                        node[pos=0.9] (P\i) {} 
+                        ($(A.north east)!\x!(A.south east)$);
+                    \draw[orientation={0.08/0.95}]
+                        ($(A.north west)!1-\x!(A.south west)$)
+                        to[bend right=\a,looseness=\l]
+                        ($(A.north east)!1-\x!(A.south east)$);
+                }
+                \draw[orientation={0.6/0.6}] ([xshift=2cm]A.east) -- ++(-2,0);
+                \draw[orientation={0.4/0.4}] (A.west) -- ++(-2,0)
+                    node[pos=0.6,circle,inner sep=1pt,fill,
+                    label=$M_{2}$] (M2) {};
+                \node[left=2mm,font=\huge] at (A.east) {N};
+                \node[right=2mm,font=\huge] at (A.west) {S};
+                % Mi
+                \node[circle,inner sep=1pt,fill,
+                    label=$M_{1}$] (M1) at (M1) {};
+                \node[circle,inner sep=1pt,fill,
+                    label=below:$M_{3}$] (M3) at (N2) {};
+                \node[circle,inner sep=1pt,fill,
+                    label=left:$M_{4}$] (M4) at (P1) {};
+                % Aiguilles
+                \foreach \a [count=\i] in {180,0,180+26,180+260}{%
+                \node[diamond,draw,inner sep=0pt,minimum width=7mm,
+                    minimum height=3.4mm,rotate=\a] (aa) at (M\i) {};
+                \path[draw,fill=red] (aa.north) -- (aa.south) -- (aa.east) --
+                    cycle;
+                \draw[arr,blue] (M\i.center) -- ++(\a:1)
+                    node[below] {$\vec{B}_{\i}$};
+                }
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem (0,5pt) \\ (1pt) \\ (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 3)
+    \tcbitem 
+          \input{TDB/1BAC/Phys/Electricite/3/2/ex5_mm_corr.tex}
+    \tcbitem (0,5pt) \\ (0,5pt)
+\end{tcbitemize}

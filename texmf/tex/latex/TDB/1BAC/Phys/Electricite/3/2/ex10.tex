@@ -1,0 +1,59 @@
+\begin{minipage}{0.66\linewidth}
+    On considère un long conducteur rectiligne parcouru par un courant
+    électrique d'intensité $I=\qty{12}{\ampere}$.
+    \begin{enumerate}
+        \item Représenter le vecteur champ magnétique $\vec{B}$ créé par le
+              conducteur au point $M$.
+              \textbf{(1pt)}
+        \item En déduire le sens du courant $I$.
+              \textbf{(1pt)}
+        \item Calculer la valeur du champ magnétique créé par le fil au point $M$
+              situé à une distance $d=\qty{3}{\centi\meter}$ du fil.
+              \textbf{(2pt)}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.32\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[x={(240:5mm)},y={(0:10mm)},z={(90:10mm)},thick,
+                fil/.style={cylinder,shape border rotate=90,draw,
+                 cylinder uses custom fill, cylinder end fill=black!30,
+                 cylinder body fill=black!10,minimum height=#1,
+                 minimum width=1mm,aspect=0.4,
+                 inner sep=3pt}]
+            \def\d{5}
+            \def\ar{1.6}
+            \node[fil=1.8cm,anchor=south] (fil) at (0,0,-1.8) {};
+            \begin{scope}[canvas is xy plane at z=0]
+                \path[draw,fill=white]
+                    (-0.5*\d,-0.5*\d) rectangle (0.5*\d,0.5*\d);
+                % Aiguille
+                \node[diamond,inner sep=0pt,minimum width=7mm,
+                      minimum height=3.4mm,rotate=130] (aa) at (130:\ar) {};
+                \path[draw,fill=red,rounded corners=0.4pt]
+                    (aa.north) -- (aa.south) -- (aa.east) -- cycle;
+                \path[draw,fill=white,rounded corners=0.4pt]
+                    (aa.north) -- (aa.south) -- (aa.west) -- cycle;
+                \node[above=-1mm,font=\footnotesize] at (aa.east) {N};
+                \node[below=-1mm,font=\footnotesize] at (aa.west) {S};
+                \draw[dashed] (0,0) circle (\ar);
+                % M
+                \node[circle,fill,inner sep=1pt,
+                    label={[above right=-1pt]:$M$}] (M) at (aa.center) {};
+            \end{scope}
+            \node[fil=2.2cm,anchor=south] (fil) at (0,0,-0.08) {};
+            \begin{scope}[canvas is yz plane at x=0]
+                \draw[<-,shorten <=2pt] (fil.after top) -- ++(0:1)
+                    node[right] {fill};
+            \end{scope}
+        \end{tikzpicture}
+    \end{figure}
+\end{minipage}
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item À quelle distance $d'$ du fil le champ magnétique créé vaut-il
+          $B'=\qty{1.2e-4}{\tesla}$~?
+          \textbf{(2pt)}
+\end{enumerate}
+

@@ -1,0 +1,115 @@
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1)
+    \tcbitem 
+        \begin{figure}[H]
+            \centering
+            \begin{circuitikz}
+                \newdimen\d \d=3cm
+                \draw (0,0) coordinate (A)
+                    node[left] {$\mathrm{A}$}
+                    to[vsource,v=$E$,*-] ++(0,\d)
+                    to[cute closed switch,l_=$\mathrm{K}$,-*] ++(\d,0)
+                    coordinate (D)
+                    node[above] {$\mathrm{D}$}
+                    to[R,l_=$R$,v^<=$u_{R}$,-*] ++(0,-\d) coordinate (B)
+                    node[below] {$\mathrm{B}$}
+                    to[C,l_=$C$,v^<=$u_{C}$,i>_=$i$] (A);
+                \node[eground] at (A) {};
+            \end{circuitikz}
+        \end{figure}
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=4] 2)
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $u_{C}$ correspond à la courbe~\ding{182}.
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem \textbf{Justification~:} 
+                     À ${t=0}$, le condensateur est déchargé \
+                     $\Rightarrow u_{C}(0)=0$.
+            \tcbitem (0,5pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem 3)
+    \tcbitem Loi des mailles~: \ $u_{C}+u_{R}=E$
+             $\quad\Rightarrow\quad$ $u_{C}+R\times i=E$ \ (loi d'Ohm)
+    
+             Or $i=C \times \frac{\mathrm{d}u_{C}}{\mathrm{d}t}$. \
+             On obtient~: \
+             $u_{C}+RC\times\frac{\mathrm{d}u_{C}}{\mathrm{d}t}=E$
+
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=4] 4.a)
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            %--------------------------------------------------------
+            \tcbitem On dérive $u_{C}$~: \
+                     $\frac{\mathrm{d}u_{C}}{\mathrm{d}t}=
+                     \frac{A}{\tau}e^{\frac{t}{\tau}}$.
+                     On remplace dans l'équation différentielle~:
+                     \begin{align*}
+                         u_{C}+RC\times\frac{\mathrm{d} u_{C}}{\mathrm{d} t}=E
+                         &\quad\Rightarrow\quad
+                         A-Ae^{-\frac{t}{\tau}}+
+                         RC\times\frac{A}{\tau}e^{-\frac{t}{\tau}}=E \\
+                         &\quad\Rightarrow\quad
+                         A+\left(\frac{RC}{\tau}-1\right)\times
+                         Ae^{-\frac{t}{\tau}}=E
+                     \end{align*}
+
+                     L'équation doit être satisfaite quelque soit la valeur de
+                     $t$, ceci implique~: $A=E$ 
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem et \ $\left(\frac{RC}{\tau}-1\right)=0$
+                     $\quad\Rightarrow\quad$ $\tau=RC$
+            \tcbitem (0,5pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=4] 4.b)
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem Graphiquement~: $E=\qty{6}{\V}$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem Graphiquement~: $\tau=\qty{0.3}{\ms}=\qty{3e-4}{\s}$
+            \tcbitem (0,5pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem 4.c)
+    \tcbitem $\tau=RC$ $\quad\Rightarrow\quad$
+             $C=\frac{\tau}{R}=\frac{\num{3e-4}}{100}=\qty{3e-6}{\F}=
+             \qty{3}{\uF}$
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 5)
+    \tcbitem A
+    \tcbitem (1pt)
+\end{tcbitemize}
+

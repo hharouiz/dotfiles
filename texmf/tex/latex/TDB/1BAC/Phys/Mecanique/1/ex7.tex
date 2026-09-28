@@ -1,0 +1,77 @@
+Un moteur fait tourner une tige homogène de longueur $L=AB=\qty{0,5}{\meter}$
+autour d'un axe fixe ($\Delta$) passant par son centre $O$
+(figure~\ref{fig:tige}). Un point $M$ appartient à la tige est distant de l'axe
+de rotation par la distance $OM=\frac{AB}{4}$. La
+figure~\ref{fig:tige_theta_fct_t} représente la variation de l'abscisse
+angulaire du point $M$ en fonction du temps.
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}[label distance=1pt]
+            \newdimen\L \L=6cm
+            \newdimen\OM \OM=\L
+            \divide\OM by 4
+            \def\a{45}
+            \node[draw,fill=gray,inner sep=0pt,minimum width=\L,
+                minimum height=4mm,rotate=\a] (T) {};
+            \node[circle,densely dashed,draw,inner sep=0pt,
+                minimum size=2\OM] (C) {};
+            \foreach \l/\p in {O/(T.center),M/(C.\a),A/(T.east),B/(T.west)}
+            \node[circle,draw,inner sep=0.8pt,label=below right:$\l$] at \p {};
+            \draw[-Stealth] (90:1.4\OM) arc (90:90+30:1.4\OM)
+                node[above,pos=0.5] {$\oplus$};
+            \node[above left=1mm] {$\Delta$};
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:tige}
+    \end{subfigure}
+    \hspace{1mm}
+    \begin{subfigure}{0.49\textwidth}
+        \centering
+        %\begin{tikzpicture}
+        %    \draw[help lines] (0,0) grid (4.5,5.5);
+        %    \draw[-Latex] (0,0) -- (4.5,0) node[right] {$t~(\unit{\ms})$};
+        %    \draw[-Latex] (0,0) -- (0,5.5) node[right] {$\theta~(\unit{\rad})$};
+        %    \foreach \x/\l in {0/0,1/10,2/20,3/30,4/40}
+        %        \node[below] at (\x,0) {$\l$}; 
+        %    \foreach \y/\l in {1/\pi,2/2\pi,3/3\pi,4/4\pi,5/5\pi}
+        %        \node[left] at (0,\y) {$\l$};
+        %    \draw[thick] (0,1) -- (4,5);
+        %\end{tikzpicture}
+        \begin{tikzpicture}[]
+            \begin{axis}[
+                    cycle list name=my color list,
+                    width=7cm,height=7cm,
+                    xlabel=$t~(\unit{\ms})$,ylabel=$\theta~(\unit{\rad})$,
+                    xmin=0,xmax=55,
+                    ymin=0,ymax=5.5*pi,
+                    xtick distance=10,
+                    ytick={0,pi,2*pi,3*pi,4*pi,5*pi},
+                    yticklabels={$0$,$\pi$,$2\pi$,$3\pi$,$4\pi$,$5\pi$},
+                    variable=t,
+                ]
+                \addplot[domain=0:40] {pi/10*t+pi};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:tige_theta_fct_t}
+    \end{subfigure}
+    \caption{}
+\end{figure}
+\begin{enumerate}
+    \item Quelle est la nature du mouvement de rotation de la tige ? Justifier
+          votre réponse.
+    \item Déterminer graphiquement la vitesse angulaire $\omega$ de la tige et
+          la valeur de l'abscisse angulaire $\theta_{0}$ à $t=\qty{0}{\second}$.
+    \item Écrire l'équation horaire $\theta(t)$ du mouvement de la tige.
+    \item Calculer la période $T$ du mouvement de la tige, et déduire sa
+          fréquence $f$.
+    \item Calculer la durée $\Delta t$ nécessaire pour que la tige effectuée 20
+          tours.
+    \item Calculer la vitesse linéaire $v$ du point $M$ et la valeur de son
+          abscisse curviligne $s_{0}$ à $t=\qty{0}{\second}$.
+    \item Écrire l'équation horaire de l'abscisse curviligne $s(t)$ du point
+          $M$.
+\end{enumerate}
+

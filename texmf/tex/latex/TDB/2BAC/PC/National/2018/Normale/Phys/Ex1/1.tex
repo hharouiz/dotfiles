@@ -1,0 +1,62 @@
+\begin{minipage}[t][][t]{0.65\linewidth}
+    % Les ondes mécaniques se propagent seulement dans un milieu matériel, et leur
+    % célérité (vitesse de propagation) croit avec la densité du milieu où elles
+    % se propagent.
+
+    Pour déterminer la valeur approximative de la célérité $v_p$ d'une onde
+    ultrasonore dans le pétrole liquide, on réalise l'expérience suivante~: \\
+    Dans une cuve contenant du pétrole, on fixe à l'une de ses extrémités deux
+    émetteurs $\mathrm{E}_1$ et $\mathrm{E}_2$ qui sont reliés à un générateur
+    GBF. À l'instant $\mathrm{t}_0=0$, les deux émetteurs émettent chacun une
+    onde ultrasonore, une se propage dans l'air et l'autre dans le pétrole. À
+    l'autre extrémité de la cuve, on place deux récepteurs $R_1$ et $R_2$, l'un
+    dans l'air et l'autre dans le pétrole. Les récepteurs sont à une distance
+    $L$ des émetteurs. (voir figure~1)
+
+    On visualise sur l'écran d'un oscilloscope les deux signaux reçus par $R_1$
+    et $R_2$. (voir figure~2)
+
+    \textbf{Données~:}
+    \begin{itemize}
+        \item les deux ondes parcourent la même distance $L=\qty{1,84}{\m}$~;
+        \item la célérité des ultrasons dans l'air~:
+              $v_{\text{air}}=\qty{340}{\v}$~;
+        \item la sensibilité horizontale de l'oscilloscope:
+              $\qty[per-mode=symbol]{2}{\ms\per\div}$.
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t][][t]{0.34\linewidth}
+    \begin{figure}[H]
+        \centering
+        \flushright
+        \begin{tikzpicture}
+            \node (A) {\includegraphics[width=0.95\textwidth]{2025-12-06_032032-}};
+            \node[below of=A,node distance=3.5cm] (B) at (A.south)
+                {\includegraphics[width=0.85\textwidth]{2025-12-06_032040-}};
+            \foreach \n [count=\i] in {A,B}
+                \node[below] at (\n.south) {Figure~\i};
+        \end{tikzpicture}    
+    \end{figure}
+\end{minipage}
+
+\vspace{-2cm}
+\begin{minipage}{0.63\linewidth}
+    \begin{enumerate}
+    \item Les ondes ultrasonores, sont-elles longitudinales ou
+          transversales~? Justifier.
+          \textbf{(1pt)}
+    \item En exploitant la figure~2, déterminer la valeur du retard temporel
+          $\tau$ entre les deux ondes reçues.
+          \textbf{(1pt)}
+\end{enumerate}
+\end{minipage}
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Montrer que l'expression de $\tau$ s'écrit sous la forme~:
+          $\tau=L \cdot\left(\frac{1}{v_{\text{air}}}-\frac{1}{v_p}\right)$.
+          \textbf{(1pt)}
+    \item Trouver la valeur approchée de la célérité $v_p$.
+          \textbf{(1pt)}
+\end{enumerate}

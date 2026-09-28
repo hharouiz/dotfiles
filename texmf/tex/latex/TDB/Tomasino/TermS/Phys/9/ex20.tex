@@ -1,0 +1,48 @@
+% Détermination d'une inductance
+Une bobine de résistance négligeable et d'inductance $L$ est montée en série
+avec un conducteur ohmique de résistance $R=\qty{10}{\kilo\ohm}$ (voir schéma
+ci-dessous). L'ensemble est alimenté par un générateur de signaux basses
+fréquences délivrant une tension périodique triangulaire.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{48a6bc5b-d4ef-46f4-b470-f32a0623c3da-6_618_938_1469_1019}
+\end{figure}
+
+À l'aide d'un oscillographe, on visualise les tensions $u_{AM}(t)$ et
+$u_{BM}(t)$. On obtient les oscillogrammes suivants.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{48a6bc5b-d4ef-46f4-b470-f32a0623c3da-6_580_929_2226_1017}
+\end{figure}
+
+\begin{enumerate}
+    \item On appelle $i(t)$ l'intensité instantanée qui traverse le circuit~;
+          son sens positif est indiqué sur le schéma du montage.
+          \begin{enumerate}
+              \item Exprimer littéralement la tension instantanée $u_{BM}(t)$ en
+                    fonction de $i(t)$ et $L$.
+              \item À partir du schéma du circuit, montrer que
+                    $u_{AM}(t)=-Ri(t)$.
+              \item Déduire des expressions précédentes de $u_{BM}(t)$ et
+                    $u_{AM}(t)$ que
+                    $u_{BM}(t)=
+                    -\frac{L}{R}\frac{\mathrm{d}u_{AM}(t)}{\mathrm{d}t}$.
+              \item Justifier la forme de l'oscillogramme de la voie
+                    $\mathrm{B}$ par rapport à celle de l'oscillogramme de la
+                    voie $\mathrm{A}$.
+          \end{enumerate}
+    \item Les réglages de l'oscillographe sont~: Voie $\mathrm{A}$~:
+          $\qty{2}{\V\per\text{division}}$~; Voie $\mathrm{B}$~:
+          $\qty{200}{\mV\per\text{division}}$~; Base de temps~:
+          $\qty{0.2}{\ms\per\text{division}}$~; la ligne médiane
+          horizontale de l'écran correspond à $\qty{0}{\V}$. À partir des
+          oscillogrammes.
+          \begin{enumerate}
+              \item Calculer la période et la fréquence des tensions observées.
+              \item Calculer les valeurs entre lesquelles varient ces tensions.
+              \item En justifiant le raisonnement, calculer la valeur de
+                    l'inductance $L$.
+          \end{enumerate}
+\end{enumerate}
+
+

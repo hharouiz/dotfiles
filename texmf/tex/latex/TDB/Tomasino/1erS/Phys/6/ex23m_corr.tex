@@ -1,0 +1,72 @@
+\begin{enumerate}
+    \item Le bilan des forces~:
+          \begin{itemize}
+              \item le poids du skieur $\vec{P}$ de direction verticale, de sens
+                    vers le bas et d'intensité
+                    $P=m\times g=90\times10=\qty{900}{\N}$.
+                    \hfill\textbf{(0,25pt)}
+              \item la réaction de la piste $\vec{R}$ est décomposée en deux
+                    forces~:
+                    \begin{itemize}
+                        \item $\vec{R}_{N}$~: la réaction normale de la piste,
+                              de sens vers le haut,
+                              \hfill\textbf{(0,25pt)}
+                        \item $\vec{f}$~: la force de frottement exercée par la
+                              piste sur le skieur, de sens opposé au mouvement
+                              et d'intensité $f=\qty{30}{\N}$.
+                              \hfill\textbf{(0,25pt)}
+                    \end{itemize}
+              \item la tension du câble $\vec{T}$ de direction celle du câble,
+                    de sens vers le haut du câble.
+                    \hfill\textbf{(0,25pt)}
+          \end{itemize}
+    \item \mbox{}\par
+          \begin{center}
+              \begin{tikzpicture}
+              \node[anchor=south west,inner sep=0] (image) at (0,0)
+                  {\includegraphics[width=0.6\textwidth]{2025_12_01_2444c970f150c248fc83g-3}};
+              \begin{scope}[x={(image.south east)},y={(image.north west)}]
+                  \draw[blue,ultra thick,->] (0.42,0.49) -- ++(0,-0.5)
+                      node[anchor=south west,inner ysep=0pt] {$\vec{P}$};
+                  \draw[red,ultra thick,->] (0.446,0.39) -- ++(100:0.5)
+                      node[anchor=north east,inner ysep=0pt] {$\vec{R}_{N}$};
+                  \draw[red,ultra thick,->] (0.446,0.39) -- ++(219:0.32)
+                      node[anchor=south west,inner xsep=0pt] {$\vec{f}$};
+                  \draw[Green,ultra thick,->] (0.436,0.49) -- ++(75:0.5)
+                      node[anchor=north west,inner ysep=0pt] {$\vec{T}$};
+              \end{scope}
+              
+          \end{tikzpicture}
+          \end{center}
+    \item $W_{AB}(\vec{P})=\vec{P}\cdot \vv{AB}=
+          P\cdot AB\cdot\cos(\alpha+\ang{90})$
+          \hfill\textbf{(0,5pt)}
+
+          A.N.
+          $W_{AB}(\vec{P})=900\times 1250\times\cos(\ang{110})=
+          \qty{-3.85e5}{\J}$
+          \hfill\textbf{(0,5pt)}
+    \item $W_{AB}(\vec{f})=\vec{f}\cdot \vv{AB}=
+          f\cdot AB\cdot\cos(\ang{180})=-f\cdot AB$
+          \hfill\textbf{(0,5pt)}
+
+          A.N.
+          $W_{AB}(\vec{P})=-30\times 1250=\qty{-3.75e4}{\J}$
+          \hfill\textbf{(0,5pt)}
+    \item On a~: $\vec{R}=\vec{R}_{N}+\vec{f}$ donc, 
+          $W_{AB}(\vec{R})=W_{AB}(\vec{R}_{N})+W_{AB}(\vec{f})$
+          \hfill\textbf{(0,5pt)}
+          
+          $W_{AB}(\vec{R})=0+W_{AB}(\vec{f})=\qty{-3.75e4}{\J}$
+          \hfill\textbf{(0,5pt)} \\
+          car $\vec{R}_{N}$ est perpendiculaire au déplacement.
+    \item $W_{AB}(\vec{T})=\vec{T}\cdot \vv{AB}=
+          T\cdot AB\cdot\cos(\beta)$
+          \hfill\textbf{(0,5pt)}
+
+          A.N.
+          $W_{AB}(\vec{T})=675\times 1250\times\cos(\ang{60})=
+          \qty{4.22e5}{\J}$
+          \hfill\textbf{(0,5pt)}
+\end{enumerate}
+

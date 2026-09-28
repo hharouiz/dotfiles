@@ -1,0 +1,71 @@
+On écarte le solide $\mathrm{(S)}$ (Fig.~\ref{fig:solide_ressort}) de sa
+position d'équilibre et on le libère sans vitesse initiale à l'instant
+$t_{0}=0$.
+
+\begin{minipage}{0.70\linewidth}
+    \begin{donnees}
+        \begin{itemize}
+          \item Tous les frottements sont négligeables~;
+          \item On choisit l'état où le ressort n'est pas déformé comme
+                référence de l'énergie potentielle élastique $E_{pe}$ et le plan
+                horizontal contenant $G$ comme état de référence de l'énergie
+                potentielle de pesanteur $E_{pp}$.
+        \end{itemize}
+    \end{donnees}
+
+    La courbe de la Fig.~\ref{fig:2bac_svt_national_2016_normale_phys_ex3_3}
+    représente les variations de $E_{pe}$ en fonction de $x^{2}$, carré de
+    l'abscisse $x$ du centre d'inertie $G$ dans le repère $(O,\ex)$.
+    \begin{enumerate}
+        \item En exploitant la courbe de la
+              Fig.~\ref{fig:2bac_svt_national_2016_normale_phys_ex3_3},
+              trouver les valeurs de~:
+              \begin{enumerate}
+                  \item la constante de raideur $K$.
+                  \item l'énergie potentielle élastique maximale $E_{pe,\max}$.
+                  \item l'amplitude $X_{m}$ des oscillations.
+              \end{enumerate}
+        \item Déduire, en justifiant votre réponse, la valeur de l'énergie
+              mécanique $E_{m}$ du système oscillant.
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.29\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \def\K{1}
+            \begin{axis}[
+                    xmin=0,xmax=19,
+                    ymin=0,ymax=9.8,
+                    width=6.5cm,height=6.5cm,
+                    xlabel=$x^{2}~(\times\qty{1e-4}{\square\meter})$,
+                    ylabel=$E_{pe}~(\unit{\mJ})$,
+                    scaled ticks=false,
+                    xtick distance=4, ytick distance=2,
+                    xticklabels={,,4}, yticklabels={,,2},
+                    minor tick num=0,
+                ]
+                \addplot[domain=0:16,samples=200,
+                    very thick,blue] {0.5*\K*x}
+                    coordinate[pos=1](A);
+            \end{axis}
+            \draw[very thick] ([yshift=-5mm]A) -- ([yshift=5mm]A);
+            \foreach \f in {0.02,0.14,...,1}
+                \draw[thick]
+                    ($([yshift=-5mm]A)!\f!([yshift=5mm]A)$) -- ++(-20:.2);
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:2bac_svt_national_2016_normale_phys_ex3_3}
+    \end{figure}
+\end{minipage}
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Le centre d'inertie $G$ passe par la position d'équilibre dans le sens
+          positif avec la vitesse $v=\qty{0,25}{\v}$.
+
+          Montrer que l'expression de la période propre des oscillations s'écrit
+          $T_{0}=2\pi\cdot\frac{X_{m}}{v}$. Calculer $T_{0}$.
+\end{enumerate}
+

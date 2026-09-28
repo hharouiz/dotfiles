@@ -1,0 +1,42 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \def\d{5}
+        \def\ar{1.6}
+        % Aiguille
+        \node[diamond,inner sep=0pt,minimum width=7mm,
+              minimum height=3.4mm] (aa) at (279:\ar) {};
+        \path[draw,fill=white,rounded corners=0.4pt]
+            (aa.north) -- (aa.south) -- (aa.east) -- cycle;
+        \path[draw,fill=red,rounded corners=0.4pt]
+            (aa.north) -- (aa.south) -- (aa.west) -- cycle;
+        \node[below,inner sep=4pt,font=\scriptsize] at (aa.east) {S};
+        \node[below,inner sep=4pt,font=\scriptsize] at (aa.west) {N};
+        \draw[] (0,0) circle (\ar);
+        \draw[<-,shorten <=2pt] (180:\ar) -- ++(-1,0)
+            node[left,align=center,font=\scriptsize] {Ligne de\\ champ};
+        % M
+        \node[circle,fill,inner sep=1pt,
+            label={[above]:$M_{1}$}] (M1) at (aa.center) {};
+        \node[circle,fill,inner sep=1pt,
+            label={[above right=-1pt,inner sep=0pt]:$M_{2}$}] (M2) at (45:\ar) {};
+        % fil
+        \node[circle,fill=gray,inner sep=1pt,
+            label={[above,inner sep=4pt,font=\scriptsize,
+            align=center]:{fill\\ rectiligne}}] at (0,0) {};
+        % Reponse
+        \draw[arr,blue] (M1.center) -- ++(180:1.5)
+            node[above] {$\vec{B}_{1}$};
+        \draw[arr,blue] (M2.center) -- ++(-45:1.5)
+            node[below] {$\vec{B}_{2}$};
+        \node[circle,draw,blue,very thick,inner sep=0pt,
+            minimum size=0.3cm,label=below:$I$] (C) at (0,0) {};
+        \draw[blue,very thick] (C.45) -- (C.225);
+        \draw[blue,very thick] (C.-45) -- (C.-225);
+    \end{tikzpicture}
+\end{figure}
+
+
+	
+
+

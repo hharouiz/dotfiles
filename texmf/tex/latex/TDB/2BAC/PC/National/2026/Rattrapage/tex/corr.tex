@@ -1,0 +1,620 @@
+%! TeX program = xelatex
+\documentclass[12pt,national]{teaching}
+
+\renewcommand\thesection{Exercice~\arabic{section}~:}
+\renewcommand\thesubsection{Partie~\Roman{subsection}~:}
+
+\newlength\cwi
+\newlength\cwii
+\newlength\cwiii
+
+\def\b{16cm}
+\def\c{2cm}
+\def\a{\linewidth-\b-\c}
+
+\begin{document}
+
+\section{Chimie (7 points)}
+\subsection{Nickelage d'une lame d'aluminium}
+
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1-
+    \tcbitem $\ce{Ni^{2+}_{(aq)} + 2e- -> Ni_{(s)}}$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 2-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem la réduction a lieu à la cathode.
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem la lame d'aluminium est la cathode
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 3-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $Q=I\Delta t=nF$ \quad avec $n=2x$ \quad
+                     donc $x=\frac{I\Delta t}{2F}$
+                     
+                     $n(\ce{Ni})=x=\frac{I\Delta t}{2F}$
+
+                     $m(\ce{Ni})=n(\ce{Ni})M(\ce{Ni})$ \quad donc
+                     $m(\ce{Ni})=\frac{I\Delta t\,M(\ce{Ni})}{2F}$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem $m(\ce{Ni})=
+                     \frac{\num{100e-3}\times 25\times 60\times 58,7}
+                     {2\times\num{9.65e4}}=\qty{4,56e-2}{\g}=\qty{45,6}{\mg}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 4-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $\rho=\frac{m}{V}=\frac{m}{s\times e}$ \quad
+                     donc\, $e=\frac{m}{\rho s}$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem $e=\frac{\num{4.56e-2}}{8,9\times 50}=
+                     \qty{1.025e-4}{\cm}=\qty{1.025e-6}{\m}\simeq\qty{1.0}{\um}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+\end{tcbitemize}
+
+
+\subsection{Étude de quelques réactions d'un acide AH}
+
+
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1-
+    \tcbitem $\ce{AH_{(aq)} + H2O_{(\ell)} <=> A^-_{(aq)} + H3O^+_{(aq)}}$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 2-
+    \tcbitem $\tau=\frac{x_{\eq}}{x_{\max}}=
+             \frac{[\ce{H3O+}]_{\eq}\cdot V}{C_A\cdot V}=
+             \frac{[\ce{H3O+}]_{\eq}}{C_A}=
+             \frac{10^{-\mathrm{pH}}}{C_A}$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 3-1-
+    \tcbitem d'après la courbe, pour $\mathrm{pH}=2,9$, on lit~: $-\log C_A=1$ \\
+             donc\, $C_A=10^{-1}=\qty{0.10}{\M}$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 3-2-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $\tau_{1}=\frac{10^{-\mathrm{pH}_{1}}}{C_{A_1}}=
+                     \frac{10^{-2,9}}{0,10}=\num{1.26e-2}=\qty{1.26}{\percent}$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem $\tau_{2}=\frac{10^{-\mathrm{pH}_{2}}}{C_{A_2}}=
+                     \frac{10^{-3,15}}{10^{-1,5}}=
+                     \num{2.24e-2}=\qty{2.24}{\percent}$
+            \tcbitem (0,5pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 3-3-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $C_{A_2}<C_{A_1} \quad \Rightarrow\, \tau_2>\tau_1$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem la dilution augmente le taux d'avancement final
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 4-1-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $\mathrm{K_A}=
+                     \frac{[\ce{A-}]_{\eq}\cdot [\ce{H3O+}]_{\eq}}
+                     {[\ce{AH}]_{\eq}}\simeq
+                     \frac{[\ce{H3O+}]_{\eq}^2}{C_A}$ \quad
+                     $\Rightarrow\, [\ce{H3O+}]_{\eq}=\sqrt{\mathrm{K_A}C_A}$
+
+                     $-\log[\ce{H3O+}]_{\eq}=
+                     -\frac12\log\mathrm{K_A}-\frac12\log C_A$ \quad
+                     $\Rightarrow\,\mathrm{pH}=
+                     \frac12\mathrm{pK_A}-\frac12\log C_A$
+
+                     D'où \, $\mathrm{pH}=a\log C_A+b$ \, avec \,
+                     $a=-\frac12$ et $b=\frac12\mathrm{pK_A}$
+            \tcbitem (0,75pt)
+            %--------------------------------------------------------
+            \tcbitem 
+            \tcbitem (0,0pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 4-2-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem pour $(\mathrm{pH}~;~C_{A})=(2,9~;~\qty{0.10}{\M})$
+
+                     $\mathrm{pK_A}=2\mathrm{pH}+\log C_A=
+                     2\times 2,9+\log(0,10)=4,8$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem l'acide $\ce{AH}$ est $\ce{CH3COOH}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 4-3-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $\mathrm{pH}=-\frac12\log C_A+\frac12\mathrm{pK_A}=
+                     -\frac12\times\log(\num{1e-2})+\frac12\times 4,8=3,4$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem $\mathrm{pH}<\mathrm{pK_A}$, \;
+                     alors l'acide $\ce{AH}$ prédomine
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+\end{tcbitemize}
+
+\section{Transformations nucléaires (2,5 points)}
+
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 1-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $52$ protons 
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem $138-52=86$ neutrons
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 2-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem conservation du nombre de masse~: $235+1=95+138+x$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem $\Rightarrow\, x=3$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem 3-
+    \tcbitem $E_{\ell}\left(\ce{^{138}_{52}Te}\right)=
+             \left[52m_p+86m_n-m\left(\ce{^{138}_{52}Te}\right)\right]\times c^2$ 
+
+             $E_{\ell}\left(\ce{^{138}_{52}Te}\right)=
+             \left[52\times1,00727+86\times1,00866-137,92922\right]\times931,49=
+             \qty{1111.8}{\MeV}$
+
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 4-
+    \tcbitem 
+             \begin{itemize}
+                 \item $\frac{E_{\ell}\left(\ce{^{138}_{52}Te}\right)}{138}=
+                       \frac{1111.8}{138}=\qty{8.06}{\MeV\per\mathrm{nucléon}}$
+                 \item $\frac{E_\ell\left(\ce{^{95}_{40}Zr}\right)}{95}=
+                       \frac{800,214}{95}=\qty{8.42}{\MeV\per\mathrm{nucléon}}$
+             \end{itemize}
+             $\frac{E_\ell\left(\ce{^{95}_{40}Zr}\right)}{95}>
+             \frac{E_{\ell}\left(\ce{^{138}_{52}Te}\right)}{138}$ \quad
+             $\Rightarrow\,
+             \ce{^{95}_{40}Zr}$ est plus stable que $\ce{^{138}_{52}Te}$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 5-
+    \tcbitem $|\Delta E_{1}|=\left|E_\ell\left(\ce{^{235}_{92}U}\right)-
+             E_\ell\left(\ce{^{95}_{40}Zr}\right)-
+             E_\ell\left(\ce{^{138}_{52}Te}\right)\right|$
+
+             $|\Delta E_{1}|=|1735,7-800,214-1111,8|=\qty{176.314}{\MeV}$
+
+             $|\Delta E|=N|\Delta E_{1}|=\frac{mN_{A}}{M(\ce{U})}|\Delta E_{1}|$
+
+             $|\Delta E|=\frac{\num{1e3}\times\num{6.02e23}}{235}\times176.314=
+             \qty{4.5166e26}{\MeV}$
+
+             $|\Delta E|=\num{4.5166e26}\times\num{1.60e-13}=
+             \qty{7.2266e13}{\joule}$
+    \tcbitem (0,5pt)
+\end{tcbitemize}
+
+
+
+\section{Électricité (5 points)}
+
+{
+\renewcommand\thesubsection{\arabic{subsection}-}
+\subsection{Charge d'un condensateur}
+
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1-1-
+    \tcbitem loi des mailles~: $E=u_R+u_C$ \\
+             or~: $u_R=R_0i$ et $i=C_0\frac{\mathrm{d}u_C}{\mathrm{d}t}$ \\
+             donc~: $R_0C_0\frac{\mathrm{d}u_C}{\mathrm{d}t}+u_C=E$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 1-2-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $u_C(t)=E\left(1-e^{-\frac{t}{\tau}}\right)$ \, et \,
+                     $\frac{\mathrm{d}u_C}{\mathrm{d}t}=
+                     \frac{E}{\tau}e^{-\frac{t}{\tau}}$
+
+                     $\Rightarrow\,
+                     R_0C_0\times\frac{E}{\tau}e^{-\frac{t}{\tau}}+
+                     E-E\times e^{-\frac{t}{\tau}}=E$ \\
+                     $\Rightarrow\,
+                     Ee^{-\frac{t}{\tau}}\left(\frac{R_0C_0}{\tau}-1\right)=0$\\
+                     pour tout $t$,
+                     $\frac{R_0C_0}{\tau}-1=0$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem donc $\tau=R_0C_0$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem 1-3-
+    \tcbitem $u_R(t)=E-u_C(t)=E-E\left(1-e^{-\frac{t}{\tau}}\right)=
+             E e^{-\frac{t}{\tau}}$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 1-4-
+    \tcbitem $\ln(u_R)=\ln(E)-\frac{t}{\tau}$
+    \tcbitem (0,25pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 1-5-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $\ln(E)=2,2$ \quad
+                     $\Rightarrow\, E=e^{2,2}=\qty{9.0}{\volt}$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem $-\frac{1}{\tau}=\frac{2,2-0}{0-\num{55e-5}}=
+                     -\qty{4000}{\per\s} \quad\Rightarrow\,
+                     \tau=\qty{2.5e-4}{\s}$
+
+                     $\tau=R_0C_0$ \quad
+                     $\Rightarrow\, C_0=\frac{\tau}{R_0}=
+                     \frac{\num{2.5e-4}}{\num{100e3}}=
+                     \qty{2.5e-9}{\F}=\qty{2.5}{\nF}$
+            \tcbitem (0,5pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 1-6-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem à $t=\qty{55e-5}{\s}$, on lit~: $\ln(u_R)=0$ \,
+                     donc $u_R=1$ \, ainsi $u_C=E-u_R=9-1=\qty{8}{\V}$
+
+                     $E_e=\frac12 C_0u_C^2=\frac12\times\num{2.5e-9}\times 8^2$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem $E_e=\qty{8.0e-8}{\joule}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+\end{tcbitemize}
+
+\subsection{Réception d'un signal modulé en amplitude}
+
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 2-1-
+    \tcbitem C
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 2-2-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $F=\frac{1}{2\pi\sqrt{L_0C_0}}$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem $F=\frac{1}{2\pi\sqrt{\num{1e-3}\times\num{2.5e-9}}}
+                     \simeq \qty{1.0e5}{\hertz}=\qty{100}{\kilo\hertz}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 2-3-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem pour une bonne détection d'enveloppe, il faut~:
+                     $T_p \ll RC < T_m$ \\
+                     avec~: $T_p=\frac{1}{F}=\qty{1e-5}{\s}=\qty{0.01}{\ms}$ \\
+                     d'après la figure 4~: $T_m=2\times 0,4=\qty{0.8}{\ms}$ \\
+                     on teste les condensateurs~:
+                     \begin{itemize}
+                         \item $C=\qty{120}{\nF}
+                               \quad\Rightarrow\, RC=\qty{1.2}{\ms}$
+                         \item $C=\qty{100}{\nF}
+                               \quad\Rightarrow\, RC=\qty{1.0}{\ms}$
+                         \item $C=\qty{50}{\nF}
+                               \quad\Rightarrow\, RC=\qty{0.5}{\ms}$
+                     \end{itemize}
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem $C=\qty{50}{\nano\farad}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+\end{tcbitemize}
+}
+
+\section{Mécanique (5,5 points)}
+
+\subsection{Chute verticale d'une balle}
+
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1-
+    \tcbitem d'après la deuxième loi de Newton~: $\sum \vec F = m\vec a$ \\
+             on projette sur $Oz$~: $P-f=ma_z$ \\
+             or \, $P=mg,\qquad f=\mu v^{2}=\mu v_z^2,\qquad
+             a_z=\frac{\mathrm{d}v_z}{\mathrm{d}t}$ \\
+             donc \, $mg-\mu v_z^2=m\frac{dv_z}{dt}$ \quad
+             $\Rightarrow\,
+             \frac{\mathrm{d}v_z}{\mathrm{d}t}+\frac{\mu}{m}v_z^2=g$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 2-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem à la vitesse limite~: $\frac{dv_z}{dt}=0$
+                    donc $\frac{\mu}{m}v_{z\lim}^2=g$ \quad
+                    $\Rightarrow\, v_{z\lim}=\sqrt{\frac{mg}{\mu}}$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem $\mu=\frac{mg}{v_{z\lim}^2}=
+                     \frac{\num{2.45e-3}\times 10}{7,00^2}=
+                     \qty{5.0e-4}{\kg\per\m}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 3-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $\frac{v_z(t_{2})-v_z(t_{1})}{t_{2}-t_{1}}+
+                     \frac{\mu}{m}v_z^2(t_{1})=g$ \quad
+                     $\Rightarrow\, v_z(t_2)=v_z(t_1)+
+                     0,07\left(g-\frac{\mu}{m}v_z^2(t_1)\right)$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem $v_z(t_2)=5,50+
+                     0,07\times\left(10-\frac{\num{5.0e-4}}{\num{2.45e-3}}\times
+                     5,50^2\right)\simeq\qty{5.77}{\v}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+\end{tcbitemize}
+
+\subsection{Mouvement d'un système oscillant}
+
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1-
+    \tcbitem $E_{pe}=\frac12 kx^2$
+    \tcbitem (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 2-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $\frac12k=\frac{(4-2)\times10^{-3}}{(2-1)\times 10^{-4}}=
+                     \qty{20}{\J\per\square\m} \quad\Rightarrow\,
+                     k=\qty{40}{\newton\per\meter}$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem $T_0=2\pi\sqrt{\frac{m}{k}}=2\pi\sqrt{\frac{0,25}{40}}
+                     \simeq\qty{0.50}{\second}$
+            \tcbitem (0,5pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 3-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $E_m=E_{c}+E_{pe}=E_{pe,\max}=\frac12kX_m^2$
+            \tcbitem (0,25pt)
+            %--------------------------------------------------------
+            \tcbitem $E_m=\frac12\times 40\times (\num{2e-2})^2=
+                     \qty{8.0e-3}{\J}=\qty{8.0}{\mJ}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 4-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $E_m=E_{c}+E_{pe}=\frac12mv_x^2+\frac12kx^2
+                     \quad\Rightarrow\;
+                     \frac12kX_m^2=
+                     \frac12mv_x^2+\frac12k\left(\frac{X_m}{2}\right)^2$ \\
+                     $\Rightarrow\,
+                     v_x^2=\frac{k}{m}\left(X_m^2-\frac{X_m^2}{4}\right)=
+                     \frac{3kX_m^2}{4m}
+                     \quad\Rightarrow\;
+                     v_{x}=\sqrt{\frac{3kX_m^2}{4m}}$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem le solide revient vers l'équilibre, la vitesse est
+                     négative~: \\
+                     $v_x=\sqrt{\frac{3\times40\times(\num{2e-2})^{2}}
+                     {4\times0,25}}\simeq\qty{-0.22}{\v}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 5-
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem $W(\vec{F})=\int_{0}^{\frac{X_m}{2}}-kx\,\mathrm{d}x=
+                     \left[-\frac12kx^2\right]_{0}^{\frac{X_m}{2}}=
+                     -\frac12k\left(\frac{X_m}{2}\right)^2$
+            \tcbitem (0,5pt)
+            %--------------------------------------------------------
+            \tcbitem $W(\vec{F})=-\frac12\times 40\times (10^{-2})^2=
+                     \qty{-2.0e-3}{\J}=\qty{-2.0}{\mJ}$
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+\end{tcbitemize}
+
+
+\end{document}

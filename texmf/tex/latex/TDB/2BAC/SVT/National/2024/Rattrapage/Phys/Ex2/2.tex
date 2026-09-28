@@ -1,0 +1,60 @@
+On considère le circuit de la
+Fig.~\ref{fig:2bac_svt_national_2024_rattrapage_phys_ex2_3} tel que~:
+$E=\qty{10}{\V}$ et $C=\qty{3}{\uF}$.
+
+La résistance du générateur et celle de la bobine sont supposées négligeables.
+
+On place l'interrupteur $\mathrm{K}$ en position~(1). Lorsque le condensateur
+est totalement chargé, on bascule $\mathrm{K}$ en position~(2) à l'instant
+$t_{0}=0$.
+
+La Fig.~\ref{fig:2bac_svt_national_2024_rattrapage_phys_ex2_4} donne les
+variations de l'une des formes d'énergie~: l'énergie électrique
+$\mathcal{E}_{e}$ emmagasinée dans le condensateur, l'énergie magnétique
+$\mathcal{E}_{m}$ emmagasinée dans la bobine ou l'énergie totale $\mathcal{E}$
+du circuit.
+
+\begin{minipage}{0.48\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{circuitikz}
+            \newdimen\d \d=3cm
+            \draw (0,0) node[cute spdt mid,rotate=90] (Sw) {};
+            \node[above] at (Sw.out 1) {(1)};
+            \node[above] at (Sw.out 2) {(2)};
+            \node[above=9mm] at (Sw.in) {$\mathrm{K}$};
+            \draw (Sw.out 1)
+                 to[short] ++(-.8\d,0)
+                 to[vsource,v_<=$E$,voltage shift=0.5] ++(0,-\d)
+                 to[short] ++(2\d,0) coordinate(M)
+                 to[L,l_={$L$},mirror,voltage shift=3.5,name=C] ++(0,\d)
+                 to[short] (Sw.out 2);
+            \draw (Sw.in) to[C,l_=$C$,i>^=$i$] (Sw.in |- M);
+        \end{circuitikz}
+    \caption{}
+    \label{fig:2bac_svt_national_2024_rattrapage_phys_ex2_3}
+    \end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\linewidth}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=.7\textwidth]{2bac_svt_national_2024_rattrapage_phys_ex2_4}
+        \caption{}
+        \label{fig:2bac_svt_national_2024_rattrapage_phys_ex2_4}
+    \end{figure}
+\end{minipage}
+
+\begin{enumerate}
+    \item Donner, en justifiant, la forme d'énergie correspondante à la courbe
+          représentée dans la
+          Fig.~\ref{fig:2bac_svt_national_2024_rattrapage_phys_ex2_4}.
+    \item Expliquer de point de vue énergétique le régime d'oscillations
+          électriques obtenu.
+    \item Déterminer graphiquement la valeur de la période propre $T_{0}$ des
+          oscillations.
+    \item Déterminer la valeur de l'inductance $L$ de la bobine.
+    \item Déterminer la valeur de l'énergie magnétique $\mathcal{E}_{m}$
+          emmagasinée dans la bobine à l'instant $t=\frac{3 T_{0}}{4}$.
+\end{enumerate}
+

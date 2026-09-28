@@ -1,0 +1,59 @@
+% Charge d'un condensateur. Résolution analytique
+\begin{minipage}{0.55\linewidth}
+    Un condensateur initialement déchargé est inséré dans le montage suivante.
+
+
+    À la date $t=0$, on ferme l'interrupteur $\mathrm{K}$.
+
+    \begin{enumerate}[series=x]
+        \item Représenter par une flèche le sens de circulation du courant
+              d'intensité $i$ dans le circuit. Identifier l'armature positive du
+              condensateur. Représenter par des flèches les tensions $u_{C}$ aux
+              bornes du condensateur et $u_{R}$ aux bornes du conducteur
+              ohmique, en respectant la convention récepteur.
+        \item En appliquant la loi d'additivité des tensions, établir une
+              relation~(1) entre $E$, $u_{R}$ et $u_{C}$.
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.44\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{circuitikz}
+            \newdimen\d \d=3cm
+            \draw (0,0) coordinate (O)
+                to[vsource,v^>=$E$] ++(0,\d)
+                to[cute open switch,l=$\mathrm{K}$] ++(\d,0)
+                to[R,l=$R$,-*] ++(\d,0) node[right] {$B$}
+                to[C,l_=$C$,-*] ++(0,-\d) node[right] {$A$}
+                to[short] (O);
+        \end{circuitikz}
+    \end{figure}
+\end{minipage}
+
+
+\begin{enumerate}[resume=x]
+    \item Exprimer $u_{R}$ en fonction de $i$ et l'intensité $i$ en fonction de
+          la charge $q$ du condensateur.
+    \item En déduire l'expression de $i$ en fonction de la capacité $C$ et de la
+          tension $u_{C}$.
+    \item À l'aide de la relation~(1), établir l'équation différentielle à
+          laquelle obéit $u_{C}$.
+    \item Une solution de cette équation différentielle est de la forme~:
+          $u_{C}=c+a\times\mathrm{e}^{bt}$.
+          \begin{enumerate}
+              \item En reportant cette expression dans la relation~(1),
+                    déterminer la valeur des constantes $b$ et $c$.
+              \item À $t=0$, que vaut la tension $u_{C}$~? En déduire la valeur
+                    du coefficient $a$.
+              \item En déduire l'expression de $u_{C}$ en fonction du temps.
+          \end{enumerate}
+\end{enumerate}
+
+\begin{donnees}
+    \begin{itemize}
+      \item $R=\qty{10}{\kilo\ohm}$~; $C=\qty{2200}{\uF}$~; $E=\qty{6.0}{\V}$.
+    \end{itemize}
+\end{donnees}
+
+

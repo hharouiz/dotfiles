@@ -1,0 +1,94 @@
+\begin{minipage}{0.64\linewidth}
+    On lance, à un instant $t_{0}=0$ avec une vitesse initiale $\vec{v}_{0}$
+    horizontale, un solide $\mathrm{(S)}$ de petites dimensions, de masse $m$,
+    d'un point $A$ qui se trouve à la hauteur $h$ du sol. Le solide
+    $\mathrm{(S)}$ tombe sur le sol au point d'impact $I$
+    (Fig.~\ref{fig:2bac_svt_national_2016_normale_phys_ex3_1}).
+    
+    On étudie le mouvement du centre d'inertie $G$ dans le repère $(O,\ex,\ey)$
+    lié à la terre supposé galiléen.
+    \begin{donnees}
+        \begin{itemize}
+          \item Tous les frottements sont négligeables~;
+          \item $g=\qty{9,8}{\a}$~; $h=OA=\qty{1}{\meter}$.
+        \end{itemize}
+    \end{donnees}
+\end{minipage}
+\hfill
+\begin{minipage}{0.35\linewidth}
+    \begin{figure}[H]
+        \centering
+        % \begin{tikzpicture}[thick]
+        %     \def\g{9.8}
+        %     \def\al{0}
+        %     \pgfmathparse{-\g/(2*\vo^2*(cos(\al))^2)}\let\a=\pgfmathresult
+        %     \begin{axis}[
+        %             cycle list name=my color list,
+        %             width=10cm,height=8cm,
+        %             xlabel=$x$,ylabel=$y$,
+        %             xmin=0,xmax=1,
+        %             ymin=0,ymax=1,
+        %             xtick={},
+        %             xticklabels={},
+        %             ytick={},
+        %             yticklabels={},
+        %         ]
+        %         \addplot {};
+        %     \end{axis}
+        % \end{tikzpicture}
+        \begin{tikzpicture}[thick]
+            \def\xm{5}
+            \def\ym{3.5}
+            \def\h{2.3}
+            \def\vo{18}
+            \def\g{9.8}
+            \pgfmathparse{-\g^2/(2*\vo^2)}\let\a=\pgfmathresult
+            \pgfmathparse{sqrt(2*\h)*\vo/\g)}\let\xI=\pgfmathresult
+            \draw[Latex-Latex]
+                (0,\ym) node[below left,inner ysep=0pt] {$y$} |-
+                (\xm,0) node[below left,inner xsep=0pt] {$x$};
+            \draw[<->,very thick]
+                (0,1) node[below left,inner ysep=0pt] {$\ey$} |-
+                (1,0) node[below left,inner xsep=0pt] {$\ex$};
+            \draw[domain=0:\xI] (0,\h) node[left] {$A$} plot(\x,{\a*\x^2+\h})
+                node[below] {$I$};
+            \draw[->,very thick]
+                (0,\h) -- +(1.5,0) node[above left] {$\vec{v}_{0}$};
+        \end{tikzpicture}
+        \caption{}
+        \label{fig:2bac_svt_national_2016_normale_phys_ex3_1}
+    \end{figure}
+\end{minipage}
+\begin{enumerate}
+    \item En appliquant la deuxième loi de Newton, établir les expressions
+          littérales des équations horaires $x(t)$ et $y(t)$ du mouvement de
+          $G$.
+    \item En déduire l'expression littérale de l'équation de la trajectoire du
+          mouvement de $G$.
+    \item Calculer la valeur de $t_{I}$, l'instant d'arrivé de $\mathrm{(S)}$ au
+          sol en $I$.
+    \item On lance de nouveau, à un instant $t_{0}=0$, le solide $(S)$ du point
+          $A$ avec une vitesse initiale
+          $\vec{v}_{0}^{\prime}=3\cdot\vec{v}_{0}$.
+
+          Recopier sur votre copie le numéro de la question et écrire la lettre
+          correspondante à la seule proposition vraie~: \\
+          la valeur de l'instant d'arrivé de $\mathrm{(S)}$ au sol vaut~: 
+
+          \begin{tcbitemize}[raster columns=8,raster rows=1,
+                  raster equal height=rows,
+                  raster column skip=-0.8pt,raster force size=false,
+                  raster every box/.style={valign=center},
+                  label/.style={add to width=-1.4cm,halign=center},
+                  answer/.style={add to width=1.4cm}]
+              \tcbitem[label] $\mathrm{a}$
+              \tcbitem[answer] $t^{\prime}=\qty{0.25}{\s}$
+              \tcbitem[label] $\mathrm{b}$
+              \tcbitem[answer] $t^{\prime}=\qty{0.35}{\s}$
+              \tcbitem[label] $\mathrm{c}$
+              \tcbitem[answer] $t^{\prime}=\qty{0.45}{\s}$
+              \tcbitem[label] $\mathrm{d}$
+              \tcbitem[answer] $t^{\prime}=\qty{0.65}{\s}$ 
+          \end{tcbitemize}
+\end{enumerate}
+

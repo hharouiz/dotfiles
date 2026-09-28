@@ -1,0 +1,27 @@
+\begin{minipage}{0.75\linewidth}
+    Un disque de rayon $r=\qty{5}{\cm}$, de masse $m=\qty{200}{\gram}$ et de
+    moment d'inertie $J_{\Delta}$, tourne à la vitesse de
+    $\qty{20}{\tr\per\min}$.
+    
+    \textbf{On donne~:}\par
+    Le de moment d'inertie $J_{\Delta}$ par rapport à l'axe ($\Delta$)~:
+    $J_{\Delta}=\frac{1}{2} \cdot m \cdot r^2$.
+    \begin{enumerate}
+        \item Exprimer $\omega$ en $\unit{\rad\per\s}$.~\textbf{(0,5pt)}
+        %\item Calculer la vitesse linéaire d'un point de sa
+        %      circonférence.~\textbf{(0,5pt)}
+        \item Calculer le moment d'inertie $J_{\Delta}$.~\textbf{(0,5pt)}
+        \item Déduire l'énergie cinétique $E_c$ du disque.~\textbf{(1pt)}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.24\linewidth}
+    \flushright
+    \begin{tikzpicture}[thick]
+        \node[circle,minimum size=4cm,draw,fill=black!10] (D) {};
+        \draw[<->,shorten <=3pt,shorten >=2pt]
+            (D.center) -- node[above] {$r$} (D.30);
+        \node[point,label=below:$(\Delta)$] at (D.center) {};
+    \end{tikzpicture}
+\end{minipage}
+

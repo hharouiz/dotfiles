@@ -1,0 +1,158 @@
+\section*{Physique (13 points)}
+\section*{Exercice 1 (3 points) : Les ondes lumineuse}
+L'oil humain ne peut percevoir que certaines radiations bien définies qui correspondent au domaine visible, de fréquences comprises entre $7,5 \cdot 10^{14} \mathrm{~Hz}$ et $3,0.10^{14} \mathrm{~Hz}$. La propagation de la lumière dans certains milieux homogènes et transparents peut engendrer des phénomènes physiques permettant de fournir des informations sur la nature de la lumière et les propriétés des milieux.
+
+\begin{enumerate}
+  \item Une source de lumière produit un faisceau parallèle composé de deux radiations rouge et bleue de longueur d'onde respectives dans le vide $\lambda_{O R}$ et $\lambda_{0 B}$
+\end{enumerate}
+
+\section*{Données: - $\lambda_{0 B}=487,6 \mathrm{~nm}$;}
+\begin{itemize}
+  \item Célérité de la lumière dans le vide : $c=3.10^{8} \mathrm{~m} \cdot \mathrm{~s}^{-1}$;
+  \item Vitesse de propagation de la radiation bleue dans le verre : $\mathrm{v}_{\mathrm{B}}=1,80.10^{8} \mathrm{~m} \cdot \mathrm{~s}^{-1}$.\\
+1.1. Calculer la fréquence $v_{0 B}$ de la radiation bleue. Cette radiation est-elle visible par l'œeil humain? Justifier. 1.2. La source précédente envoie un faisceau de lumière parallèle comportant les deux radiations sur un prisme en verre.\\
+1.2.1. Calculer $\mathrm{v}_{\mathrm{R}}$ la vitesse de propagation de la radiation rouge dans le prisme, sachant que l'indice de réfraction du verre pour la radiation rouge vaut $n_{R}=1,612$. 1.2.2. Quelle propriété possède le prisme? Justifier. 2. La radiation monochromatique, de longueur d'onde $\lambda=487,6 \mathrm{~nm}$, arrive sur une fente fine verticale, de largeur $a$. Lorsqu'on place un écran à une distance $D=2 m$ de cette fente, on observe une série de taches lumineuses (figure ci-contre).\\
+\includegraphics[width=\textwidth]{2025_03_19_c1d1d2e552dc86ffcfb2g-2(2)}\\
+2.1. Nommer le phénomène observé sur la figure.\\
+2.2. Montrer que la largeur de la tache centrale s'écrit : $L=\frac{2 \cdot \lambda \cdot D}{a}$. (on prend $\tan \theta \approx \theta(\mathrm{rad})$ ).\\
+2.3. Calculer la largeur $a$ de la fente, sachant que $L=3,6 \mathrm{~cm}$.
+\end{itemize}
+
+
+\section{Dipôle RL - Circuit RLC série}
+Le comportement d'un certain nombre de circuits électriques ou électroniques
+dépend de la nature de composants présents dans ces circuits~; ceci engendre
+différents phénomènes tel que la charge et la décharge d'un condensateur,
+l'établissement ou la rupture du courant dans une bobine et les oscillations
+électriques. Ces phénomènes peuvent être influencés par la modification de
+certains paramètres.
+
+Cet exercice vise l'étude de l'influence de la résistance du circuit sur~:
+
+\begin{itemize}
+  \item la réponse d'un dipôle RL;
+  \item les oscillations électriques dans un circuit RLC série.
+\end{itemize}
+
+\begin{enumerate}
+    \item \textbf{Influence de la résistance sur la réponse d'un dipôle RL}
+
+          \begin{minipage}{0.59\linewidth}
+              Le montage de la figure~\ref{fig:phys_ex2_1} est constitué~:
+              \begin{itemize}
+                  \item d'un générateur de force électromotrice
+                        $E=\qty{6}{\volt}$~;
+                  \item d'une bobine ($L=\qty{0,1}{\henry}$~; $r=0$)~;
+                  \item d'un conducteur ohmique de résistance $R$ réglable~;
+                  \item d'un interrupteur $K$.
+              \end{itemize}
+              
+              On règle la résistance sur la valeur $R=\qty{220}{\ohm}$ et on
+              ferme l'interrupteur $K$ à un instant $t_{0}=0$.
+          \end{minipage}
+          \hfill
+          \begin{minipage}{0.30\linewidth}
+          \begin{figure}[H]
+              \flushright
+              \begin{circuitikz}
+                  \newdimen\d \d=4cm
+                  \draw (0,0) to[vsource,v=$E$] ++(0,\d) 
+                              to[cute open switch,l=$K$] ++(0.8\d,0)
+                              to[L,l=$L$,i=$i$] ++(0,-0.5\d)
+                              to[R,l=$R$] ++(0,-0.5\d)
+                              to[short] (0,0);
+              \end{circuitikz}
+              \caption{}
+              \label{fig:phys_ex2_1}
+          \end{figure}
+          \end{minipage}
+          \begin{enumerate}
+              \item Recopier sur votre copie le schéma et représenter les
+                    tensions $u_{L}$ aux bornes de la bobine et $u_{R}$ aux
+                    bornes du conducteur ohmique en convention récepteur.
+                    Indiquer sur le même schéma les branchements de
+                    l'oscilloscope pour visualiser la tension $u_{R}$.
+              \item Montrer que l'équation différentielle vérifiée par
+                    l'intensité $i(t)$ du courant s'écrit~:
+                    $\frac{\mathrm{d} i}{\mathrm{d} t}+
+                    \frac{R}{L}i=\frac{E}{L}$.
+              \item La solution de cette équation différentielle est~:
+                    $i(t)=\frac{E}{R} \left(1-e^{-\frac{t}{\tau}}\right)$. En
+                    exploitant l'équation différentielle, trouver l'expression
+                    et la valeur de~:
+                    \begin{enumerate}
+                        \item la constante de temps $\tau$ du circuit.
+                        \item l'intensité $I_{0}$ du courant lorsque le régime
+                              permanent est établi.
+                    \end{enumerate}
+              \item Calculer l'énergie magnétique $\mathcal{E}_{m}$ emmagasinée
+                    par la bobine en régime permanent.
+              \item On règle à nouveau la résistance du conducteur ohmique sur
+                    la valeur $R^{\prime}=2 R$. La nouvelle constante de temps
+                    est notée $\tau^{\prime}$.
+
+                    Comparer $\tau^{\prime}$ et $\tau$. En déduire l'effet de la
+                    résistance R sur l'établissement du courant dans le dipôle
+                    $R L$.
+          \end{enumerate}
+    \item \textbf{Influence de la résistance sur les oscillations électriques
+          dans un circuit RLC série}
+          Le montage de la figure~\ref{fig:phys_ex2_2} est constitué~:
+          \begin{itemize}
+              \item d'un générateur de force électromotrice $E=\qty{6}{\volt}$~;
+              \item d'une bobine ($L=\qty{0,1}{\henry}$~; $r=0$)~;
+              \item d'un conducteur ohmique de résistance R réglable~;
+              \item d'un condensateur de capacité $C$~;
+              \item d'un interrupteur $K$ à deux positions.
+          \end{itemize}
+          
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.6\textwidth]{2025_03_19_c1d1d2e552dc86ffcfb2g-2(1)}
+              \caption{}
+              \label{fig:phys_ex2_2}
+          \end{figure}
+
+          On charge le condensateur, puis, à l'instant $t_{0}=0$ on bascule
+          l'interrupteur en position~(2) Les courbes~(1), (2) et (3) de la
+          figure~\ref{fig:phys_ex2_3} représentent la tension $u_{C}(t)$ aux
+          bornes du condensateur pour trois valeurs de la résistance $R$~:
+          $R_{1}=0$, $R_{2}=\qty{20}{\ohm}$ et $R_{3}=\qty{200}{\ohm}$.
+
+          \begin{figure}[H]
+              \centering
+              \includegraphics[width=0.6\textwidth]{2025_03_19_c1d1d2e552dc86ffcfb2g-3(3)}
+              \caption{}
+              \label{fig:phys_ex2_3}
+          \end{figure}
+          \begin{enumerate}
+              \item Associer chaque courbe de la figure~\ref{fig:phys_ex2_3} à
+                    la résistance correspondante.
+              \item Déduire l'influence de la résistance sur les oscillations
+                    électriques dans le circuit RLC série.
+			  \item En exploitant la courbe~(1)~:
+                    \begin{enumerate}
+                        \item déterminer la capacité $C$ du condensateur.
+                        \item calculer l'énergie totale $\mathcal{E}$ du
+                              circuit.
+                    \end{enumerate}
+          \end{enumerate}
+\end{enumerate}
+
+\section{Chute libre - système oscillant \{solide - ressort\}}
+Les mouvements des systèmes mécaniques dépendent de la nature des actions
+mécaniques qui leurs sont appliquées. L'étude de l'évolution temporelle de ces
+systèmes permet de déterminer certaines grandeurs dynamiques et cinématiques et
+d'expliquer certains aspects énergétiques.
+
+Cet exercice vise~:
+\begin{itemize}
+    \item l'étude de la chute libre d'une bille~;
+    \item l'étude d'un système oscillant \{bille - ressort\}.
+\end{itemize}
+
+\subsection{Étude de la chute libre d'une bille}
+\input{TDB/2BAC/SVT/National/2019/Rattrapage/Phys/Ex3/1.tex}
+
+\subsection{Étude d'un système oscillant \{bille- ressort\}}
+\input{TDB/2BAC/SVT/National/2019/Rattrapage/Phys/Ex3/2.tex}

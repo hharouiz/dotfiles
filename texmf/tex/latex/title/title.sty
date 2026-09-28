@@ -1,0 +1,474 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{title}[2024/10/12]
+
+\newif\if@teaching
+\@teachingfalse
+\DeclareOption{teaching}{\@teachingtrue}
+
+\newif\if@serie
+\@seriefalse
+\DeclareOption{serie}{\@serietrue}
+
+\newif\if@correction
+\@correctionfalse
+\DeclareOption{correction}{\@correctiontrue}
+
+\newif\if@cours
+\@coursfalse
+\DeclareOption{cours}{\@courstrue}
+
+\newif\if@mine
+\@minefalse
+\DeclareOption{amine}{\@minetrue}
+
+\newif\if@td
+\@tdfalse
+\DeclareOption{td}{\@tdtrue}
+
+\newif\if@myds\@mydsfalse
+\DeclareOption{myds}{\@mydstrue}
+
+\newif\if@dm\@dmfalse
+\DeclareOption{dm}{\@dmtrue}
+
+\newif\if@exam\@examfalse
+\DeclareOption{exam}{\@examtrue}
+
+\newif\if@bac\@bacfalse
+\DeclareOption{bac}{\@bactrue}
+
+\newif\if@dsamine\@dsaminefalse
+\DeclareOption{dsamine}{\@dsaminetrue}
+
+\ProcessOptions\relax
+
+\RequirePackage{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+%\RequirePackage{showframe}
+%\RequirePackage{calligra}
+\RequirePackage{tcolorbox}
+\RequirePackage{xcolor}
+
+\usetikzlibrary{positioning,shadows}
+
+
+\newcommand\TitlePageGeometry{%
+    \newgeometry{%
+        top=20mm,
+        bottom=20mm,
+        inner=20mm,
+        outer=20mm,
+        headsep=10mm,
+        footskip=10mm,
+        includehead,
+        ignorefoot,
+        nomarginpar
+    }
+}
+\if@teaching
+    \def\LyDeX{L\kern-.2em\lower.5ex\hbox{Y}\kern-.06em D\lower.5ex\hbox{E}\kern-.06em X}
+    \newcommand\doctype[1]{\gdef\@doctype{#1}}
+    \newcommand\subject[1]{\gdef\@subject{#1}}
+    \newcommand\institute[1]{\gdef\@institute{#1}}
+    \renewcommand*\maketitle{\begin{titlepage}%
+        %\TitlePageGeometry
+        %%% Lengths
+        \newlength{\TitlePageHeadWidth}
+        \setlength{\TitlePageHeadWidth}{1in+\topmargin}
+        \newlength{\TitlePageFootWidth}
+        \setlength{\TitlePageFootWidth}
+            {\paperheight-1in-\topmargin-\headheight-\headsep-\textheight}
+        \newlength{\TitlePageInnerWidth}
+        \setlength{\TitlePageInnerWidth}{1in+\oddsidemargin}
+        \newlength{\TitlePageOuterWidth}
+        \setlength{\TitlePageOuterWidth}
+            {\paperwidth-1in-\oddsidemargin-\textwidth}
+        \newdimen\@titlewidth
+        \begin{tikzpicture}[overlay,remember picture]
+            %\coordinate (center) at (0,0);
+            %\coordinate (top) at (0,.51\paperheight);
+            %\coordinate (bottom) at (0,-.51\paperheight);
+            %\coordinate (left) at (-.51\paperwidth,0);
+            %\coordinate (right) at (.51\paperwidth,0);
+            %\draw[<->] (current page.west) -- ++(\leftmargin,0)
+            %    node[right] {\tt\string\leftmargin=\the\leftmargin};
+            %\draw[<->] ([yshift=-1cm]current page.west) -- ++(1in+\hoffset,0)
+            %    node[right] {\tt1in+\string\hoffset=1in+\the\hoffset};
+            %\draw[<->] ([yshift=-2.2cm]current page.north west) -- ++(20mm,0)
+            %    node[pos=.5,above] {\tt inner};
+            %\draw[<->] ([yshift=-2.2cm]current page.north east) -- ++(-20mm,0)
+            %    node[pos=.5,above] {\tt outer};
+            \node[fill=tertiarycolor,anchor=north west,inner sep=0pt,
+                  minimum width=\paperwidth,minimum height=\paperheight] (paper)
+                at ([xshift=-.2pt,yshift=.2pt]current page.north west) {};
+            \node[fill=primarycolor,anchor=north west,inner sep=0pt,
+                  minimum width=\paperwidth,minimum height=11cm]
+                (rec) at (paper.north west) {};
+            % Title Box
+	        \node[align=flush left,inner sep=0mm,anchor=south west,
+                  font=\fontsize{1.5cm}{1.3cm}\selectfont\TitleFont,
+                  text=TitleColor] (title) at
+                ([xshift=\TitlePageInnerWidth,yshift=7cm]paper.west)
+                {%
+                    \begin{varwidth}{\textwidth}
+                        \narrowragged  % from varwidth package
+                        \hyphenpenalty10000\exhyphenpenalty10000
+                        \righthyphenmin62\lefthyphenmin62
+                        \@title
+                    \end{varwidth}
+                };
+            % Rule
+            \getwidthofnode{\@titlewidth}{title}
+            \node[fill=tertiarycolor,inner sep=0pt,
+                  minimum size=\@titlewidth,minimum height=5pt,
+                  below=4mm of title] (rule) {};
+            % Subtitle Box
+	        \node[align=flush left,inner sep=0mm,anchor=north west,
+                  font=\bfseries\LARGE\sffamily,text=tertiarycolor]
+                (doctype) at ([yshift=-4mm]rule.south west)
+                {%
+                    \begin{varwidth}{\textwidth}
+                        \narrowragged  % from varwidth package
+                        \hyphenpenalty10000\exhyphenpenalty10000
+                        \righthyphenmin62\lefthyphenmin62
+                        \@subject
+                    \end{varwidth}
+                };
+            % Doctype (circular shape)
+            \node[circle,fill=secondarycolor,inner sep=2mm,
+                  minimum size=2cm,font=\DoctypeFont\LARGE,
+                  align=center,anchor=east,text=tertiarycolor,
+                  circular glow={fill=black,opacity=0.5}]
+                at ([xshift=-\TitlePageOuterWidth]rec.south east) {\@doctype};
+            % Author
+	        \node[align=flush left,inner sep=0mm,anchor=north west,
+                  font=\AuthorFont\Huge,text width=\textwidth,
+                  text=secondarycolor]
+                (author) at
+                ([xshift=\TitlePageInnerWidth,yshift=-2cm]rec.south west)
+                {\@author};
+            % Institute
+	        \node[align=flush left,inner sep=0mm,anchor=north west,
+                  font=\InstituteFont\Huge,text width=\textwidth,
+                  text=secondarycolor]
+                (institute) at ([yshift=-1cm]author.south west) {\@institute};
+            % Date
+	        %\node[align=flush left,inner sep=0mm,anchor=north west,
+            %      font=\fontsize{1.5cm}{1.3cm}\DateFont,text width=\textwidth,
+            %      text=primarycolor]
+            %    (institute) at ([yshift=-2cm]institute.south west) {\@date};
+            \node[align=flush left,anchor=south west,inner sep=0pt,
+                font=\fontsize{1.2cm}{1.1cm}\selectfont\DateFont,
+                text=primarycolor,
+                xshift=\TitlePageInnerWidth,yshift=\TitlePageFootWidth] at
+                (paper.south west) {\@date};
+            % Logo
+            \node[anchor=south east,inner sep=0pt,
+                xshift=-\TitlePageOuterWidth,yshift=\TitlePageFootWidth] at
+                (paper.south east) {\includesvg{g6768}};
+            % 
+            %\node[fill=primarycolor,anchor=south west,inner sep=0pt,
+            %      minimum width=\paperwidth,minimum height=8mm] (brec)
+            %    at ([xshift=-.2pt,yshift=-.2pt]current page.south west) {};
+	        %\node[align=flush left, inner sep=0mm, anchor=west,
+            %      font=\large,text width=\textwidth,text=primarycolor!0.8]
+            %    (logo) at ([xshift=3mm]brec.west) {\LyDeX};
+	        %\node[align=flush right, inner sep=0mm, anchor=east,
+            %      font=\large,text width=\textwidth,text=white]
+            %    (date) at ([xshift=-3mm]brec.east) {\@date};
+        \end{tikzpicture}
+        %\restoregeometry
+    \end{titlepage}}
+
+\fi
+
+\newcommand\SerieGeometry{%
+    \newgeometry{%
+        top=5mm,
+        bottom=10mm,
+        inner=5mm,
+        outer=5mm,
+        footskip=5mm,
+        nomarginpar,
+    }
+}
+
+\if@serie
+    \newcommand\serien[1]{\gdef\serie@n{#1}}
+    %\newcommand\semestre[1]{\gdef\@semestre{#1}}
+    \newcommand\module[1]{\gdef\@module{#1}}
+    \newcommand\partie[1]{\gdef\@partie{#1}}
+    \newcommand\classe[1]{\gdef\@classe{#1}}
+    \newcommand\annee[1]{\gdef\@annee{#1}}
+    \newcommand\lycee[1]{\gdef\@lycee{#1}}
+    \renewcommand*\maketitle{%
+        %\SerieGeometry
+        %\tcbset{before=,after=\hfill,
+        %    colframe=blue!75!black,colback=white,height=2cm,
+        %    colback=white, colframe=black, boxrule=1pt, arc=0pt, outer arc=0pt,
+        %    top=2mm, bottom=2mm}
+        %\begin{tcolorbox}[width=5.5cm]
+        %    {\bfseries Partie~:} \@partie \\
+        %    {\bfseries Niveau~:} \@niveau \\
+        %    {\bfseries Année~:} \@annee
+        %\end{tcolorbox}
+        %\begin{tcolorbox}[width=\linewidth-5.8cm]
+        %\begin{center}
+        %    \if@correction
+        %        {\LARGE\bfseries Correction de la série~N$^{\circ}\serie@n$}
+        %    \else
+        %        {\LARGE\bfseries Série~N$^{\circ}\serie@n$}
+        %    \fi
+        %    \\[2mm]
+        %    {\Large\calligra \@title}
+        %\end{center}
+        %\end{tcolorbox}
+        %\<_t-AnwyT Alm.grb Al`rby Alt-'-hylyT - msty>
+        \begin{tcbitemize}[raster columns=2,raster rows=1,raster row skip=1pt,
+            raster equal height,raster force size=false,
+            raster every box/.style={valign=center,
+                size=title,
+                enhanced,boxrule=0.8pt,colback=white},
+            raster column 1/.style={add to width=-2.5cm,valign=top},
+            raster column 2/.style={add to width=2.5cm,valign=top},
+            ]
+            \tcbitem
+                \textbf{\textsc{Lycée}}~: \@lycee \\
+                \textbf{\textsc{Classe}}~: \@classe \\
+                \textbf{\textsc{Année scolaire}}~: \@annee
+            \tcbitem
+                \if@correction
+                   {\LARGE\bfseries Correction de la série~N$^{\circ}\serie@n$ de \@module} \\
+                \else
+                   {\LARGE\bfseries Série~N$^{\circ}\mathbf{\serie@n}$ \@module} \\
+                \fi
+                \vskip-4mm
+                \textbf{\textsc{Partie}}~: \@partie \\
+                \begin{minipage}[t]{0.12\linewidth}
+                    \textbf{\textsc{Cours~:}}
+                \end{minipage}
+                \begin{minipage}[t]{0.84\linewidth}
+                    {\@title} 
+                \end{minipage}
+        \end{tcbitemize}
+
+        \vspace{2mm}
+    }
+\fi
+
+\if@cours
+    \newcommand\leconn[1]{\gdef\lecon@n{#1}}
+    \newcommand\module[1]{\gdef\@module{#1}}
+    \renewcommand*\maketitle{%
+        \begin{center}
+            \begin{tikzpicture}
+                \node[draw,inner xsep=5mm,inner ysep=3mm,minimum width=9cm,
+                      minimum height=2cm,font=\bfseries\LARGE,
+                      align=center] (T) {\@title};
+                \node[below left,inner xsep=0pt,
+                      font=\scriptsize\scshape\bfseries] at (T.south east)
+                      {\@date};
+                \node[below right,inner xsep=0pt,
+                      font=\footnotesize\scshape\bfseries] at (T.south west)
+                      {\@module};
+                \node[above right=0.6pt and 0,draw,fill=lightgray,
+                      font=\footnotesize\scshape\bfseries] at (T.north west)
+                      {Chapitre~\lecon@n};
+            \end{tikzpicture}
+        \end{center}
+        %\vspace{-9mm}
+    }
+\fi
+
+\if@mine
+    \newcommand\doctype[1]{\gdef\@doctype{#1}}
+    \newcommand\subject[1]{\gdef\@subject{#1}}
+    \newcommand\institute[1]{\gdef\@institute{#1}}
+    \definecolor{titlebgcolor}{HTML}{640d14}
+    \renewcommand*\maketitle{%
+        \begin{tcolorbox}[colback=titlebgcolor, colframe=titlebgcolor,
+            width=\textwidth, boxrule=0pt, arc=0pt, outer arc=0pt, top=5mm,
+            left=3mm,right=3mm,bottom=3mm]
+        \begin{center}
+            {\LARGE\bfseries\color{white} \@title}\\[3mm]
+            {\calligra\large\color{white} \@subject}
+        \end{center}
+        \end{tcolorbox}
+        \vspace{5mm}
+        \begin{center}
+            {\Large\bfseries\scshape \@author} \\[1mm]
+            {\large\itshape \@institute} \\
+        \end{center}
+        \vspace{7mm}
+    }
+\fi
+
+
+\if@myds
+    \newcommand\D[1]{\gdef\@D{#1}}
+    \newcommand\dn[1]{\gdef\d@n{#1}}
+    \newcommand\classe[1]{\gdef\@classe{#1}}
+    \newcommand\annee[1]{\gdef\@annee{#1}}
+    \newcommand\semestre[1]{\gdef\@semestre{#1}}
+    \newcommand\duree[1]{\gdef\@duree{#1}}
+    \newcommand\lycee[1]{\gdef\@lycee{#1}}
+    \newcommand\matiere[1]{\gdef\@matiere{#1}}
+    \renewcommand*\maketitle{%
+        \tcbset{before=,after=\hfill,
+            colframe=blue!75!black,colback=white, colback=white, colframe=black,
+            boxrule=0.8pt, arc=0pt, outer arc=0pt, top=2mm,
+            bottom=2mm,right=1mm,left=1mm}
+        \if\@D S
+            \gdef\@devoir{Surveillé}
+        \fi
+        \if\@D M
+            \gdef\@devoir{à maison}
+        \fi
+        \if@bac
+            \begin{tcbitemize}[raster columns=3,raster equal height=rows,
+                raster force size=false,raster column skip=2pt,
+                raster column 1/.style={add to width=1.2cm},
+                raster column 2/.style={add to width=0cm,halign=center},
+                raster column 3/.style={add to width=-1.2cm},
+                ]
+                \tcbitem
+                    {\bfseries Lycée~:} \@lycee \\[2mm]
+                    {\bfseries Matière~:} \@matiere
+                \tcbitem
+                    \if@correction
+                        {\large\bfseries Correction du D\@D{} N$^{\circ}\d@n$}
+                    \else
+                        {\large\bfseries Devoir \@devoir{} N$^{\circ}$\d@n}
+                    \fi\\[2mm]
+                    {\large\bfseries Semestre~\@semestre}
+                \tcbitem
+                    {\bfseries Classe~:} \@classe \\[2mm]
+                    {\bfseries Année~:} \@annee
+            \end{tcbitemize}
+        \else
+            \begin{tcbitemize}[raster columns=4,raster equal height=rows,
+                raster force size=false,raster column skip=2pt,
+                raster column 1/.style={add to width=1.5cm},
+                raster column 2/.style={add to width=1.5cm,halign=center},
+                raster column 3/.style={add to width=0cm},
+                raster column 4/.style={add to width=-3cm},
+                ]
+                \tcbitem
+                    {\bfseries Prénom~:} \dotfill \\[2mm]
+                    {\bfseries Nom~:} \dotfill \\[2mm]
+                    {\bfseries N$^{\circ}$~:} \dotfill
+                \tcbitem
+                    \if@correction
+                        {\large\bfseries Correction du D\@D{} N$^{\circ}\d@n$}
+                    \else
+                        {\large\bfseries Devoir \@devoir{} N$^{\circ}$\d@n}
+                    \fi \\[2mm]
+                    {\large\bfseries Physique-Chimie} \\[2mm]
+                    {\large\bfseries Semestre~\@semestre}
+                \tcbitem
+                    {\bfseries Classe~:} \@classe \\[2mm]
+                    {\bfseries Année~:} \@annee
+                \tcbitem
+                    {\Large $$\frac{}{\; \mathbf{20}\;}$$ }
+            \end{tcbitemize}
+        \fi
+    }
+\fi
+
+\if@exam
+    \newcommand\annee[1]{\gdef\@annee{#1}}
+    \newcommand\duree[1]{\gdef\@duree{#1}}
+    \newcommand\lycee[1]{\gdef\@lycee{#1}}
+    \renewcommand*\maketitle{%
+        \tcbset{before=,after=\hfill,
+            colframe=blue!75!black,colback=white,height=3.3cm,
+            colback=white, colframe=black, boxrule=1pt, arc=0pt, outer arc=0pt,
+            top=2mm, bottom=2mm,right=1mm,left=1mm}
+
+        \newdimen\gap \gap=0.2mm
+        \newdimen\lwidth \lwidth=\linewidth
+        \advance\lwidth by -\gap
+        \begin{tcolorbox}[width=0.36\lwidth]
+            {\bfseries Lycée \@lycee} \\[1mm]
+            {\bfseries Prénom~:} \dotfill \\[1mm]
+            {\bfseries Nom~:} \dotfill \\[1mm]
+            {\bfseries Classe~:} \dotfill \\[1mm]
+            {\bfseries Numéro d'examen~:} \dotfill
+        \end{tcolorbox}
+        \begin{tcolorbox}[width=0.52\lwidth]
+        \begin{center}
+            \if@correction
+                {\Large\bfseries Correction d'examen normalisé local} \\[3mm]
+            \else
+                {\huge\bfseries Examen normalisé local} \\[3mm]
+            \fi
+            {\Large\bfseries Session Janvier 2025} \\[2mm]
+            {\large\bfseries Physique-Chimie} \\[2mm]
+            {\bfseries Durée~: \@duree}
+        \end{center}
+        \end{tcolorbox}
+        \begin{tcolorbox}[width=0.1\lwidth,valign=top,halign=center]
+            {\huge $$\frac{}{\; 20\;}$$}
+        \end{tcolorbox}
+    }
+\fi
+
+\if@dsamine
+    \newcommand\dsn[1]{\gdef\ds@n{#1}}
+    \newcommand\matiere[1]{\gdef\@matiere{#1}}
+    \newcommand\filiere[1]{\gdef\@filiere{#1}}
+    \newcommand\salle[1]{\gdef\@salle{#1}}
+    \newcommand\duree[1]{\gdef\@duree{#1}}
+    \renewcommand*\maketitle{\begin{titlepage}
+        \begin{tcbitemize}[raster columns=2,
+                colframe=black,colback=white,arc=0pt,boxrule=0.8pt]
+            \tcbitem[fontupper=\large\bfseries,halign=left,valign=center]
+                Lycée Mohammed VI d'Excellence de Benguerir
+            \tcbitem[fontupper=\Large\bfseries,halign=right,valign=center]
+                %\<_tAnwyT m.hmd AlsAds liltmyz Abn jryr>
+            \tcbitem[raster multicolumn=2,fontupper=\Huge\bfseries,
+                halign=center,valign=center,top=7mm,bottom=9mm]
+                    DEVOIR SURVEILLÉ N$^{\circ}\ds@n$
+            \tcbitem[raster multicolumn=2,center upper,fontupper=\Large,
+                environment upper args={tabular}{{>{\bfseries}p{5cm}cl}},]
+                    Épreuve de  &:& \@matiere \\[2mm]
+                    Filière &:& \@filiere \\[2mm]
+                    Salle &:& \@salle\\[2mm]
+                    Date &:& \@date \\[2mm]
+                    Durée &:& \@duree
+            \tcbitem[raster multicolumn=2]
+                \begin{center}
+                    \textbf{\large\underline{Instructions particulières}}
+                \end{center}
+                \begin{itemize}
+                    %\setlength\itemsep{0.4mm}
+                    %\renewcommand\labelitemi{\scriptsize\faAngleDoubleRight}
+                    \item La numérotation des exercices doit être respectée.
+                    \item Les notations proposés par l'énoncé doivent être
+                          adoptés.
+                    \item Si, au cours de l'épreuve, vous repérez ce qui vous
+                          semble être une erreur d'énoncé, signalez le sur votre
+                          copie et poursuivez votre composition en expliquant
+                          les raisons des initiatives que vous êtes amené à
+                          prendre.
+                    \item Les résultats doivent être systématiquement encadrés.
+                    \item Les pages doivent être numérotées de la façon
+                          suivante~: $n^{\circ}$ page courante/nombre total de
+                          pages.
+                    %\item Traiter les différentes parties dans des pages
+                    %      séparés.
+                    \item Toute réponse illisible, surchargée est considérée
+                          comme fausse.
+                    \item L'utilisation du correcteur (blanco) est strictement
+                          interdite.
+                    \item Calculatrice non autorisée.
+                    \item Une copie propre, claire, bien rédigée et bien
+                          organisée sera bonifiée. Un malus s'applique dans le
+                          cas contraire.
+                \end{itemize}
+        \end{tcbitemize}
+    \end{titlepage}}
+\fi
+
+\endinput

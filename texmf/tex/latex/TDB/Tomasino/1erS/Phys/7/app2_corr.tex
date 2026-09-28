@@ -1,0 +1,60 @@
+Dans le référentiel terrestre, $A$ est la position initiale ($v_G=v_0$) et $B$
+la position d'arrêt ($v_G=0$).
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[]
+        \newdimen\el \el=6cm
+        \Sol{1.5\el}{5mm}{sol}
+        \foreach \x/\p/\t in {-0.5\el/A/$A~(v_{0})$,0/G/,0.5\el/B/$B~(v=0)$}{
+            \node[solide={1cm/1cm},label=\t,anchor=south]
+                (\p) at ([xshift=\x]sol.north) {};
+            \fill (\p.center) circle (2pt);
+        }
+        \foreach \P [count=\i] in {A.center,B.center}
+            \draw[densely dashed] (\P) -- ++(0,-2) coordinate(E\i);
+        \draw[<->] (E1) -- node[below] {$\ell$} (E2);
+        \foreach \e in {0.1,0.3,...,1}
+            \draw[thick] ([xshift=-3pt]$(A.north west)!\e!(A.south west)$) --
+                ++(-0.4,0);
+        \foreach \e in {0.1,0.3,...,1}
+            \draw[thick] ([xshift=-3pt]$(G.north west)!\e!(G.south west)$) --
+                ++(-0.2,0);
+        \draw[-Latex,very thick,Green] ([xshift=2pt]G.south) -- ++(0,1.8)
+            node[below right,inner ysep=0pt] {$\vec{R}_{N}$};
+        \draw[-Latex,very thick,red] ([xshift=2pt]G.south) -- ++(-1.8,0)
+            node[above right,inner xsep=0pt] {$\vec{f}$};
+        \draw[-Latex,very thick,blue] (G.center) -- ++(0,-1.8)
+            node[above right,inner ysep=0pt] {$\vec{P}$};
+    \end{tikzpicture}
+\end{figure}
+
+
+
+\begin{itemize}
+    \item La variation d'énergie cinétique entre les positions $A$ et $B$ vaut~:
+          \[
+              \Delta E_c=E_c(B)-E_c(A)=0-\frac{1}{2}m v_0^2=-\frac{1}{2}m v_0^2.
+          \]
+          
+    \item Le travail des forces extérieures appliquées est~:
+          \[
+              W_{AB}(\vec{P})=W_{AB}(\vec{R}_N)=0~; \quad
+              W_{AB}(\vec{f})=f\times AB\times\cos(\ang{180})=-f\ell.
+          \]
+\end{itemize}
+
+
+D'où~:
+\[
+    \Delta E_c=\sum W_{AB}(\vec{F}_{\text{ext}})
+    \quad\Rightarrow\
+    -\frac{1}{2} m v_0^2=-f \ell
+    \quad\Rightarrow\
+    \mathbox{f=\frac{m v_0^2}{2 \ell}}
+\]
+
+Application numérique~:
+\[
+    f=\frac{0,920 \times(2,0)^2}{2 \times 0,80}=\qty{2.3}{\N}.
+\]

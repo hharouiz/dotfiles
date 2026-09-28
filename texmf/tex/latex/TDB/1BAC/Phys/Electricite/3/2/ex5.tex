@@ -1,0 +1,72 @@
+\begin{minipage}[t][][t]{0.42\linewidth}
+    \begin{enumerate}[series=x]
+        \item Représenter le vecteur champ magnétique $\vec{B}$ créé par le
+              conducteur aux points $M_{1}$ et $M_{2}$.
+
+              En déduire le sens du courant $I$.
+    \end{enumerate}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[x={(240:5mm)},y={(0:10mm)},z={(90:10mm)},thick,
+                fil/.style={cylinder,shape border rotate=90,draw,
+                 cylinder uses custom fill, cylinder end fill=black!30,
+                 cylinder body fill=black!10,minimum height=#1,
+                 minimum width=1mm,aspect=0.4,
+                 inner sep=3pt}]
+            \def\d{5}
+            \def\ar{1.6}
+            \node[fil=1.8cm,anchor=south] (fil) at (0,0,-1.8) {};
+            \begin{scope}[canvas is xy plane at z=0]
+                \path[draw,fill=white]
+                    (-0.5*\d,-0.5*\d) rectangle (0.5*\d,0.5*\d);
+                % Aiguille
+                \node[diamond,inner sep=0pt,minimum width=7mm,
+                      minimum height=3.4mm,rotate=130] (aa) at (130:\ar) {};
+                \path[draw,fill=red,rounded corners=0.4pt]
+                    (aa.north) -- (aa.south) -- (aa.east) -- cycle;
+                \path[draw,fill=white,rounded corners=0.4pt]
+                    (aa.north) -- (aa.south) -- (aa.west) -- cycle;
+                \node[above left,inner sep=0pt,font=\scriptsize] at (aa.east) {N};
+                \node[below right,inner sep=0pt,font=\scriptsize] at (aa.west) {S};
+                \draw[dashed] (0,0) circle (\ar);
+                % M
+                \node[circle,fill,inner sep=1pt,
+                    label={[above right=-1pt]:$M_{1}$}] (M) at (aa.center) {};
+                \node[circle,fill,inner sep=1pt,
+                    label={[above,inner sep=0pt]:$M_{2}$}] at (-20:\ar) {};
+            \end{scope}
+            \node[fil=2.2cm,anchor=south] (fil) at (0,0,-0.08) {};
+            \begin{scope}[canvas is yz plane at x=0]
+                \draw[<-,shorten <=2pt] (fil.after top) -- ++(0:1)
+                    node[right] {fill rectiligne};
+            \end{scope}
+        \end{tikzpicture}
+    \end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}[t][][t]{0.56\linewidth}
+    \begin{enumerate}[resume=x]
+        \item Tracer le vecteur champ magnétique aux points $M_{1}$ et $M_{2}$.
+
+              Dessiner et orienter la ligne de champ magnétique passant par
+              chacun de ses points.
+
+              Dessiner une aiguille aimantée aux point $M_{1}$ et $M_{2}$, en
+              précisant la nature de ses pôles.
+    \end{enumerate}
+    \vspace{1.2cm}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[]
+            \node[circle,fill,inner sep=1pt,
+                label={[above=1mm]:$I$}] (I) at (0,0) {};
+            \node[circle,draw,inner sep=3pt,thick] at (I) {};
+            \node[circle,fill,inner sep=1pt,
+                label={[left=1mm]:$M_{1}$}] (M1) at (-1.5,0) {};
+            \node[circle,fill,inner sep=1pt,
+                label={[right=1mm]:$M_{2}$}] (M2) at (1.5,0) {};
+        \end{tikzpicture}
+    \end{figure}
+\end{minipage}
+
+

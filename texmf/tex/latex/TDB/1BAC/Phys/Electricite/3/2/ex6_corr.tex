@@ -1,0 +1,68 @@
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem 1) \\ 3)
+    \tcbitem
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \foreach \x/\y/\a [count=\i] in {-2.5/0/0,0/-2.5/90}{%
+                \node[inner sep=0pt,draw,thick,
+                    minimum width=2cm,minimum height=6mm,
+                    rotate=\a,anchor=east,
+                    label=below:$A_{\i}$] (A\i) at (\x,\y) {};
+                \draw (A\i.north) -- (A\i.south);
+                }
+                \node[circle,inner sep=1pt,fill,
+                    label={[above right=1mm]:$M$}] (M) at (0,0) {};
+                \draw[densely dashed] (A1.east) -- (M) -- (A2.east);
+                \draw ([shift=(180:0.2)]M.center) -- ++(-90:0.2) -- ++(0:0.2);
+                \node[left] at (A1.east) {N};
+                \node[right] at (A1.west) {S};
+                \node[below] at (A2.east) {S};
+                \node[above] at (A2.west) {N};
+                % Réponse
+                \draw[arr,red] (M.center) -- ++(0:1.5) coordinate(B1)
+                    node[above] {$\vec{B}_{1}$};
+                \draw[arr,red] (M.center) -- ++(270:2) coordinate(B2)
+                    node[left] {$\vec{B}_{2}$};
+                \draw[densely dashed] (B2) -- ++(0:1.5) coordinate(B) -- (B1);
+                \draw[arr,blue] (M.center) -- (B) node[below] {$\vec{B}$};
+                % Aiguille
+                \def\a{36.87}
+                \node[diamond,draw,inner sep=0pt,minimum width=8mm,
+                    minimum height=4mm,rotate=-90+\a] (aa) at (M.center) {};
+                \path[draw,fill=red] (aa.north) -- (aa.south) -- (aa.east) --
+                    cycle;
+                % alpha
+                \draw ([shift=(270:0.8)]M.center) arc(270:270+\a:0.8)
+                    node[pos=0.6,below] {$\alpha$};
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem (1pt) \\ (0,5pt)
+    %----------------------------------------------------------------
+    \tcbitem 2)
+    \tcbitem
+              $B^{2}=B_1^2+B_2^2 \quad\Rightarrow\quad
+              B=\sqrt{B_1^2+B_2^2}=\sqrt{3^2+4^2} \quad\Rightarrow\quad
+              B=\qty{5}{\mT}$
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+    \tcbitem 4)
+    \tcbitem
+              $\tan(\alpha)=\frac{B_1}{B_2}=\frac{3}{4}=0.75
+              \quad\Rightarrow\quad \alpha = \arctan(0.75) \approx \ang{36.87}$
+    \tcbitem (1pt)
+    %----------------------------------------------------------------
+\end{tcbitemize}
+

@@ -1,0 +1,47 @@
+% Décharge d'un condensateur. Résolution analytique
+\begin{minipage}{0.55\linewidth}
+    Un condensateur initialement chargé est inséré dans le montage suivant~:
+
+    À la date $t=0$, la charge du condensateur a pour valeur~:
+    $q_{A}=\qty{0.6e-6}{\C}$ et on ferme l'interrupteur $\mathrm{K}$.
+    \begin{enumerate}[series=y]
+        \item Représenter par une flèche le sens de circulation du courant
+              d'intensité $i$ dans le circuit.
+        
+              Représenter par des flèches les tensions $u_{C}$ aux bornes du
+              condensateur et $u_{R}$ aux bornes du conducteur ohmique, en
+              respectant la convention récepteur.
+        \item Établir une relation~(1) entre $u_{R}$ et $u_{C}$.
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.44\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{circuitikz}
+            \newdimen\d \d=3cm
+            \draw (0,0) coordinate (O)
+                to[short] ++(0,\d)
+                to[cute open switch,l=$\mathrm{K}$] ++(\d,0)
+                to[R,l=$R$] ++(\d,0)
+                to[short,-*] ++(0,-\d) node[below] {$A$}
+                to[C,l_=$C$,-*] (O) node[below] {$B$};
+        \end{circuitikz}
+    \end{figure}
+\end{minipage}
+
+\begin{enumerate}[resume=y]
+    \item À l'aide de la relation~(1), établir l'équation différentielle à
+          laquelle obéit $u_{C}$.
+    \item Une solution de cette équation différentielle est de la forme~:
+          $u_{C}=a\times\mathrm{e}^{bt}$. Déterminer les constantes $a$ et
+          $b$. En déduire l'expression de $u_{C}$ en fonction du temps.
+\end{enumerate}
+
+\begin{donnees}
+    \begin{itemize}
+      \item $R=\qty{15}{\kilo\ohm}$ et $C=\qty{0.1}{\uF}$.
+    \end{itemize}
+\end{donnees}
+
+

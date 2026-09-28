@@ -1,0 +1,86 @@
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+\begin{tcbitemize}[raster columns=3,raster rows=7,raster equal height=rows,
+            raster force size=false,
+            raster column skip=-0.8pt,raster row skip=-0.8pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    \tcbitem 1)
+    \tcbitem $\ce{AH_{(aq)} + H2O_{(\ell)} <=> A^-_{(aq)} + H3O^+_{(aq)}}$
+    \tcbitem (1pt)
+    \tcbitem 2)
+    \tcbitem
+        \begin{table}[H]
+            \centering
+            \renewcommand{\arraystretch}{1.5}
+            \begin{tabularx}{\textwidth}{|p{1.8cm}|
+                    >{\arraybackslash\centering}p{2.3cm}|
+                    >{\arraybackslash\centering}p{3.0cm}|
+                    >{\arraybackslash\centering}p{2.0cm}|
+                    C|C|}
+                \hline
+                \multicolumn{2}{|l|}{Équation de la réaction} &
+                \multicolumn{4}{c|}{$\ce{AH_{(aq)}} \quad+\quad
+                \ce{H2O_{(\ell)} } \quad \ce{<=>} \quad
+                \ce{A^-_{(aq)}} \quad+\quad \ce{H3O^+_{(aq)}}$} \\
+                \hline
+                État & Avancement (mol) &
+                $n(\ce{HA})$ & $n(\ce{H2O})$ &
+                $n(\ce{A^-})$ & $n(\ce{H3O^+})$ \\
+                \hline
+                Initial & $0$ & $c\times V$ & Excès & $0$ & $0$ \\
+                \hline
+                En cours & $x$ & $c\times V-x$ & Excès & $x$ & $x$ \\
+                \hline
+                final & $x_{\eq}$ & $c\times V-x_{\eq}$ & Excès &
+                $x_{\eq}$ & $x_{\eq}$ \\
+                \hline
+            \end{tabularx}
+        \end{table}
+    \tcbitem (0,75pt)
+    \tcbitem 3)
+    \tcbitem
+        $\tau=\frac{x_{\eq}}{x_{\max}}=\frac{n_{\eq}(\ce{H3O^+})}{CV}=
+        \frac{\bigl[\ce{H3O^+}\bigr]_{\eq}}{C}=
+        \frac{10^{-\text{pH}}}{C}$
+    \tcbitem (1pt)
+    \tcbitem 4)
+    \tcbitem[raster multicolumn=2,raster multirow=4,blankest]
+        \begin{tcbitemize}[raster rows=4,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries,
+                valign=center}
+            ]
+            \tcbitem $\tau=\frac{10^{-3,28}}{\num{1.00e-2}}=0,0525=5,25\%$.
+            \tcbitem (0,25pt)
+            \tcbitem $\tau<1\; \Rightarrow$ réaction limitée.
+            \tcbitem (0,25pt)
+        \end{tcbitemize}
+    \tcbitem 5)
+    \tcbitem $Q_{r,\eq}=\frac{\bigl[\ce{H3O^{+}_{(aq)}}\bigr]_{\eq}\times
+              \bigl[\ce{A^{-}_{(aq)}}\bigr]_{\eq}}
+              {\bigl[\ce{AH_{(aq)}}\bigr]_{\eq}}=
+              \frac{\bigl[\ce{H3O^{+}_{(aq)}}\bigr]_{\eq}^{2}}
+              {C-\bigl[\ce{H3O^{+}(aq)}\bigr]_{\eq}}=
+              \frac{(C\times\tau)^{2}}{C-C\times\tau}=
+              \frac{C\times\tau^{2}}{1-\tau}$
+    \tcbitem (1pt)
+    \tcbitem 6)
+    \tcbitem $\mathrm{K_{A}}=Q_{r,\eq}=
+              \frac{C\times\tau^{2}}{1-\tau}=
+              \frac{\num{1.00e-2}\times(0,0525)^2}{1-0,0525}=
+              \num{2.91e-5}$ \\
+              $\mathrm{pK_{A}}=-\log(\mathrm{K_{A}})=-\log(\num{2.91e-5})=4,54$
+    \tcbitem (1pt)
+    \tcbitem 7)
+    \tcbitem $\mathrm{pH}=3,28<\mathrm{pK_A}=4,54\; \Rightarrow $
+             l'espèce $\ce{AH_{(aq)}}$ prédomine dans la solution.
+    \tcbitem (0,5pt)
+\end{tcbitemize}
+

@@ -1,0 +1,304 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{mpetoile}[2025/08/02]
+
+\newif\if@TD\@TDfalse
+\DeclareOption{TD}{\@TDtrue}
+
+\newif\if@Pb\@Pbfalse
+\DeclareOption{Pb}{\@Pbtrue}
+
+\newif\if@TP\@TPfalse
+\DeclareOption{TP}{\@TPtrue}
+
+\newif\if@DS\@DSfalse
+\DeclareOption{DS}{\@DStrue}
+
+\ProcessOptions\relax
+
+\ctikzset{tripoles/en amp/input height=0.45,
+tripoles/en amp/font={\color{white}},
+tripoles/en amp/font2={\color{white}}}
+
+\tikzset{%
+    BigGrayArrow/.style={%
+        {Triangle[width=7mm,length=5mm]}-{Triangle Cap[reversed]},
+        line width=4mm,shorten <=3mm,gray},
+}
+
+\graphicspath{ {./images} {../../../../logos} {./inkscape} }
+
+% Colors
+\colorlet{qlabelolcolor}{secondarycolor}
+\colorlet{qlabelbgcolor}{tertiarycolor}
+\colorlet{qlabelfgcolor}{secondarycolor}
+
+
+% Background
+\DeclareRobustCommand*{\sidelogo}[1]{\gdef\@sidelogo{#1}}
+\DeclareRobustCommand*{\sidetext}[1]{\gdef\@sidetext{#1}}
+\DeclareRobustCommand*{\sidesubtext}[1]{\gdef\@sidesubtext{#1}}
+\newcommand\makesidebackground{%
+    \newlength{\BackgroundBandWidth}
+    \setlength{\BackgroundBandWidth}{1in+\oddsidemargin-5mm}
+    \newlength{\FootWidth}
+    \setlength{\FootWidth}{\paperheight-1in-\topmargin-\headheight-\headsep-\textheight}
+    \newlength{\InnerWidth}
+    \setlength{\InnerWidth}{1in+\oddsidemargin}
+    \backgroundsetup{pages=all,angle=0,opacity=1,scale=1,contents={%
+        \begin{tikzpicture}[remember picture, overlay]
+            \coordinate[xshift=-0.5\paperwidth,yshift=0.5\paperheight]
+                (PageNorthWest) at (0,0);
+            \node[fill=PageBackgroundColor,anchor=north west,inner sep=0pt,
+                  minimum width=\paperwidth,minimum height=\paperheight,
+                  xshift=-0.2pt,yshift=0.2pt
+                  ] at (PageNorthWest) {};
+            \node[fill=primarycolor,anchor=north west,inner sep=0pt,
+                minimum height=\paperheight,minimum width=\BackgroundBandWidth,
+                xshift=-0.2pt,yshift=0.2pt
+                ] (Band) at (PageNorthWest) {};
+            \node[above=\FootWidth] (logo) at (Band.south) {\@sidelogo};
+            \node[fill=white,opacity=0.5,inner sep=0pt,
+                minimum size=\BackgroundBandWidth+0.05pt,minimum height=5pt,
+                above=8mm of logo] (rule) {};
+            \node[anchor=west,
+                font=\fontsize{1.5cm}{1.5cm}\selectfont\SideTextFont,
+                yshift=8mm,text=white,rotate=90] (sidetext) at (rule.north)
+                {\@sidetext};
+            \node[above right=4pt and 9pt,font=\bfseries\scshape,
+                text=secondarycolor,rotate=90,
+                opacity=0.7] at (sidetext.north west) {\@sidesubtext};
+        \end{tikzpicture}
+}}}
+
+
+% Boxes
+\NewTColorBox{SimpleBox}{ O{blue} !O{} }{%
+    enhanced,colframe=#1,colback=tertiarycolor!95!black,
+    sharp corners,drop fuzzy shadow,#2}
+
+\NewTColorBox{test}{ !O{} }
+    {enhanced,colframe=black!30,colback=black!10,sharp corners,boxrule=5mm,
+    title=Title,colbacktitle=black!10,coltitle=black,
+    frame code={
+        \draw[red,line width=2mm]
+            (frame.north west) rectangle (frame.south east);
+        \draw[red,line width=2mm]
+            (frame.north west) -- (frame.south east);
+    },
+    interior titled code={
+        \draw[blue,line width=2mm]
+            (interior.north west) rectangle (interior.south east);
+        \draw[blue,line width=2mm]
+            (interior.north west) -- (interior.south east);
+    },
+    title code={
+        \draw[green,line width=2mm]
+            (title.north west) rectangle (title.south east);
+        \draw[green,line width=2mm]
+            (title.north west) -- (title.south east);
+    },
+    show bounding box,
+    #1}
+
+\NewTColorBox{Info}{ !O{} }{%
+    LeftRightBorderBoxStyle={infocolor},#1}
+\NewTColorBox{Warning}{ !O{} }{%
+    LeftRightBorderBoxStyle={warningcolor},#1}
+\NewTColorBox{Success}{ !O{} }{%
+    LeftRightBorderBoxStyle={successcolor},#1}
+
+\NewDocumentEnvironment{TCBOne}{ !O{} }{%
+    \begin{tcolorbox}[tcb1style,title={Exemple},#1]
+        \colorlet{qlabelbgcolor}{tcbcolback}
+        \renewcommand\labelitemi{\tikz[baseline=(X.south)]\node[circle,
+            draw=primarycolor,line width=1.4pt,inner sep=2.5pt] (X) {};}
+        \renewcommand\labelitemii{\tikz[baseline=(X.south)]\node[circle,
+            fill=secondarycolor,inner sep=2pt] (X) {};}
+        \renewcommand\labelenumi{\qitem{qlabelbgcolor}{qlabelolcolor}{qlabelfgcolor}{Q\arabic{enumi}}}
+        %\renewcommand\labelenumi{\qenumi{\arabic{enumi}}}
+        \renewcommand\labelenumii{\qenumii{\alph{enumii}}}
+}{\end{tcolorbox}}
+
+\NewDocumentEnvironment{Example}{}{\begin{TCBOne}}{\end{TCBOne}}
+\NewTColorBox{Preambule}{ !O{} }{tcb1style,title={Préambule},#1}
+
+\renewcommand\partname{Axe}
+
+
+% Header & Footer
+%\newlength{\TopBarWidth}\setlength{\TopBarWidth}{\paperwidth-1in-1mm}
+%\newlength{\FootBottomSkip}\setlength{\FootBottomSkip}%
+%    {\paperheight-1in-\topmargin-\headheight-\headsep-\textheight-\footskip}
+\pagestyle{fancy}
+\fancyhf{}
+%\fancyfoot[C]{%
+%    \begin{tikzpicture}[remember picture, overlay, inner sep=0mm]
+%        % Bottom Bar
+%        \node[fill=secondarycolor,anchor=south east,
+%            minimum height=\FootBottomSkip,
+%            minimum width=\TopBarWidth] (BB) at (current page.south east) {};
+%        % Page Number
+%        \node[regular polygon,regular polygon sides=6,
+%            fill=secondarycolor!60!black,anchor=east,
+%            minimum size=7mm] at (0.5\textwidth+0.6pt,-2.4pt) {};
+%        \node[regular polygon,regular polygon sides=6,
+%            fill=primarycolor,minimum size=7mm,anchor=east,
+%            text=white,font=\bfseries] at (0.5\textwidth,0) {\thepage};
+%    \end{tikzpicture}
+%}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\footrulewidth}{0.8pt}
+\fancyhead[L]{LM6E -- Benguerir (LYDEX)}
+\fancyhead[R]{MP$^{\star}$3}
+\fancyfoot[L]{Mohamed Amine SOUKTANI}
+\fancyfoot[R]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[circle,fill=secondarycolor,inner sep=1.4mm,
+              text=tertiarycolor,
+              circular glow={fill=black,opacity=0.5}] {\thepage};
+    \end{tikzpicture}
+}
+
+
+% Code
+\NewTCBListing{Code}{ O{} O{} }{
+    listing engine=minted,
+    minted options={fontsize=\scriptsize,linenos,numbersep=3mm},
+    boxrule=0.6pt,boxsep=1mm,left=6mm,right=5mm,top=0mm,bottom=0mm,
+    colback=PageBackgroundColor!95!black,colframe=black,
+    fonttitle=\bfseries\large,coltitle=PageBackgroundColor,
+    listing only,title={#2},arc=0pt,
+    enhanced,
+    #1
+}
+
+% Python Code
+\NewTCBInputListing[]{\PrintPython}{ O{} m m }{
+    listing file={#2},
+    listing engine=minted,
+    minted language=python,
+    minted options={fontsize=\scriptsize,linenos,numbersep=3mm},
+    boxrule=1.0pt,boxsep=1mm,left=6mm,right=5mm,top=0mm,bottom=0mm,middle=0mm,
+    colback=ManniBackgroundColor,colframe=PythonBlueColor,
+    %colbacktitle=PythonYellowColor,
+    fonttitle=\bfseries\large,coltitle=PythonBlueColor,
+    listing only,title=Python,
+    listing and comment,tcbimage comment={#3},
+    comment style={enhanced,size=minimal,empty},
+    lower separated=false,sharp corners,
+    enhanced,
+    title code={%
+        \fill[PythonYellowColor]
+            (title.north west) rectangle (title.south east);
+        %\fill[PythonBlueColor] (title.north east) rectangle (title.south);
+        \node[anchor=west,inner sep=0pt] at ([xshift=0.7mm]title.west)
+            {\includesvg{g18.svg}};
+    },
+    overlay={%
+        \begin{tcbclipinterior}
+        \draw[gray40,thick,line cap=round]
+            ([xshift=5.5mm,yshift=-1mm]interior.north west) coordinate (tmp) --
+            ([yshift=1mm]tmp |- segmentation.north);
+            %\fill[red] (segmentation.center) circle (1pt);
+            %\draw[red] (interior.north east) rectangle (interior.south west);
+        \end{tcbclipinterior}
+    },
+    watermark text={\includesvg{PythonLogo32x32BW.svg}},watermark opacity=0.05,
+    %draft,
+    #1
+}
+
+
+\if@TD
+    %\definecolor{primarycolor}{HTML}{19c112}
+    %\fontspec{28 Days Later}
+    \setlength{\fboxsep}{5pt}
+    %\newcounter{part}
+    \renewcommand{\thepart}{\@arabic\c@part}
+    \def\part{%
+        \par
+        \vskip 4ex
+        \secdef\@part\s@part}
+    \def\@part[#1]#2{
+        \refstepcounter{part}
+        \setcounter{section}{0}
+        {\noindent\raggedright\normalfont
+        {\fontspec{League Gothic}\selectfont
+         \fontsize{1.2cm}{1.0cm}\selectfont
+            {\colorbox{secondarycolor}{\color{tertiarycolor}
+            Extrait\nobreakspace\thepart}}
+            \hfill #2\par}}
+            \nobreak
+            \vskip 3ex
+     }
+    \def\s@part#1{}
+
+    %\renewcommand\thepart{Extrait~\arabic{part}}
+    %\renewcommand\part{\@startsection {part}{-1}{\z@}{-3.5ex}{2.5ex}{}}
+\fi
+
+\if@Pb
+    \renewcommand{\thepart}{\@arabic\c@part}
+    \def\part{%
+        \par
+        \vskip 4ex
+        \secdef\@part\s@part}
+    \def\@part[#1]#2{
+        \refstepcounter{part}
+        \setcounter{section}{0}
+        {\noindent\raggedright\normalfont
+            {\fontsize{1.2cm}{1.0cm}\selectfont
+                {\fontspec{28 Days Later}\selectfont
+                    {\color{secondarycolor} Probleme\nobreakspace\thepart}
+                }
+                \hfill
+                {\fontspec{League Gothic}\selectfont
+                    #2
+                }
+                \par
+            }
+        }
+        \nobreak
+        %\tikz\draw[line width=3pt,secondarycolor] (0,0) -- +(\linewidth,0);
+        \vskip 3ex
+    }
+    \def\s@part#1{}
+\fi
+
+\if@TP
+    \renewcommand\thesubsection{\Alph{subsection}}
+\fi
+
+
+\if@DS
+    %\definecolor{primarycolor}{HTML}{19c112}
+    %\fontspec{28 Days Later}
+    \setlength{\fboxsep}{5pt}
+    %\newcounter{part}
+    \renewcommand{\thepart}{\@arabic\c@part}
+    \def\part{%
+        \par
+        \vskip 4ex
+        %\clearpage
+        \secdef\@part\s@part}
+    \def\@part[#1]#2{
+        \refstepcounter{part}
+        \setcounter{section}{0}
+        \noindent\raggedright\normalfont
+        \begin{tcolorbox}[enhanced,sharp corners,frame hidden,
+            top=5mm,bottom=5mm,left=0mm,right=0mm,boxsep=0mm,boxrule=0mm,
+            borderline north={0.75mm}{0mm}{black},
+            borderline north={0.15mm}{1mm}{black},
+            borderline south={0.15mm}{1mm}{black},
+            borderline south={0.75mm}{0mm}{black},
+            halign=center,valign=center,
+            fontupper=\fontsize{1.2cm}{1.0cm}\fontspec{LT Energy}\selectfont]
+            #2
+        \end{tcolorbox}
+        \vskip 3ex
+     }
+    \def\s@part#1{}
+\fi
+
+
+\endinput

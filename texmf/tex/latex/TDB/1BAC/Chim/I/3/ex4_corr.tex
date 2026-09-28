@@ -1,0 +1,63 @@
+\begin{minipage}{0.75\linewidth}
+    \begin{enumerate}
+        \item Voir schéma ci-contre. \hfill\textbf{(1pt)}
+        \item $U=RI \;\Leftrightarrow\;
+              R=\frac{U}{I}=\frac{1,00}{12,0\times 10^{-3}}=\qty{83,3}{\ohm}$
+              \hfill\textbf{(0,5pt)}
+
+              $G=\frac{1}{R}=\frac{I}{U}=
+              \frac{12,0\times 10^{-3}}{1,00}=
+              \qty{12,0}{mS}$
+              \hfill\textbf{(0,5pt)}
+
+        \item $G=\sigma\times\frac{S}{\ell} \;\Leftrightarrow\;
+              \sigma=G\times\frac{\ell}{S}=
+              12,0\times 10^{-3} \times
+              \frac{1,0\times 10^{-2}}{1,0\times 10^{-4}}=
+              \qty{1.2}{\S\per\m}$
+              \hfill\textbf{(1pt)}
+        \item $G_{1}=\sigma\times\frac{S_{1}}{\ell}=
+              \sigma\times\frac{S/2}{\ell}=\frac{G}{2}=
+              \frac{12,0}{2}=\qty{6.00}{\mS}$
+              \hfill\textbf{(1pt)}
+        \item $G_{2}=\sigma\times\frac{S}{\ell_{2}}=
+              \sigma\times\frac{S}{\ell/2}=2G=
+              2\times 12,0=\qty{24.0}{\mS}$
+              \hfill\textbf{(1pt)}
+    \end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}{0.24\linewidth}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \newdimen\W \W=3cm
+            \newdimen\H \H=2.5cm
+            \newdimen\d \d=1.0cm
+            \pgfmathparse{0.65\W}\let\L=\pgfmathresult
+            \node[inner sep=0pt,fill=lightgray,minimum width=\W,
+                minimum height=0.7\H] (sol) {};
+            \node[inner sep=0pt,minimum width=\W,
+                minimum height=\H,anchor=south] (becher) at (sol.south) {};
+            \draw[draw,thick] (becher.north east) --
+                (becher.south east) -| (becher.north west);
+            \node[inner sep=0pt,minimum width=\L,
+                minimum height=0.55\H,anchor=south] (cell) at (becher.south) {};
+            \foreach \a in { east, west}
+            \node[anchor=north,trapezium,draw,fill=copper,trapezium left angle=120,
+                trapezium right angle=60,shape border rotate=90,minimum width=7mm,
+                minimum height=6mm,inner sep=0pt] at (cell.north \a) {$S$};
+            \draw (cell.north east) to[short] ++(0,2\d) coordinate(A)
+                to[short] ++(\d,0) coordinate(B)
+                to[short] ++(0,1.5\d) coordinate (C)
+                to[rmeter,t={\footnotesize GBF}] ++(-\d-0.5*\L,0)
+                to[rmeter,t=A] ++(-\d-0.5*\L,0) coordinate (D)
+                to[short] (D |- B) coordinate(E)
+                to[short] ++(\d,0) coordinate(F)
+                to[short] (cell.north west);
+            \draw (A) to[rmeter,t=V] (F);
+            \draw[<->,shorten <=1pt,shorten >=1pt]
+                ([yshift=1cm]cell.north west) -- node[above] {$\ell$} ++(\L pt,0);
+        \end{tikzpicture}
+    \end{figure}
+\end{minipage}

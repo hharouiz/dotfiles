@@ -1,0 +1,20 @@
+Un conducteur ohmique de résistance $R=\qty{8,0}{\ohm}$ est branché aux
+bornes d'un générateur de fém $E=\qty{4,5}{\volt}$ et de résistance interne
+$r=\qty{2,0}{\ohm}$.
+
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+        \newdimen\d \d=2.5cm
+        \draw (0,0)
+            to[battery2,l_=$(E{,}r)$,-*] ++(0,-\d) node[left] {$N$}
+            to[short,-*] ++(1.7\d,0) node[right] {$B$}
+            to[R,l_=$R$,-*] ++(0,\d) node[right] {$A$}
+            to[short,i<=$I$,-*] ++(-1.7\d,0) node[left] {$P$};
+    \end{circuitikz}
+\end{figure}
+
+\begin{enumerate}
+    \item Exprimer le bilan de puissance du générateur.
+    \item En déduire l'intensité $I$ du courant.
+\end{enumerate}

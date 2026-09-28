@@ -1,0 +1,48 @@
+\begin{minipage}{0.46\linewidth}
+    Un skieur, de masse $M=\qty{80}{\kg}$ (avec son équipement), se trouve au
+    sommet (point $O$) d'une piste rectiligne inclinée d'un angle
+    $\alpha=\ang{4.59}$. La longueur de la pente est $L=\qty{200}{\m}$.
+
+    \begin{donnees}
+        \begin{itemize}
+            \item Intensité de la pesanteur~: $g=\qty{9.8}{\N\per\kg}$.
+        \end{itemize}
+    \end{donnees}
+\end{minipage}
+\hfill
+\begin{minipage}{0.53\linewidth}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[thick]
+        \def\al{9}
+        \def\b{-7}
+        \node[minimum width=8cm,minimum height=2mm,top color=gray,
+            anchor=north east] (sol) at (0.5,0) {};
+        \PlanIncline{P}{O}{Q}{\b}{\al}{$\alpha$}
+        \foreach \p/\a in {O/left,P/right}
+            \node[point,label={[\a,inner sep=2pt]:$\p$}] at (\p) {};
+        \node[anchor=south,font=\LARGE,rotate=18,yshift=-2.4mm] (S) at
+            ($(O.center)!0.5!(P.center)$) {\faSkiing};
+        \draw (Q) |- +(0.2,0.2) |- cycle;
+        \draw[<->] ([shift=(90-\al:0.8)]O) coordinate (O') --
+            node[above] {$L$} ([shift=(90-\al:0.8)]P) coordinate (P');
+        \draw[dashed] (O) -- (O');
+        \draw[dashed] (P) -- (P');
+        \node[signal,draw,fill=black!10,anchor=west,solid,inner sep=2pt,
+            signal to=west,xshift=5mm] at (P) {$E_{pp}=0$};
+    \end{tikzpicture}
+\end{figure}
+\end{minipage}
+\begin{enumerate}
+    \item Le skieur part du sommet de la piste avec une vitesse de valeur
+          $v_{O}=\qty{0.5}{\m\per\s}$.
+    
+          Calculer, au moment du départ, son énergie cinétique $E_{c}(O)$ et son
+          énergie potentielle de pesanteur $E_{pp}(O)$.~\textbf{(2pt)}
+    \item En appliquant la conservation de la somme $E_{c}+E_{pp}$, calculer
+          l'énergie cinétique du skieur lorsqu'il est parvenu au
+          bas de la piste (point $P$).~\textbf{(1pt)}
+
+          En déduire la valeur de sa vitesse au point $P$.~\textbf{(1pt)}
+\end{enumerate}
+

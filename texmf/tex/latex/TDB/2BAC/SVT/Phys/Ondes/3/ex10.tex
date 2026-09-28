@@ -1,0 +1,105 @@
+On éclaire une fente verticale de largeur $a=\qty{5e-5}{\m}$, à l'aide d'un
+Laser qui donne une lumière monochromatique de longueur d'onde
+$\lambda=\qty{633}{\nm}$. On observe sur un écran placé à la distance
+$D$ de la fente, des taches lumineuses. La mesure de la largeur
+de la tache centrale à donné $L=\qty{3.8}{\cm}$.
+
+La célérité de la lumière dans le vide (ou l'air) est $c=\qty{3e8}{\v}$.
+
+\begin{minipage}{0.59\linewidth}
+    \flushleft
+    \begin{tikzpicture}[x={(190:7mm)},y={(-10:1cm)},z={(90:1cm)}]
+        \def\L{6}
+        \def\H{3}
+        \def\l{1}
+        \def\h{1.5}
+        \def\a{0.15}
+        \def\A{2}
+        \def\B{0.8}
+        \def\C{0.6}
+        \def\D{5.5}
+        \def\d{8}
+        % Écran 1
+        \begin{scope}[canvas is yz plane at x=0]
+            \path[draw,fill=black!5] (-\L/2,-\H/2) rectangle (\L/2,\H/2);
+            \node[above left,rotate=-10] at (\L/2,\H/2) {Écran};
+            \draw[->] (-0.55*\L,0) node[above] {$x^{\prime}$} --
+                (0.55*\L,0) node[above] {$x$};
+            \draw[->] (0,-0.6*\H) node[right] {$y^{\prime}$} --
+                (0,0.6*\H) node[right] {$y$};
+        \end{scope}
+        % Écran 2
+        \begin{scope}[canvas is yz plane at x=\D]
+            \path[draw,fill=black!20] (-\l/2,-\h/2) rectangle (\l/2,\h/2);
+            \path[draw,fill=white] (-\a/2,-0.4*\h) rectangle (\a/2,0.4*\h);
+            \draw[<-] (-\a/2,0.3*\h) -- ++(160:2)
+                node[above] {Fente de largeur $a$};
+        \end{scope}
+        % Rayon
+        \draw[black!50,thick] (\d,0,0) -- ++(-\d+\D,0,0);
+        % Laser
+        \begin{scope}[canvas is xy plane at z=\C/2]
+            \path[draw,fill=black!20] (\d,-\B/2) rectangle (\d+\A,\B/2);
+        \end{scope}
+        \begin{scope}[canvas is zx plane at y=\B/2]
+            \path[draw,fill=black!20] (-\C/2,\d) rectangle (\C/2,\d+\A);
+            \node[below=1mm] at (-\C/2,\d+\A/2) {Laser};
+        \end{scope}
+        \begin{scope}[canvas is yz plane at x=\d+\A]
+            \path[draw,fill=black!20] (-\B/2,-\C/2) rectangle (\B/2,\C/2);
+        \end{scope}
+    \end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.40\linewidth}
+    \flushright
+    \begin{tikzpicture}
+        \newdimen\a \a=3mm
+        \newdimen\D \D=4.5cm
+        \newdimen\L \L=1.7cm
+        \pgfmathparse{atan(\L/(2\D))}\let\th=\pgfmathresult
+        \node[fill,inner sep=0pt,minimum width=1mm,minimum height=4cm] (D) {};
+        \node[fill=white,inner sep=0pt,minimum width=3mm,
+              minimum height=\a] (F) at (D.center) {};
+        \draw[<->,>={Straight Barb[round,length=3pt,width=3pt]}]
+              (F.south west) -- (F.north west) node[pos=0.5,left] {$a$};
+        \node[ellipse,inner sep=0pt,fill=black!30,minimum height=\L,
+              minimum width=4mm] (T0) at ([xshift=\D]F.east) {};
+        \foreach \y [count=\i] in {1.5cm,-1.5cm}
+        \node[ellipse,inner sep=0pt,fill=black!30,minimum height=0.6\L,
+              minimum width=3mm] (T\i) at ([xshift=\D,yshift=\y]F.east) {};
+        \draw[densely dashed] (F.east) -- ($(T0.north)!0.5!(T1.south)$);
+        \draw[densely dashed] (F.east) -- (T0.center);
+        \draw[->] ([xshift=3cm]F.east) arc (0:\th:3) node[pos=0.5,right] {$\theta$};
+        \draw[{Bar[] . Straight Barb[]}-{Straight Barb[] . Bar[]}]
+            ([xshift=5mm]T0.north) -- ++(0,-\L) node[right,pos=0.5] {$L$};
+        \draw[{Bar[] . Straight Barb[]}-{Straight Barb[] . Bar[]}]
+            ([yshift=2mm]D.north east) -- ++(\D,0) node[above,pos=0.5] {$D$};
+    \end{tikzpicture}
+\end{minipage}
+\begin{enumerate}
+    \item Nommer le phénomène observé sur l'écran.~\textbf{(0,5pt)}
+    \item Sur quelle direction ($xx^{\prime}$ ou $yy^{\prime}$) s’étalent les
+          taches obtenues.~\textbf{(0,5pt)}
+    \item Rappeler la relation qui lie  $\theta$, $\lambda$ et $a$.~\textbf{(0,5pt)}
+    \item Montrer que l'écart angulaire $\theta$ s'exprime par~:
+          $\theta=\frac{L}{2 \cdot D}$
+          (on prend~: $\tan\theta \simeq \theta$ (\unit{\rad})).~\textbf{(0,75pt)}
+    \item Établir l'expression de la distance $D$ en fonction de $L$, $a$ 
+          et $\lambda$. Calculer $D$.~\textbf{(0,75pt)}
+    \item Déterminer la valeur de la fréquence $f$ de la lumière utilisée.~\textbf{(1,0pt)}
+    \item On refait l'expérience en utilisant un fil très fin vertical de
+          diamètre $a_0$, on obtient une tache centrale de largeur
+          $L_0=\qty{1.5}{\cm}$. Déterminer la valeur de $a_0$.~\textbf{(1,0pt)}
+    \item On éclaire avec cette source Laser un prisme de verre flint d'indice
+          de réfraction $n=1,64$. 
+          \begin{enumerate}
+              \item Déterminer la vitesse $v$ de propagation de la lumière dans
+                    le prisme.~\textbf{(1,0pt)}
+              \item Trouver la longueur d’onde $\lambda^{\prime}$ au cours de la
+                    propagation dans le prisme.~\textbf{(1,0pt)}
+              \item Qu'observe-t-on si on remplace la lumière monochromatique
+                    par la lumière blanche~? Quel est le nom de ce phénomène~?~\textbf{(1,0pt)}
+          \end{enumerate}
+\end{enumerate}
+

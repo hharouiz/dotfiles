@@ -1,0 +1,123 @@
+\setlength\cwii{\b}
+\setlength\cwiii{\c}
+\setlength\cwi{\a}
+
+\begin{tcbitemize}[raster columns=4,raster rows=1,
+        raster equal height=rows,raster force size=false,
+        raster every box/.style={top=1mm,bottom=0mm}]
+    \tcbitem
+        \textbf{a)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[thick]
+                \node[fil=3cm,anchor=south] (fil) at (0,0) {};
+                \node[below] at (fil.south) {$N$};
+                \node[above] at (fil.north) {$M$};
+                \draw[->,red] (fil.center) --
+                    node[left] {$I$} ++(0,.5);
+                \node[circle,inner sep=1mm,draw,line width=1.2pt,
+                      below right=7mm,
+                      label=below:$\vec{B}$] (c) at (fil.east) {};
+                \node[circle,inner sep=1mm,fill,
+                      inner sep=1pt] at (c.center) {};
+                % Réponse
+                \draw[->,blue] (fil.east) --
+                    node[above] {$\vec{F}$} ++(1.5,0);
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem
+        \textbf{b)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[thick]
+                \node[fil=3cm,anchor=south] (fil) at (0,0) {};
+                \node[below] at (fil.south) {$N$};
+                \node[above] at (fil.north) {$M$};
+                \draw[->,red] (fil.center) --
+                    node[left] {$I$} ++(0,.5);
+                \draw[->] ([xshift=5mm,yshift=-5mm]fil.center) --
+                    node[right] {$\vec{B}$} ++(0,1);
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem
+        \textbf{c)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[thick]
+                \node[fil=3cm,anchor=south] (fil) at (0,0) {};
+                \node[below] at (fil.south) {$N$};
+                \node[above] at (fil.north) {$M$};
+                \draw[->,red] (fil.center) --
+                    node[left] {$I$} ++(0,.5);
+                \node[circle,inner sep=1mm,draw,line width=1.2pt,
+                      below right=7mm,
+                      label=below:$\vec{B}$] (c) at (fil.east) {};
+                \draw[line width=1.2pt]
+                    (c.45) -- (c.225) (c.135) -- (c.315);
+                % Réponse
+                \draw[->,blue] (fil.west) --
+                    node[above] {$\vec{F}$} ++(-1.5,0);
+            \end{tikzpicture}
+        \end{figure}
+    \tcbitem
+        \textbf{d)}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[thick]
+                \node[fil=3cm,anchor=south] (fil) at (0,0) {};
+                \node[below] at (fil.south) {$N$};
+                \node[above] at (fil.north) {$M$};
+                \draw[->,red] (fil.center) --
+                    node[left] {$I$} ++(0,.5);
+                \draw[->] ([xshift=2mm,yshift=-7mm]fil.center)
+                  coordinate (tmp) --
+                  node[right=2mm] {$\vec{B}$} ++(45:1.5);
+                \draw[shorten <=1pt] ([shift=(45:1)]tmp) arc (45:90:1)
+                  node[pos=0.3,above=1mm] {$\ang{45}$};;
+                % Réponse
+                \node[circle,inner sep=1mm,draw,line width=1.2pt,
+                      xshift=-5mm,blue,
+                      label=below:$\vec{F}$] (c) at (fil.west) {};
+                \draw[line width=1.2pt,blue]
+                    (c.45) -- (c.225) (c.135) -- (c.315);
+            \end{tikzpicture}
+        \end{figure}
+\end{tcbitemize}
+
+\begin{tcbitemize}[raster columns=3,raster equal height=rows,
+        raster force size=false,
+        raster equal skip=-1.0pt,
+        raster column 1/.style={width=\cwi,
+            fontupper=\bfseries},
+        raster column 2/.style={width=\cwii},
+        raster column 3/.style={width=\cwiii,fontupper=\bfseries,
+            halign=center,valign=center},
+        ]
+    %----------------------------------------------------------------
+    \tcbitem[raster multirow=2] 1)
+    \tcbitem[raster multicolumn=2,raster multirow=2,blankest]
+        \begin{tcbitemize}[raster rows=2,raster columns=2,
+               raster height=\tcbtextheight,
+               raster column 1/.style={width=\cwii},
+               raster column 2/.style={width=\cwiii,fontupper=\bfseries}
+            ]
+            \tcbitem
+            \tcbitem (2pt)
+            %--------------------------------------------------------
+            \tcbitem
+            \begin{enumerate}[label=\textbf{\alph*)}]
+                \item $F=I\ell B\sin(90^\circ)=I\times MN\times B=
+                      1\times\num{10e-2}\times\num{1e-4}=\qty{1e-5}{\newton}$
+                \item $F=I\ell B\sin(0^\circ)=\qty{0}{\newton}$
+                \item $F=I\ell B\sin(90^\circ)=
+                      1\times\num{10e-2}\times\num{1e-4}=\qty{1e-5}{\newton}$
+                \item $F=I\ell B\sin(45^\circ)=
+                      1\times\num{10e-2}\times\num{1e-4}\times\sin(45^\circ)=
+                      \qty{7.1e-6}{\newton}$
+            \end{enumerate}
+            \tcbitem (2pt)
+        \end{tcbitemize}
+\end{tcbitemize}
+
+
+
