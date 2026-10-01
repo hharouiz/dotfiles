@@ -112,6 +112,7 @@
 \RequirePackage{dashrule}
 \RequirePackage{scrextend}
 %\RequirePackage[skip=.5\baselineskip]{parskip}
+\RequirePackage{yhmath}
 
 
 % -----------------------------------------------------------------------------

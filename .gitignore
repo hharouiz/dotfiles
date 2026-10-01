@@ -1,0 +1,14 @@
+# LaTeX generated files
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.xdv
+*.synctex*
+*.toc
+*.bbl
+*.blg
+
+# Any directory named aux
+aux/
